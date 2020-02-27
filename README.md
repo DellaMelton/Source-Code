@@ -27,7 +27,9 @@ Google play services
 INSTALLATION INSTRUCTIONS
 
 Search up FBLA Chapter Manager in the play store.
-Download the apk. 
+Download the apk.*
+
+*If not in play store there is an apk in the files submited.
 
 =======
 
@@ -35,6 +37,8 @@ VIEWING INSTRUCTIONS:
 
 In order to view source code you will need Android Studio.
 Find the apk file in Android studio. 
+
+Or in the file provided.
 
 =======
 
