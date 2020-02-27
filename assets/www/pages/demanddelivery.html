@@ -1,0 +1,49 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+
+		<div class="left sliding">
+			{{#js_compare "this.showSideMenu == \'1\' "}}
+
+			{{getNavigation @global.style.layout "menu"}}
+
+			{{else}}
+
+			{{#root_Compare @global.style.layout "==" "slidemenu"}}
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+				<i class="icon icon-left-open-2"  ></i></a>
+			{{else}}
+			{{#root_Compare @global.style.layout "==" "bottom"}}
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+				<i class="icon icon-left-open-2"  ></i></a>
+			{{else}}
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+				<i class="icon icon-left-open-2"  ></i></a>
+			{{/root_Compare}}
+			{{/root_Compare}}
+
+			{{/js_compare}}
+
+		</div>
+		<div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+	</div>
+</div>
+<div data-page="demanddelivery-page" class="page navbar-through no-toolbar">
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<style> </style>
+		<div class="input-pan">
+			<div class="input-field {{@global.styleAndNavigation.field[0]}}  {{@global.styleAndNavigation.field[1]}}" style="border-color: {{@global.styleAndNavigation.borderColor}}; background-color: {{@global.styleAndNavigation.field[2]}};"><i class="icon-target-1" style="color: {{@global.styleAndNavigation.field[3]}}"></i><input type="search" id='pickLocationInput' name='pickLocationInput' onKeyPress='dDSearchLocation();' onkeyup='dDSearchLocation();' value="{{currentPickLoc}}"  style="background-color: {{@global.styleAndNavigation.field[2]}}; color: {{@global.styleAndNavigation.field[3]}} " />
+			</div>
+			<ul id='plusCodeListIdPick'>
+			</ul>
+			<div class="input-field {{@global.styleAndNavigation.field[0]}}  {{@global.styleAndNavigation.field[1]}}" style="border-color: {{@global.styleAndNavigation.borderColor}}; background-color: {{@global.styleAndNavigation.field[2]}};"><i class="icon-location" style="color: {{@global.styleAndNavigation.field[3]}}"></i> <input type="search" placeholder="{{@global.pageLanguageSetting.Enter_Drop_Location}}" id='dropLocationInput' name='dropLocationInput' onKeyPress='dDSearchDropLocation();' onkeyup='dDSearchDropLocation();'  style="background-color: {{@global.styleAndNavigation.field[2]}}; color: {{@global.styleAndNavigation.field[3]}}" />
+			</div>
+		</div>
+		<ul id='plusCodeListId'>
+		</ul>
+		<div class="map" id="map">
+		</div>
+
+	</div>
+</div>
+

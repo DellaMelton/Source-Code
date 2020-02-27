@@ -1,0 +1,61 @@
+<div class="navbar"><div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+    <div class="right"><a class="iconz-option-vertical" onclick="toggle_menu(this);" style="color:{{@global.style.headerBarIconColor}};"></a></div>
+</div></div>
+
+<div data-page="ewallet-addmoney" class="page navbar-through no-toolbar" style="overflow-x:hidden";>
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+        <style type="text/css">
+            .wallet-card{background-color:{{@global.styleAndNavigation.bannerbgColor}};color:{{@global.styleAndNavigation.bannerTextColor}};}
+            .wallet-card-detail .profile-img{border-color:{{@global.styleAndNavigation.bannerBorderColor}};}
+
+            .addMoney .btn{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+            .transaction-filter select, .enteramount input{border-color:{{@global.styleAndNavigation.content[2]}}; color:{{@global.styleAndNavigation.content[2]}};}
+            .transaction-filter select, .enteramount input:placeholder{color:{{@global.styleAndNavigation.content[2]}};}
+            .amountrange span {
+                border-color:{{@global.styleAndNavigation.content[2]}};
+            }
+            </style>
+        <div class="ewallet_container">
+            <div class="wallet-card {{@global.styleAndNavigation.bannerContentSize}}">
+                <div class="pull-left flip" class="word-break">
+                    {{this.userName}}
+                </div>
+                <div class="wallet-card-detail">
+                    <div class="profile-img">
+                        <img src={{this.userProfilePic}} alt="images/vandor-pic.jpg">
+
+                    </div>
+                    <div class="total-earning">
+                        <p>{{this.languageSetting.ewallet_remainingbal}}</p>
+                        <h2 id="addmoney_amountId">{{ewalletAmountHelper this.userData.balanceAmount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="enteramount colorBlack">
+                <!--                <label>{{this.languageSetting.enter_amount}}</label>-->
+                <div class="pos-rel">
+                    <input type="number" placeholder='{{this.languageSetting.enter_amount}}' onkeydown="onlyNumbers(this)"  onfocusout="this.value= Math.round(parseFloat(this.value.replace('.','')));" id="addamountId"/>
+                    <i class="appyslim-ui-delete-x" onclick="clearAmount()"></i>
+                </div>
+            </div>
+            <div class="amountrange colorBlack">
+                <span onclick="setMoneyOnClick(this,50)">{{ewalletAmountHelper "50"}}</span>
+                <span onclick="setMoneyOnClick(this,100)">{{ewalletAmountHelper "100"}}</span>
+                <span onclick="setMoneyOnClick(this,200)">{{ewalletAmountHelper "200"}}</span>
+                <span onclick="setMoneyOnClick(this,500)">{{ewalletAmountHelper "500"}}</span>
+            </div>
+            <div class="addMoney" onclick="addmoneytowalletEvent()">
+                <button class="btn">{{this.languageSetting.add_money}}</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

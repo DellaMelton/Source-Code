@@ -1,0 +1,100 @@
+
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding  {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{title}}</div>
+        <div class="right"></div>
+    </div>
+</div>
+<div data-page="forum-forumAddQuestion" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <div class="page-content" style="background-color:{{@global.styleAndNavigation.form[4]}}">
+        <style>
+            .addQuestionBlock span sup {
+                color:{{@global.styleAndNavigation.form[3]}};
+            }
+        .addQuestionBlock textarea, .addQuestionBlock select, .addQuestionBlock input {
+            border-color:{{@global.styleAndNavigation.form[3]}};
+            background-color:{{@global.styleAndNavigation.form[5]}};
+            color:{{@global.styleAndNavigation.form[2]}};
+        }
+                .addQuestionBlock span, .addQuestionBlock .checkIt label,.addQuestionBlock .mediaImg{color:{{@global.styleAndNavigation.form[6]}}}
+        
+        .addQuestionBlock ::-webkit-input-placeholder {color:{{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+            .addQuestionBlock :-moz-placeholder {color:{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+            .addQuestionBlock ::-moz-placeholder {color:{{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+            .addQuestionBlock :-ms-input-placeholder {color:{{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+            .mediaImg.active  i{border-color:{{@global.styleAndNavigation.form[3]}};
+            background-color:{{@global.styleAndNavigation.form[5]}};
+            color:{{@global.styleAndNavigation.form[2]}} }
+            </style>
+        <div class="homeScreenWrapper addQuestionWrapper">
+            <section>
+                <form name="add-question">
+                    <div class="userNm">
+                        <span class="iconz-user"></span>
+                        <span id="userName" class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">{{userName}}</span>
+                    </div>
+                    <div class="addQuestionBlock">
+                        <span class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}">{{@global.pageLanguageSetting.FORUM_QUESTION}}<sup>*</sup></span>
+                        <textarea class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" id="questionText" placeholder="{{@global.pageLanguageSetting.WRITE_YOUR_QUESTION}}" >{{questionValue}}</textarea>
+                    </div>
+                    <div class="addQuestionBlock">
+                        <span class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}">{{@global.pageLanguageSetting.FORUM_SELECT_CATEGORY}}<sup>*</sup></span>
+                        <div class="selectArrow">
+                        <select id="questionCategory">
+                            <option selected="selected" value="Select Category">{{@global.pageLanguageSetting.FORUM_SELECT_CATEGORY}}</option>
+                            {{#data}}
+                            <option value="{{catId}}">{{catName}}</option>
+                            {{/data}}
+                        </select>
+                        </div>
+                    </div>
+                    <div class="addQuestionBlock" {{#if isAllowAnonymously}} {{else}} style="display:none" {{/if}}>
+                        <div class="checkIt">
+                            <input type="checkbox" name="questionAnonymousCheck" id="questionAnonymousCheck" value="" />
+                            <label class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" for="questionAnonymousCheck">{{@global.pageLanguageSetting.FORUM_ADD_ANNONYMOUS}}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="addQuestionBlock"  {{#if displayAnswerSegment}} style="display:none" {{/if}}>
+                        <div class="checkIt">
+                            <input type="checkbox" name="questionAnswerCheck" id="questionAnswerCheck" value="" onchange="displayUserAnswer()"/>
+                            <label class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" for="questionAnswerCheck">{{@global.pageLanguageSetting.FORUM_ANSWER}}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="addQuestionBlock" style="display:none" id="userAnswerBlock">
+                        <span class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}">{{@global.pageLanguageSetting.FORUM_ANSWER}}<sup>*</sup></span>
+                        <textarea class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" placeholder="{{@global.pageLanguageSetting.FORUM_WRITE_YOUR_ANSWER}}"  id="answerText">{{answerValue}}</textarea>
+                    </div>
+    <div class="addQuestionBlock" {{#if alluserquestionimage}}{{else}}style="display:none"{{/if}} >
+    <div class="checkIt">
+        <input type="checkbox" name="addMediaCheck" id="addMediaCheck" onchange="displayMediaCheck()" />
+        <label class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" for="addMediaCheck">{{@global.pageLanguageSetting.ADD_MEDIA}}</label>
+    </div>
+</div>
+
+<div class="addQuestionBlock " style="display:none" id="userMediaBlock">
+    <div class="mediaImg {{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" onclick="selectEventPhotoForForum()" style="border-color:{{@global.styleAndNavigation.form[3]}};">{{@global.pageLanguageSetting.CLICK_HERE_TO}}<span> {{@global.pageLanguageSetting.UPLOAD_MEDIA}}</span>
+
+    </div>
+        <div class="mediaImg active {{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" style="border-color:{{@global.styleAndNavigation.form[3]}};">
+            <div class="img"></div> <img src="" alt="" id="questionimage" height="200" width="200"><i class="image" onclick="toRemoveImage()">x</i>
+        </div>
+    </div>
+
+                    <div class="addQuestionBlock">
+                        <div class="addQuestioBtn">
+                            <input class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}} ; background-color:{{@global.styleAndNavigation.button[2]}}" type="button" name="addbtn" id="addbtn" value="{{actionButtonText}}"  onclick="submitQuestion('{{questionId}}')"/>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>

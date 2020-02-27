@@ -1,0 +1,47 @@
+<div class="popup menu-popup tablet-fullscreen">
+    <div class="view toolbar-through">
+        <div class="pages">
+            <div class="page hideBorder-{{@global.styleAndNavigation.hideBorder}}" style="background-color:{{@global.styleAndNavigation.menu[1]}};">
+                <div class="page-content"  style="background-color:{{@global.styleAndNavigation.menu[2]}}">
+                    <div class="accountPageWrapper">
+                        <div class="accountSideMenu">
+                            <header>
+                                <figure>
+                                    <img style="border:1px solid {{@global.styleAndNavigation.menu[4]}};" src="{{image}}" alt="usr_img" onclick="Appyscript.forumEditProfile()" />
+                                    {{#if @global.email}}
+                                    <figcaption style="color:{{@global.styleAndNavigation.menu[3]}}">{{name}}</figcaption>
+                                    {{/if}}
+                                </figure>
+                            </header>
+                            <section>
+                                <div class="accountMenuList">
+                                    <ul>
+                                        <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="Appyscript.openForumPage();"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-home"></i> <span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.Main_Menu}}</span></a></li>
+                                        {{#if allowUserToAddQues}}
+                                        <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="goToPostQuestion()"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon icon-list-add"></i><span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.FORUM_ADD_QUESTION}}</span></a></li>
+                                        {{/if}}
+                                        <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="getMyQuestionsList()"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-quiz"></i> <span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.FORUM_MY_QUESTIONS}}</span></a></li>
+                                        <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="getFavouriteList()"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-star-empty"></i><span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.Favourites}}</span></a></li>
+                                        <li id="terms" style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="gettermsAndCondition()"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-star-empty"></i><span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.dir_terms_conditions}}</span></a></li>
+                                        <li id="priv" style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="getprivacyAndPolicy()"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-star-empty"></i><span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.privacy_policy_food}}</span></a></li>
+                                        {{#js_compare "this.setting.isLogin == \'true\' "}}
+                                        <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" id="loginLogout"  class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}"  onclick="Appyscript.loginLogOut(this,'true');"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-logout"></i><span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.logout_hyp}} </span></a></li>
+                                        {{else}}
+                                        <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a href="javascript:void(0)" id="loginLogout"  class="{{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" onclick="Appyscript.loginLogOut(this,'false');"><i style="color:{{@global.styleAndNavigation.menu[5]}}" class="accounticon iconz-login"></i><span style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.Login_Signup_realestate}} </span></a></li>
+                                        {{/js_compare}}
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="close_menu">
+                            <a href="javascript:void(0)" onclick="Appyscript.popupClose()">
+                                <i style="color:{{@global.styleAndNavigation.menu[5]}}" class="icon-cancel"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

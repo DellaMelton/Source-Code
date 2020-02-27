@@ -1,0 +1,72 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding">
+
+
+
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{friend_name}}</div>
+        </div>
+        <div class="right">
+            <!--            <a href="#" style="color:{{@global.style.headerBarIconColor}};" class="icon-ok-4"  onclick="Appyscript.saveusersetting();"   ></a>-->
+
+            <a class="iconz-option-vertical" style="color:{{@global.style.headerBarIconColor}};"  id='popdatinprofile' style="color:#ffffff;"></a>
+        </div>
+    </div>
+</div>
+
+
+<div data-page="dating-Chat" class="page navbar-through toolbar-fixed navbar-through no-toolbar dating hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+    <style type="text/css">
+
+        #sendmessage ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: {{@global.styleAndNavigation.fieldTextColor}}; opacity:1
+        }
+    #sendmessage ::-moz-placeholder { /* Firefox 19+ */
+        color: {{@global.styleAndNavigation.fieldTextColor}}; opacity:1
+    }
+    #sendmessage :-ms-input-placeholder { /* IE 10+ */
+        color: {{@global.styleAndNavigation.fieldTextColor}}; opacity:1
+    }
+    #sendmessage :-moz-placeholder { /* Firefox 18- */
+        color: {{@global.styleAndNavigation.fieldTextColor}}; opacity:1
+    }
+    .dating .chat-page .right .bubble{color: {{@global.styleAndNavigation.fieldTextColor}};background-color:{{@global.styleAndNavigation.fieldBgColor}};}
+    .dating .chat-page .right:last-child .corner {
+        border-color: transparent {{@global.styleAndNavigation.fieldBgColor}} transparent transparent;
+    }
+    </style>
+    <div class="toolbar" id="datingchatbacksend" >
+        <div class="toolbar-inner toolbar-bottom" style="background-color:{{@global.styleAndNavigation.fieldBgColor}}" >
+            <div id="sendmessage" style="border-top:1px solid rgba(0,0,0,0);">
+                <!--                <div class="icon-camera upload_icon" style="color:{{@global.styleAndNavigation.iconColor}}"></div>-->
+                <input class="form-control" id="messageInput" placeholder="{{@global.pageLanguageSetting.send_msg}}" type="text"  style="color: {{@global.styleAndNavigation.fieldTextColor}};">
+                <button  id="send" onclick="Appyscript.sendchatMsg({{friendid}});"  style="background-color:{{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};"><span class="iconz-send"></span></button>
+            </div>
+        </div>
+    </div>
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content" style="padding-bottom:44px;">
+        {{else}} <!-- Page content-->
+        <div class="page-content"  style="background-color:{{@global.styleAndNavigation.pageBackroundColor}};padding-bottom:44px;">
+            {{/if}}
+
+
+            <input type="hidden" id="datingfriendid" value="{{friendid}}">
+
+            <div class="bodypan chat-page">
+                <div class="animate" id="chat-messages">
+                    <div id="appypie-chat" class="appypie-chat">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+

@@ -1,0 +1,34 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.Track_Location}}</div>
+		</div>
+	</div>
+</div>
+
+<div data-page="demanddelivery-trackorder" class="page navbar-through no-toolbar toolbar-through">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<style>.kilometer{color:{{@global.styleAndNavigation.content[2]}}; } .innerDiv{ border-color:{{@global.styleAndNavigation.borderColor}}; }
+            </style>
+	<section class="main_div">
+		<div id="map-canvas123" style="height:100%; width:100%;"></div>
+
+		<div class="package-section {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+			<div class="top-section">
+				<div class="row33">
+					<i class="icon-back-in-time bold-icon"></i> {{@global.pageLanguageSetting.distance}} <span class="kilometer">00 KM </span>
+				</div>
+				<div class="row67 right-align"><div class="pack-msg"><span class="dur-hours"  style="color:{{@global.styleAndNavigation.content[2]}};">Min. time 00 mins.</span></div></div>
+			</div>
+
+		</div>
+	</section>
+</div>
+</div>

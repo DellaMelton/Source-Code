@@ -1,0 +1,98 @@
+﻿<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding  {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{title}}</div>
+        <div class="right"></div>
+    </div>
+</div>
+<div data-page="forum-forumAllAnswer" class="page navbar-through no-toolbar toolbar-through">
+    <div class="toolbar forum-toolbar">
+        <div class="toolbar-inner toolbar-bottom">
+            <footer style="width:100%;">
+                <div class="done-btn linkToAnswer answerLink" style="background-color:{{@global.styleAndNavigation.contentBgColor}};border-color{{@global.styleAndNavigation.borderColor}}" onclick="goToPostAnswer({{index}},'Comments','{{questionId}}')">
+                    <span style="color:{{@global.styleAndNavigation.icon[0]}};" class="icon-edit-2"></span>
+                    <span class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} {{@global.styleAndNavigation.content[3]}}" style="color:{{@global.styleAndNavigation.content[2]}}">{{@global.pageLanguageSetting.FORUM_ANSWER}}</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Page content-->
+    <style>
+        .questionList {
+            padding: 5px 15px;
+            background-color: {{@global.styleAndNavigation.contentBgColor}};
+            box-shadow: 1px 2px 7px #cccccc;
+        }
+
+        .answerList {
+            margin: 0px;
+            box-shadow: none;
+        }
+
+        .questionBlocks {
+            box-shadow: 0px 1px 4px rgb(204, 204, 204);
+            padding: 10px 20px;
+            margin: 15px 10px 0px;
+        }
+
+        .answerList .userAsked {
+            padding: 5px 0px;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        .allQuestions {
+            padding-bottom: 2%;
+        }
+    </style>
+    <div class="page-content  {{#js_compare "this.data.length == '0' "}} {{else}} pull-to-refresh-content  {{/js_compare}}" id="forumPageScrollContentAns" onscroll="Appyscript.scrollForumPageAns(this);">
+        <div class="userBlockQuestionList answerList">
+            <div class="questionList">
+                <div class="questionList_question">
+                    <div class="questionName">
+                        <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{question}}</h2>
+                        <span class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} low-opacity">{{@global.pageLanguageSetting.FORUM_UPDATES}} {{addedOn}}</span>
+                    </div>
+                    {{#if imageURLL}}
+                    <div class="questionImage">
+                        <img src="images/image-5x3.png" id ="imageForum" style="background-image:url({{imageURLL}})" onclick="Appyscript.openPortFolio(this, 0, '{{imageURLL}}')">
+                    </div>
+                    {{/if}}
+                    <div class="questionOptions">
+                        <span style="color:{{@global.styleAndNavigation.icon[0]}};" class="icon-dot-3 openOptions"></span>
+                        <div class="questionDivParent">
+                            <div class="questionOptionsList" style="background-color:{{@global.styleAndNavigation.flag[4]}}">
+                                <ul>
+                                    {{#if @root.allowUserToShare}}
+                                    <li onclick="sharePost({{index}})">
+                                        <a class="{{@global.styleAndNavigation.flag[0]}} {{@global.styleAndNavigation.flag[1]}}" style="color:{{@global.styleAndNavigation.flag[2]}};border-color:{{@global.styleAndNavigation.flag[3]}};" href="javascript:void(0)" >{{@global.pageLanguageSetting.common_share}}</a></li>
+                                    
+                                    {{/if}} <li  onclick="addToFlaggedQuestion({{index}})"><a class="{{@global.styleAndNavigation.flag[0]}} {{@global.styleAndNavigation.flag[1]}}"  style="color:{{@global.styleAndNavigation.flag[2]}};border-color:{{@global.styleAndNavigation.flag[3]}};" href="javascript:void(0)">{{@global.pageLanguageSetting.FORUM_FLAGGED}}</a></li>
+                                    <li onclick="addToFavouriteForum({{index}})"><a class="{{@global.styleAndNavigation.flag[0]}} {{@global.styleAndNavigation.flag[1]}}"  style="color:{{@global.styleAndNavigation.flag[2]}};border-color:{{@global.styleAndNavigation.flag[3]}};background-color:{{@global.styleAndNavigation.flag[4]}}" href="javascript:void(0)" >{{@global.pageLanguageSetting.FORUM_ADD_FAV}}</a></li>
+                                    <li onclick="closeBottomMenu()"><a class="{{@global.styleAndNavigation.flag[0]}} {{@global.styleAndNavigation.flag[1]}}"  style="color:{{@global.styleAndNavigation.flag[2]}};border-color:{{@global.styleAndNavigation.flag[3]}};" href="javascript:void(0)" class="closePopUp" >{{@global.pageLanguageSetting.cancel}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="allQuestions" id="forumCommentListDataId">
+                {{> forumCommentsListData}}
+            </div>
+<!--            {{#js_compare "this.data.length == '0' "}}-->
+<!--            <div class="forumErrorMessage" style="display: inline-block;text-align: center;width: 100%;position: absolute;top: 50%;transform: translateY(-50%);">-->
+<!--                <div class="msg-code">{{> errorpage errorIcon="appyicon-no-data"}} </div>-->
+<!--            </div>-->
+<!--            {{/js_compare}}-->
+        </div>
+        <!--<div class="linkToAnswer answerLink" style="position:fixed;left:0;right:0;bottom:0;background-color:{{@global.styleAndNavigation.contentBgColor}};border-color{{@global.styleAndNavigation.borderColor}}" onclick="goToPostAnswer({{index}},'Comments','{{questionId}}')">-->
+            <!--<span style="color:{{@global.styleAndNavigation.icon[0]}};" class="icon-edit-2"></span>-->
+            <!--<span class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} {{@global.styleAndNavigation.content[3]}}" style="color:{{@global.styleAndNavigation.content[2]}}">{{@global.pageLanguageSetting.FORUM_ANSWER}}</span>-->
+        <!--</div>-->
+    </div>
+</div>

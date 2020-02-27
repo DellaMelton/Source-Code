@@ -1,0 +1,92 @@
+<div class="navbar"><div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.my_bookings}}</div>
+    <div class="right"></div>
+</div></div>
+
+
+<div data-page="hyperlocal-your-appointment" class="page navbar-through no-toolbar">
+    <style>
+            .appointmentScreen .tabs a.on, .paymentOption .tabs a.on{border-color: {{@global.styleAndNavigation.borderColor}} }
+        </style>
+
+    <div class="page-content">
+        <section class="appointmentScreen">
+            <div class="tabs">
+                <a id="tabIndex1" onclick="changeTabAppointment(1)" class="on {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}}; font-size: {{@global.style.headerBarSize}} ">{{@global.pageLanguageSetting.upcoming_Appointment}} ({{upcomingList.length}})</a>
+                <a id="tabIndex2" onclick="changeTabAppointment(2)" class="{{@global.styleAndNavigation.secondaryButton[0]}} {{@global.styleAndNavigation.secondaryButton[1]}}" style=" background: {{@global.styleAndNavigation.secondaryButton[2]}};
+            color: {{@global.styleAndNavigation.secondaryButton[3]}}">{{@global.pageLanguageSetting.completed_Appointment}} ({{completedList.length}})</a>
+            </div>
+
+            <div id="div_Upcoming" >
+
+                {{#if upcomingList.length}}
+                {{#upcomingList}}
+                <section class="main_div" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+                    <div class="cat-heading-text {{@global.styleAndNavigation.title[0]}} {{@global.styleAndNavigation.title[1]}}" style="background-color:{{@global.styleAndNavigation.title[2]}}; color:{{@global.styleAndNavigation.title[3]}}">
+                        <span>{{@global.pageLanguageSetting.OrderId}} : {{orderId}}</span>
+                    </div>
+                    <div class="order_info">
+                        <ul  class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">
+                            <li class="{{@global.styleAndNavigation.subheading[1]}} {{@global.styleAndNavigation.subheading[0]}}" style="color:{{@global.styleAndNavigation.subheading[3]}}">
+                                {{#js_compare "this.title !== ''"}}
+                                {{title}}
+                                {{else}}
+                                {{visitorName}}
+                                {{/js_compare}}
+                            </li>
+                            <li> {{convertToDateFormatManifest appointmentDate}} <span style="float:right"> {{slotBookTime}}</span></li>
+                            <li class="name">{{@global.pageLanguageSetting.booking_status}} : {{getStatusLanguage status}}</li>
+                            <li class="name">{{@global.pageLanguageSetting.amount}} : {{currencySymbol}} {{amount}}</li>
+                            <li class="name">{{@global.pageLanguageSetting.payment_method_mcom}} : {{paymentMethodLabel}}</li>
+                            <li class="name">{{@global.pageLanguageSetting.payment_status}} : {{paymentStatus}}</li>
+                        </ul>
+                    </div>
+                </section>
+                {{/upcomingList}}
+                {{else}}
+
+                <div class="msg-code msg-code-custom">
+                    <div class="msg-container msg-container-custom">
+                        <span class="icon appyicon-no-data" style="color: {{@global.style.navTextColor}};">  </span>
+                    </div>
+                </div>
+                {{/if}}
+
+            </div>
+
+            <div  id="div_Completed" style="display:none">
+                {{#completedList}}
+                <section class="main_div" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+                    <div class="cat-heading-text {{@global.styleAndNavigation.title[0]}} {{@global.styleAndNavigation.title[1]}}" style="background-color:{{@global.styleAndNavigation.title[2]}}; color:{{@global.styleAndNavigation.title[3]}}">
+                        <span>{{@global.pageLanguageSetting.OrderId}} : {{orderId}}</span>
+                    </div>
+                    <div class="order_info">
+                        <ul  class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">
+                            <li class="{{@global.styleAndNavigation.subheading[1]}} {{@global.styleAndNavigation.subheading[0]}}" style="color:{{@global.styleAndNavigation.subheading[3]}}">
+                                {{#js_compare "this.title !== ''"}}
+                                {{title}}
+                                {{else}}
+                                {{visitorName}}
+                                {{/js_compare}}
+                            </li>
+                            <li> {{convertToDateFormatManifest appointmentDate}} <span style="float:right"> {{slotBookTime}}</span></li>
+                            <li class="name">{{@global.pageLanguageSetting.booking_status}} : {{getStatusLanguage status}}</li>
+                            <li class="name">{{@global.pageLanguageSetting.amount}} : {{currencySymbol}} {{amount}}</li>
+                            <li class="name">{{@global.pageLanguageSetting.payment_method}} : {{paymentMethodLabel}}</li>
+                            <li class="name">{{@global.pageLanguageSetting.payment_status}} : {{paymentStatus}}</li>
+                        </ul>
+                    </div>
+                </section>
+                {{/completedList}}
+            </div>
+        </section>
+
+    </div>
+
+</div>
+

@@ -1,0 +1,92 @@
+<div class="popup tablet-fullscreen">
+    <style>
+        .popup .preloader {
+        display: none;
+        height: 20px;
+        margin-top: -10px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 20px;
+        }
+        .popup a.link {
+        color: #fff;
+        }
+        .plan_designOverlay{
+        padding: 20px;}
+
+
+        .plan_issues {
+        width: 100%;
+        overflow-x: scroll;
+        font-size: 16px;
+        list-style: outside none none;
+        margin: 0;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0px;
+        }
+        .plan_issues li {
+        width: 100%;
+        border: 1px solid {{@global.styleAndNavigation.listColor}};
+        margin-left: 10px;
+        padding: 10px 10px 60px 10px;
+        text-align: center;
+        position: relative;
+        background:{{@global.styleAndNavigation.listColor}};
+        min-width: 80px;
+        max-width: 150px;
+        }
+
+        .plan_issues li b{font-size:14px; text-transform:uppercase; display:block; margin-bottom: 30px;}
+        .plan_issues li span{padding:15px 0; display:block;}
+        .plan_issues li a {
+        padding: 5px;
+        font-size: 16px;
+        display: block;
+        margin: 10px 0;
+        position: absolute;
+        width: calc(100% - 30px);
+        bottom: 3px;
+        }
+        .plan_designOverlay h2{color:{{@global.styleAndNavigation.subheading[2]}}; text-align:{{@global.styleAndNavigation.subheading[3]}};}
+
+    </style>
+    <div class="view navbar-fixed">
+        <div class="navbar">
+            <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left">   </div>
+                <div class="center {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">  {{@root.buyheading}}   </div>
+                <div class="right"><a href="#" class="close-tutorial" >X</a></div>
+            </div>
+        </div>
+        <div class="backgroundAnimation">
+            <div class="view background-view">{{> mainBackground}}</div>
+        </div>
+        <div class="backgroundAnimation">{{> innerBackground}}</div>
+        <div class="pages">
+            <div class="page" data-page="error">
+                <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}} ">
+                    <div class="plan_designOverlay">
+                        <ul class="plan_issues">
+                            {{#monthly}}
+                            <li> <b class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"  style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}} " >{{@root.monthly_buy}}</b><a class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}} "  style="background:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}} " onclick="inappNative('{{@root.idmonthly}}')">{{@root.subscriptionCurrencyMonthly}} {{@root.subscriptionPriceMonthly}}</a> </li>
+                            {{/monthly}}
+                            {{#yearly}}
+                            <li> <b class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"  style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}} ">{{@root.yearly_buy}}</b><a class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}} "  style="background:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}} " onclick="inappNative('{{@root.idyearly}}')">{{@root.subscriptionCurrencyYearly}} {{@root.subscriptionPriceYearly}}</a> </li>
+                            {{/yearly}}
+                            {{#onetime}}
+                            <li> <b class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"  style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}} ">{{@root.one_time}}</b><a class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}} "  style="background:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}} " onclick="inappNative('{{@root.idonetime}}')">{{@root.pricePerItemCurrency}} {{@root.pricePerItem}}</a> </li>
+                            {{/onetime}}
+                        </ul>
+
+                        <h2 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}"> Terms and Conditions</h2>
+                        {{termcondition}}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

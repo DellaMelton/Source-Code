@@ -1,0 +1,71 @@
+<div class="popup tablet-fullscreen">
+    <style>
+    .popup a.link {
+        color: {{@global.style.navTextColor}};
+    }
+    .setting-options-main {
+        float: left;
+        width: 100%;
+        position: relative;
+        margin-top: 62px;
+        padding:40px;
+        box-sizing: border-box;
+    }
+    .setting-option {
+        float: left;
+        padding:20px 0px;
+        width: 49.1%;
+        text-align: center;
+        border: 1px solid {{@global.style.navBorderColor}};
+        height: 50px;
+    }
+    .setting-option h5 {
+        font-size: 12px;
+        font-family: arial;
+        font-weight: 400;
+        margin:10px 0px 0px 0px;
+    }
+    .setting-main {
+        float: left;
+        width: 100%;
+        position: relative;
+    }
+        </style>
+    <div class="view navbar-fixed">
+        <div class="navbar">
+            <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left">   </div>
+                <div class="center {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">  Settings   </div>
+            </div>
+        </div>
+        <div class="backgroundAnimation">
+            <div class="view background-view">{{> mainBackground}}</div>
+        </div>
+        <div class="backgroundAnimation">
+            {{#if @global.loginData.loginStyleAndNavigation.loginBackground}}{{#@global.loginData.loginStyleAndNavigation}}{{#js_compare "this.loginBackgroundType == 'color'"}}<div class="background-image" style="background-color:{{loginBackground}}"></div>{{/js_compare}}{{#js_compare "this.loginBackgroundType == 'img'"}}<div class="background-image portrait" style="background-image:url({{loginBackground}})"></div><div class="background-image landscape" style="background-image:url({{loginIpadBackground}})"></div>{{/js_compare}}<div class="background-theme {{@global.style.appTheme}}"></div>{{/@global.loginData.loginStyleAndNavigation}}{{/if}}
+        </div>
+        <div class="pages">
+            <div class="page loginpopup" data-page="settingguest">
+                <div class="page-content {{@global.style.appPageFont}} {{@global.style.appPageCsize}}" style="color:{{@global.style.pageTextColor}}">
+                    <div class="setting-main">
+                        <div class="setting-options-main">
+                            <div class="setting-option" onclick="Appyscript.openAccountpageGuest()">
+                                <span><i class="iconz-user" style="{{@global.style.pageIconColor}}"></i></span>
+                                <h5>Account</h5>
+                            </div>
+                            <div class="setting-option" onclick="Appyscript.restoreGuestopen()">
+                                <span><i class="iconz-account" style="{{@global.style.pageIconColor}}"></i></span><h5>Restore Purchases</h5>
+                            </div>
+                            <div class="setting-option" onclick="Appyscript.openhelppageGuest()">
+                                <span><i class="icon-search-3" style="{{@global.style.pageIconColor}}"></i></span><h5>Terms of Use</h5>
+                            </div>
+                            <div class="setting-option" onclick="Appyscript.openpaymentpageGuest()">
+                                <span><i class="iconz-currency-conversion" style="{{@global.style.pageIconColor}}"></i></span><h5>Buy</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

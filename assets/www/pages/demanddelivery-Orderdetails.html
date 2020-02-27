@@ -1,0 +1,144 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.order_detail_food}}</div>
+		</div>
+		<!--<span class="close-icon-right" onclick="Appyscript.dDBackFunction()"><a class="edit-image"><i class="close icon-cancel link"></i></a></span>-->
+	</div>
+</div>
+
+<div data-page="demanddelivery-orderdetails" class="page navbar-through no-toolbar toolbar-through">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<style>.main-subheader .active{    background: {{@global.styleAndNavigation.tab[2]}};     color: {{@global.styleAndNavigation.tab[3]}}!important; } .main-subheader{  background: {{@global.styleAndNavigation.tab[0]}};     color: {{@global.styleAndNavigation.tab[1]}};}
+.orderInfo{color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}} border-color:{{@global.styleAndNavigation.borderColor}}}
+.detailBtn .btn-deman{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}}
+.phone-number{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}} }
+</style>
+		<div class="main-container-de order-preview  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}"">
+
+            <div class="orderInfo">
+				<div class="order-preview-row">
+					<div class="left-label">
+						<span class="boldText">{{@global.pageLanguageSetting.order_id_food}}:</span>
+					</div>
+					<div class="right-label">
+						<span class="boldText">{{orderId}}</span>
+						<span class="ligthText">{{@global.pageLanguageSetting.Placed_On}} {{addedon}}</span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="orderInfo">
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+						<span class="boldText">{{@global.pageLanguageSetting.Pickup_Address}}:</span>
+					</div>
+					<div class="right-label">
+						<span class="ligthText">{{pickupFromDetailName}}, {{pickupFromDetailAddress}}</span>
+					</div>
+
+					<div class="right-label">
+						<span class="ligthText">{{pickupFromDetailPhone}}</span>
+					</div>
+				</div>
+
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.shipping_address_food}}:</span>
+					</div>
+					<div class="right-label">
+						<span class="ligthText">{{dropToDetailName}}, {{dropToDetailAddress}}</span>
+					</div>
+
+					<div class="right-label">
+						<span class="ligthText">{{dropToDetailPhone}}</span>
+					</div>
+				</div>
+
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+						<span class="boldText">{{@global.pageLanguageSetting.Delivery_By}}:</span>
+					</div>
+					<div class="right-label">
+						<span class="ligthText">{{deliveryBoyInfoFname}} {{deliveryBoyInfoLname}}</span>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="orderInfo">
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.status}}:</span>
+					</div>
+					<div class="right-label">
+					<span class="ligthText">{{dDOrderStatusKey}}</span>
+					</div>
+				</div>
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.Pickup_Date}}:</span>
+					</div>
+					<div class="right-label">
+					<span class="ligthText">{{orderPickedDate}}</span>
+					</div>
+				</div>
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.delivery_date}}:</span>
+					</div>
+					<div class="right-label">
+					<span class="ligthText">{{orderDeliveredDate}}</span>
+					</div>
+				</div>
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+						<span class="boldText">Package Contains:</span>
+					</div>
+					<div class="right-label" onclick="showMoredocument()">
+						<span class="ligthText">{{shippingType}}  <a style="color:{{@global.styleAndNavigation.linkColor}}">{{@global.pageLanguageSetting.Know_More}}</a></span>
+					</div>
+				</div>
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.Package_Fit_In}}:</span>
+					</div>
+					<div class="right-label">
+					<span class="ligthText">{{vehicleInfoName}}</span>
+					</div>
+				</div>
+				<div class="order-preview-row clear-row">
+
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.total_amount}}:</span>
+					</div>
+					<div class="right-label">
+						{{#if @global.ecommCurrencySymbol}}
+							<span class="ligthText">{{format_currency currencySymbolInfo}}{{finalAmountToPay}}</span>
+						{{else}}
+							<span class="ligthText">{{finalAmountToPay}} {{format_currency currencySymbolInfo}}</span>
+						{{/if}}
+					</div>
+				</div>
+				<div class="order-preview-row clear-row">
+					<div class="left-label">
+					<span class="boldText">{{@global.pageLanguageSetting.Payment_Mode}}:</span>
+					</div>
+					<div class="right-label">
+					<span class="ligthText">{{paymentDetail}}</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

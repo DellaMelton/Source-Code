@@ -1,0 +1,42 @@
+<div class="popup menu-popup tablet-fullscreen">
+    <div class="view">
+        <div class="navbar">
+            <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left sliding">
+                    <a href="index" style="color:{{@global.style.headerBarIconColor}};" onclick="Appyscript.popupClose()">
+                        <i class="icon icon-left-open-2"></i>
+                    </a>
+                </div>
+                <div class="center sliding">
+                    <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.pageEditprofile}}</div>
+                </div>
+                <div class="right">
+                    <a class="icon-spin3" href="#"  onclick="rotateImage();" style="color:{{@global.style.headerBarIconColor}};"></a>
+                    <a class="icon-ok-4" href="#"  onclick="Appyscript.updateTargetImageAfterCrop();" style="color:{{@global.style.headerBarIconColor}};"></a>
+
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="pages">
+            <style>
+                .container {
+                    max-width: 640px;
+                    margin: 40px auto;
+                }
+            
+            #image_crop {
+                width: 100%;
+                height: 660px;
+            }
+            </style>
+            <div class="container">
+                <div>
+                    <img id="image_crop" src="img/pictureTmp.jpg" alt="Picture">
+                </div>
+              
+            </div>
+
+        </div>
+    </div></div>

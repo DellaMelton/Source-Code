@@ -1,0 +1,33 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.Dd_Booking_Recieved}}</div>
+		</div>
+		<span class="close-icon-right" onclick="Appyscript.dDBackFunction()"><a class="edit-image"><i class="close icon-cancel link"></i></a></span>
+	</div>
+</div>
+
+<div data-page="demanddelivery-timeout" class="page navbar-through no-toolbar">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<div class="main-container-de payment-confirm bg-none {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+			<div id="dDBookConDiv">
+				<div class="payment-confirm">
+					<div class="cofirmIcon" style="border-color:#f6245d;color:#f6245d;" ><i class="icon-warn"></i></div>
+					<div class="confirMsg2 {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}} centerContent" style="color:#FF0000;">{{@global.pageLanguageSetting.Dd_Driver_Not_Available_Admin_Will_Assist_You}}.</div>
+
+					<!--<div class="btnSucces">-->
+						<!--<div class="btn-footer">-->
+							<!--<button class="confirmBtn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}" onclick="dDSupportContact()">{{@global.pageLanguageSetting.Contact_Support}}</button>-->
+						<!--</div>-->
+					<!--</div>-->
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+</div>

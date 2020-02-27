@@ -1,0 +1,90 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.Fill_Your_Details}}</div>
+		</div>
+	</div>
+</div>
+
+<div data-page="demanddelivery-filldetails" class="page navbar-through no-toolbar">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<style>
+                .form .form-heading{ color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}};  }
+                .form .form-field input{ color:{{@global.styleAndNavigation.field[3]}}; background-color:{{@global.styleAndNavigation.field[2]}}; border-color:{{@global.styleAndNavigation.borderColor}};  }
+                .form .form-field input ::placeholder {
+                    color:{{@global.styleAndNavigation.field[3]}}; opacity:.6;
+                }
+        </style>
+		<div class="main-container-de detail-form" >
+			<div class="form {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+				<div class="form-field">
+					<span class="form-heading {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}">{{@global.pageLanguageSetting.Receiver_Details}} : </span>
+					<div>
+						<input data-role="none" type="text" placeholder="{{@global.pageLanguageSetting.Enter_Receiver_Name}} *" id="rName" name="name" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+					<div>
+						<input type="tel" placeholder="{{@global.pageLanguageSetting.Enter_Receiver_Contact_Number}} *" id="rPhone" name="phone" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+					<div>
+						<input type="text" placeholder="{{@global.pageLanguageSetting.Enter_Reciever_Address}} *" id="rAddress" name="address" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+				</div>
+
+
+				<div class="form-field">
+					<span class="form-heading {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}">{{@global.pageLanguageSetting.Sender_Details}} : </span>
+					<div>
+						<input type="text" placeholder="{{@global.pageLanguageSetting.Enter_Sender_Details_Name}} *" id="sName" name="name" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+					<div>
+						<input type="tel" placeholder="{{@global.pageLanguageSetting.Enter_Sender_Contact_Number}} *" id="sPhone" name="phone" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+					<div>
+						<input type="text" placeholder="{{@global.pageLanguageSetting.Enter_Sender_Address}} *" id="sAddress" name="address" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+					<div>
+						<input type="email" placeholder="{{@global.pageLanguageSetting.DD_Please_Enter_Email_Id}} *" id="sEmailId" name="email" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+				</div>
+
+
+				<div class="form-field mb-10">
+					<span class="form-heading {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}">{{@global.pageLanguageSetting.Shipment_Type}}</span>
+					<div class="select-none-bg">
+						<select name="shiptype" id="shipment-type" onchange="dDShipmentTypeText()" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+							<option value="-1">{{@global.pageLanguageSetting.Shipment_Type}}</option>
+							{{#shippingType}}
+							<option value="{{name}}">{{name}}</option>
+							{{/shippingType}}
+						</select>
+					</div>
+				</div>
+				<div class="form-field">
+					<div id="dDContentType">
+						<span class="form-heading {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}">{{@global.pageLanguageSetting.Content}}</span>
+						<div class="select-none-bg">
+							<select name="shiptype" id="content-type" multiple class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+								{{#contentType}}
+								<option value="{{name}}">{{name}}</option>
+								{{/contentType}}
+							</select>
+						</div>
+					</div>
+					<div id="dDContentDocument">
+						<input type="text" placeholder="{{@global.pageLanguageSetting.Enter_Document}}" id="sdocument" name="phone" class="{{@global.styleAndNavigation.field[0]}} {{@global.styleAndNavigation.field[1]}}">
+					</div>
+				</div>
+
+			</div>
+
+			<button class="confirmBtn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}" onclick="dDConfirmBookingPayment()">{{@global.pageLanguageSetting.Confirm_Button}}</button>
+		</div>
+	</div>
+</div>

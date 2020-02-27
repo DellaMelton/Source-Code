@@ -1,0 +1,107 @@
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+        <div class="right sliding">
+        </div>
+    </div>
+</div>
+
+<div data-page="ewallet-transactionhistory" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <style type="text/css">
+         .transaction-detail,.showing-transaction{background: {{@global.styleAndNavigation.listBgColor}};color:{{@global.styleAndNavigation.listContentColor}};}
+        .moneyIcon{border-color:{{@global.styleAndNavigation.listBorderColor}};}
+        .moneyIcon .badge{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+        .moneyDetail::before ,.showing-transaction .transaction-duration::before{
+            background:{{@global.styleAndNavigation.listBorderColor}};
+        }
+    .transactionsummary h4,.showing-transaction h4{color:{{@global.styleAndNavigation.listheadingColor}};}
+    .transaction-filter .btn{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+    .transaction-filter input, .transaction-filter select {
+        border-radius: 0;
+        color: {{@global.styleAndNavigation.content[2]}};
+        background: transparent;
+        border-bottom: 1px solid {{@global.styleAndNavigation.content[2]}};
+    }.transaction-filter .dateinput i{ color: {{@global.styleAndNavigation.content[2]}};}
+    .transaction-filter label {
+        opacity: 0.7;
+    }
+        </style>
+
+
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}" onscroll="Appyscript.scrollEwalletransaction()" id="ewalletPageScrollContent">
+        <div class="ewallet_container">
+            <div id="ewalletSlider" class="slidedown">
+                <div class="showing-transaction" id="actual">
+                    <div class="">
+                        <div class="transaction-duration">
+                            <h4>{{this.languageSetting.show_transaction}}</h4>
+                            <p class="fs11" id="transactiondate_period"></p>
+                            <span class="fs11">{{this.languageSetting.for_ewallet}}</span>
+                        </div>
+                        <div class="modify" onclick="showTransactionFilter()">
+                            {{this.languageSetting.modify}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="ewalletSliderfilter" class="slideupfilter">
+                <div class="transaction-filter colorBlack" id = "actualfilter">
+                    <!--h4>Showing Transaction</h4-->
+                    <div class="filter-range">
+                        <div class="datepicker">
+                            <label>{{this.languageSetting.fromDir}}</label>
+                            <div class="dateinput">
+                                <input class="form-control" type="date" placeholder="dd/mm/yy" id="fromdateId" onchange='filterfromDateEvent(this)'/>
+                                <i class="appyslim-calendar-calendar-list"></i>
+                            </div>
+                        </div>
+                        <div class="datepicker">
+                            <label>{{this.languageSetting.fc_to}}</label>
+                            <div class="dateinput">
+                                <input class="form-control" type="date" placeholder="dd/mm/yy" id="todateId" onchange='filtertoDateEvent(this)'/ >
+                                <i class="appyslim-calendar-calendar-list"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selectType">
+                        <label>{{this.languageSetting.select_transaction_type}}</label>
+                        <div class="pos-rel">
+                            <select id="transactiontypeId">
+                                <option value="Completed">{{this.languageSetting.completed}}</option>
+                                <option value="Pending">{{this.languageSetting.pending}}</option>
+                            </select>
+                            <i class="appyslim-arrows-down-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="selectType">
+                        <button class="btn" onclick = "applyFilter()">{{this.languageSetting.Submit}}</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="transaction-history colorBlack">
+
+                <div id="ew_transactionsid_history">
+
+
+                </div>
+
+                <div class="msg-code" id="transhistory_errorid" style="display:none;">{{> errorpage errorIcon="appyicon-no-data"}} </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

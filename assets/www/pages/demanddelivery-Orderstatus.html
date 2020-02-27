@@ -1,0 +1,95 @@
+<div class="navbar">
+	<div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.order_status_food}}</div>
+		</div>
+		{{#js_compare "this.deliveryBoyInfo != undefined"}}
+		<span class="close-icon-right" onclick="dDOrderDetails('{{orderId}}','{{dDOrderStatusKey}}','{{addedon}}','{{orderStatus}}','{{pickupFromDetail.pickupAddress}}','{{pickupFromDetail.senderName}}','{{pickupFromDetail.senderMobileNo}}','{{dropToDetail.dropAddress}}','{{dropToDetail.recieverName}}','{{dropToDetail.recieverMobileNo}}','{{estimatedDeliveryTiming}}','{{vehicleInfo.name}}','{{priceDetail.finalAmountToPay}}','{{paymentDetail.paymentLabel}}','{{estimatedPickupTiming}}','{{shippingType.type}}','{{shippingType.content}}','{{shippingType.declaredValue}}','{{priceDetail.currencySymbol}}','{{deliveryBoyInfo.firstName}}','{{deliveryBoyInfo.lastName}}')"><a class="edit-image"><i class="icon-info-circle"></i></a></span>
+		{{else}}
+		<span class="close-icon-right" onclick="dDOrderDetails('{{orderId}}','{{dDOrderStatusKey}}','{{addedon}}','{{orderStatus}}','{{pickupFromDetail.pickupAddress}}','{{pickupFromDetail.senderName}}','{{pickupFromDetail.senderMobileNo}}','{{dropToDetail.dropAddress}}','{{dropToDetail.recieverName}}','{{dropToDetail.recieverMobileNo}}','{{estimatedDeliveryTiming}}','{{vehicleInfo.name}}','{{priceDetail.finalAmountToPay}}','{{paymentDetail.paymentLabel}}','{{estimatedPickupTiming}}','{{shippingType.type}}','{{shippingType.content}}','{{shippingType.declaredValue}}','{{priceDetail.currencySymbol}}')"><a class="edit-image"><i class="icon-info-circle"></i></a></span>
+		{{/js_compare}}
+	</div>
+</div>
+
+<div data-page="demanddelivery-orderstatus" class="page navbar-through no-toolbar">
+	<!-- Page content-->
+
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content bottom_toolbar_demand">
+		<style>.main-subheader .active{    background: {{@global.styleAndNavigation.tab[2]}};     color: {{@global.styleAndNavigation.tab[3]}}!important; } .main-subheader{  background: {{@global.styleAndNavigation.tab[0]}};     color: {{@global.styleAndNavigation.tab[1]}};}
+.orderInfo{color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}}
+.detailBtn .btn-deman{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}}
+.phone-number{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}} }
+</style>
+		<div class="main-container-de order-status">
+			<div class="orderInfo">
+				{{#js_compare "this.deliveryBoyInfo != undefined"}}
+				<span class="phone-number bottom-0" onclick="dDContactSupport('{{deliveryBoyInfo.phone}}')">
+						<span class="iconz-phone1"></span>
+					</span>
+				{{/js_compare}}
+				<div class="order-row">
+					<span class="boldText">{{@global.pageLanguageSetting.order_id_food}}:</span>
+					<span class="boldText">{{orderId}} <small>{{addedon}}</small></span>
+				</div>
+				{{#js_compare "this.deliveryBoyInfo != undefined"}}
+				<div class="order-row">
+					<span class="boldText">{{@global.pageLanguageSetting.Delivery_By}}:</span>
+					<span>{{deliveryBoyInfo.firstName}} {{deliveryBoyInfo.lastName}}</span>
+				</div>
+				{{/js_compare}}
+			</div>
+
+			<div class="orderInfo">
+				<div class="status-row">
+
+					<div class="book"><div class="line"></div>
+						<div class="circlePoint"></div>
+						<span class="boldText">{{@global.pageLanguageSetting.Order_Placed}} <small>{{addedon}}</small></span>
+					</div>
+
+					<div class="picupWay"><div class="line"></div>
+						<div class="circlePoint"></div>
+						<span class="boldText">{{@global.pageLanguageSetting.On_The_Way_For_Pickup}}
+							{{#if dDOrderStatusKeyDBoy}}<small>{{@global.pageLanguageSetting.Expected_By}} {{estimatedPickupTiming}}</small>{{/if}}
+						</span>
+						{{#if dDOrderStatusKeyDBoy}}<div class="mapStatus" onclick="dDTrackLocation('{{deliveryBoyInfo.latitude}}','{{deliveryBoyInfo.longitude}}','{{pickupFromDetail.latitude}}','{{pickupFromDetail.longitude}}')"><div style="height:150px; width:250px;" id="mapPickup"></div></div>{{/if}}
+					</div>
+
+					<div class="picupDone "><div class="line"></div>
+						<div class="circlePoint"></div>
+						<span class="boldText">{{@global.pageLanguageSetting.Pick_Up_Done}}
+							<!--{{#if dDOrderStatusKeyPicked}}<small>Expected by Sun, 20th may 2018</small>{{/if}}-->
+						</span>
+					</div>
+
+					<div class="deliverypWay"><div class="line"></div>
+						<div class="circlePoint"></div>
+						<span class="boldText">{{@global.pageLanguageSetting.On_The_Way_For_Delivery}}
+							{{#if dDOrderStatusKeyShiped}}<small>{{@global.pageLanguageSetting.Expected_By}} {{estimatedDropTiming}}</small>{{/if}}
+						</span>
+						{{#if dDOrderStatusKeyShiped}}<div class="mapStatus" onclick="dDTrackLocationDropOff('{{deliveryBoyInfo.latitude}}','{{deliveryBoyInfo.longitude}}','{{dropToDetail.latitude}}','{{dropToDetail.longitude}}','{{orderId}}')"><div style="height:150px; width:250px;" id="mapPickupDel"></div></div>{{/if}}
+					</div>
+
+					<div class="deliveryDone">
+						<div class="circlePoint"></div>
+						<span class="boldText">{{@global.pageLanguageSetting.delivery_food}}
+							{{#if dDOrderStatusKeyDelivered}}<small>{{@global.pageLanguageSetting.Expected_By}} {{estimatedDeliveryTiming}}</small>{{/if}}
+						</span>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="blueBtn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}} bottomFIxed" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}">
+				<center><time>{{estimatedDeliveryTiming}}</time> <div>{{@global.pageLanguageSetting.Estimated_Delivery_Time}}</div> <div class="contSportBtn left" onclick="dDSupportContact()">{{@global.pageLanguageSetting.Contact_Support}}</div><div class="contSportBtn right" onclick="dDReportIssue('{{orderId}}')">{{@global.pageLanguageSetting.report_foodcourt}}</div></center>
+			</div>
+
+		</div>
+	</div>
+</div>

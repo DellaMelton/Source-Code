@@ -1,0 +1,82 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.Dd_Booking_Recieved}}</div>
+		</div>
+	</div>
+</div>
+
+<div data-page="demanddelivery-paymentconfirm" class="page navbar-through no-toolbar">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<style>
+	.ripple{      position: relative;height: 100% !important;}
+	.ripple_image{    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;     display: flex;
+    align-items: center; color:#666}
+    .ripple_image img{margin: 0 auto;}
+    .textCenter{    text-align: center;
+    width: 100%;}
+.serachDriverLoader {
+    height: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;top:-6px
+}
+ .serachDriverLoader:before {
+    content: '';
+    background: #5ef321;
+    -webkit-animation: serachDriverLoader 2s linear infinite;
+    animation: serachDriverLoader 2s linear infinite;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    display: block;
+}
+@keyframes serachDriverLoader{
+	0%{-webkit-transform:translateX(-100%) scaleX(.1);transform:translateX(-100%) scaleX(.1)}*/
+	40%{-webkit-transform:translateX(-100%) scaleX(1);transform:translateX(-100%) scaleX(1)}
+	75%{-webkit-transform:translateX(60%) scaleX(.35);transform:translateX(60%) scaleX(.35)}
+	90%{-webkit-transform:translateX(100%) scaleX(.1);transform:translateX(100%) scaleX(.1)}
+	100%{-webkit-transform:translateX(100%) scaleX(.1);transform:translateX(100%) scaleX(.1)}
+	}
+	.confirmBtn{margin:0px; border-radius:0px; width:100%}
+</style>
+	<div class="page-content">
+
+		<div id="dDBookConDiv">
+			<div class="ripple" id="mapCon">
+			</div>
+
+		</div>
+
+		<div class="btnSucces">
+			<div class="">
+				<button class="confirmBtn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}">{{@global.pageLanguageSetting.Please_Wait_While_We_Are_Searching_For_The_Driver}}</button>  <span class="serachDriverLoader"></span>
+
+			</div>
+		</div>
+		<div class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} centerContent">
+			<p>
+				{{@global.pageLanguageSetting.Awesome_Your_Booking_Has_Been_Confirmed}}
+			</p>
+		</div>
+	</div>
+</div>

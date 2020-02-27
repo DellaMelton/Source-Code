@@ -1,0 +1,41 @@
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};{{#root_Compare @global.style.headerBarType "==" "image"}} background-image:url({{@global.style.nav_header_image_name}}){{/root_Compare}}">
+    <div class="left"></div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}" {{#root_Compare @global.style.headerBarType "==" "image"}}style="visibility:hidden;"{{/root_Compare}}>{{#root_Compare @global.style.headerBarTitle "==" ""}}{{@global.style.appName}} {{else}}{{@global.style.headerBarTitle}}{{/root_Compare}}</div>
+    <div class="right mergeApp3dots"></div>
+    </div>
+</div>
+<!-- content section  -->
+<div data-page="mergeApp" class="page {{#js_compare "this.home.appData.headerBarType === 'none' "}}no-navbar {{else}} navbar-through  {{/js_compare}} no-toolbar">
+    {{#root_Compare @global.style.mergeappthreenotbutton "==" "On"}}<style>.mergeApp3dots .iconz-option-vertical{display:none}</style> {{else}}{{/root_Compare}}
+
+<div class="page-content {{@global.style.appTheme}}">
+
+    <div id="app_navigation" class="{{@global.style.navigationSize}} {{#home.appData.layoutOption}} {{this}}-option {{/home.appData.layoutOption}}  {{#home.appData.hideLayout}} hide-{{this}} {{/home.appData.hideLayout}}  {{@global.style.navigationFont}}  merger_matrix">
+
+
+    {{#home.mergeApps}}
+    <div class="apps">
+        <a href="#" data-productidentifier="" data-productid="{{this.app_id}}" class="merge-page-link" style="border-color: {{@global.style.navBorderColor}};">
+            <img src="{{this.app_icon_id}}">
+            <span class="" style="color: {{@global.style.navTextColor}} ">{{this.app_name}}</span>
+        </a>
+        </div>
+        {{else}}
+        <div class="msg-code">
+            <div class="msg-container">
+                <span class="icon appyicon-no-data" style="color: {{@global.style.navTextColor}};">  </span>
+            </div>
+        </div>
+    {{/home.mergeApps}}
+
+
+    </div>
+    
+
+
+</div>
+
+</div>
+
+     

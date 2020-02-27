@@ -1,0 +1,44 @@
+<div class="navbar" style="display: block;">
+    <div class="navbar-inner navbar-on-center" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}">
+        {{getInvoicepagebackbtn this.page}}
+
+        <div class="center sliding mediumHeaderBar lucidaConsole" style="left: -0.5px;">{{pageTitle}}</div>
+        {{#js_compare "this.page != 'ecom'"}}
+        <div class="right"><a class="iconz-option-vertical" onclick="toggle_menu(this);" style="color:#ffffff;"></a></div>
+
+        {{/js_compare}}
+
+
+    </div>
+</div>
+
+
+<div data-page="ewallet-paymentstatus" class="page navbar-through no-toolbar">
+    <style type="text/css">
+       .paid-satement ul li{background: {{@global.styleAndNavigation.listBgColor}};color:{{@global.styleAndNavigation.listContentColor}}; border-color:{{@global.styleAndNavigation.listBorderColor}};}
+        .moneyIcon{border-color:{{@global.styleAndNavigation.listBorderColor}};}
+        .moneyIcon .badge{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+        .moneyDetail::before {
+            background:{{@global.styleAndNavigation.listBorderColor}};
+        }
+        .paid-satement h5{color:{{@global.styleAndNavigation.listheadingColor}};}
+
+    .paid-success {
+        background-color:{{@global.styleAndNavigation.bannerbgColor}};color:{{@global.styleAndNavigation.bannerTextColor}};
+    }
+    .paid-success .paid-inner{border-color:{{@global.styleAndNavigation.bannerBorderColor}};}
+    </style>
+
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+        {{ewalletInvoicepageHelper this.userTransactionHistory}}
+
+        {{#js_compare "this.page == 'ecom'"}}
+        <strong id="orderId"></strong><br />
+        <strong id="null"></strong></p>
+        <a onclick="ClearHistryHomePage();" class="continue-shopping">{{@global.pageLanguageSetting.continue_shopping_mcom}}</a>
+
+        {{/js_compare}}
+
+    </div>
+
+</div>

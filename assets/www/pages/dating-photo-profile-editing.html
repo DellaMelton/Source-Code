@@ -1,0 +1,58 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.pageEditprofile}}</div>
+        </div>
+        <!--        <div class="right"><a class="icon-ok-4" href="#"  onclick="Appyscript.saveProfileDetails();" style="color:{{@global.style.headerBarIconColor}};"></a>-->
+        <!--        </div>-->
+    </div>
+</div>
+
+
+<div data-page="dating-PhotoProfileEdit" class="page navbar-through toolbar-fixed no-toolbar dating hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content">
+        {{else}} <!-- Page content-->
+        <div class="page-content"  style="background-color:{{@global.styleAndNavigation.pageBackroundColor}};">
+            {{/if}}
+
+            <div class="bodypan upload-photo">
+
+                <ul class="uploaded-img">
+                    <li>
+                        <i class="icon iconz-close"  id="close1" onclick="Appyscript.removepic('picupload1');"  style="color:{{@global.styleAndNavigation.iconColor}}"></i>
+                        <img src="images/image-1x1.png"  checkimage="" id="picupload1" alt="" width="100%" height="150" onclick="Appyscript.actionshee(this);" style="background:url({{@global.style.reseller}}/images/dating_icon.png);">
+                    </li>
+                    <li>
+                        <i class="icon iconz-close" id="close2" onclick="Appyscript.removepic('picupload2');"  style="color:{{@global.styleAndNavigation.iconColor}}"></i>
+                        <img src="images/image-1x1.png" checkimage="" width="100%" height="150"  onclick="Appyscript.actionshee(this);"  id="picupload2" alt="" style="background:url({{@global.style.reseller}}/images/dating_icon.png);">
+                    </li>
+                    <li>
+                        <i class="icon iconz-close"  id="close3" onclick="Appyscript.removepic('picupload3');"  style="color:{{@global.styleAndNavigation.iconColor}}"></i>
+                        <img src="images/image-1x1.png" checkimage="" width="100%" height="150" onclick="Appyscript.actionshee(this);" id="picupload3" alt="" style="background:url({{@global.style.reseller}}/images/dating_icon.png);">
+                    </li>
+                    <li>
+                        <i class="icon iconz-close"  id="close4" onclick="Appyscript.removepic('picupload4');"  style="color:{{@global.styleAndNavigation.iconColor}}"></i>
+                        <img src="images/image-1x1.png" checkimage="" width="100%" height="150" onclick="Appyscript.actionshee(this);"  id="picupload4" alt="" style="background:url({{@global.style.reseller}}/images/dating_icon.png);">
+                    </li>
+                </ul>
+
+                <div class="profile-form">
+                    <!--<input class="form-control"  id="company" placeholder="{{@global.pageLanguageSetting.company}}" type="text" style="background-color: {{@global.styleAndNavigation.fieldBgColor}}; color: {{@global.styleAndNavigation.fieldTextColor}};"> -->
+                    <button class="dating_c_btn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};"  onclick="Appyscript.saveProfileDetails();" >
+                        {{@global.pageLanguageSetting.edit}}</button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+

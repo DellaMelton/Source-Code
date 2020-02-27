@@ -1,0 +1,322 @@
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+            <div class="topHeader">{{#if @root.innerlanguage}}{{innerlanguagedata.payment_method}} {{else}} {{@global.commonLanguageSetting.common_payment_method}}{{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-page="paymentPage" class="page navbar-through toolbar-fixed no-toolbar">
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} content-{{@global.styleAndNavigation.content[3]}} heading-{{@global.styleAndNavigation.heading[3]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+        <style type="text/css">
+            .payment-mode .payment-nav a {
+            color:{{@global.styleAndNavigation.tab[1]}};
+            background-color:{{@global.styleAndNavigation.tab[0]}};
+            }
+            .payment-mode .payment-nav a.active {
+            color:{{@global.styleAndNavigation.tab[1]}};
+            background-color:{{@global.styleAndNavigation.tab[2]}};
+            }
+            	.payment-mode .form-field select {background: #fff;}
+
+
+
+    .pay-field ::-webkit-input-placeholder {
+		color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+    .pay-field :-moz-placeholder {
+		color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+    .pay-field ::-moz-placeholder {
+		color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+    .pay-field :-ms-input-placeholder {
+    	color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+
+	.pay-field input[type="text"], .pay-field select, .pay-field textarea{
+		color:{{@global.styleAndNavigation.content[2]}};
+		border-color:{{@global.styleAndNavigation.borderColor}}
+	}
+
+	.form-field {
+    float: left;
+    width: 100%;
+    display: block;
+	position:relative;
+}
+
+.form-field input, .form-field select {
+  height: 35px;
+    margin-bottom: 10px;
+    width: 100%;
+    outline: none;
+	border: none;
+    box-sizing: border-box;
+	padding:0px 5px;
+
+}
+.form-field label{
+    color:{{@global.styleAndNavigation.button[3]}};;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 27px;
+    text-align: left;
+	width:100%;
+
+		.form-field  input[type="submit"]{ border:0px; background:#0CC; color:#fff; font-weight:bold; }
+	.form-input-field  .pic-select {
+   background: #00cccc none repeat scroll 0 0;
+    height: 23px;
+    padding: 12px 0 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0px;
+    width: 40px;
+    z-index: 0;}
+	.form-field-new .pic-select{ color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}} none repeat scroll 0 0;
+    height: 23px;
+    padding: 12px 0 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 27px;
+    width: 40px;
+    z-index: 0;}
+
+    .payment-form {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+	text-align:center;
+}
+
+}
+
+        </style>
+        <div class="payment-mode">
+            <div class="listing-tabs">
+                <div class="payment-nav tabs-click" style="border-bottom:{{@global.styleAndNavigation.borderColor}}">
+                    {{#list}}
+                    {{if method}}
+                    <a href="#tab{{method}}" class="{{getPayment tabClassId}} {{tabClassId}}{{tabActive}} tab-link " label="{{label}}" onclick="Appyscript.clickEventOnPayment('{{paymentMethodKey}}')" style="display:{{availabilityewalletWithotherPayment this.method}}" id="wallet{{paymentMethodKey}}"></a>
+                    {{/if}}
+                    {{/list}}
+                </div>
+            </div>
+            <div class="tabs-animated-wrap">
+                <div class="wrap" id="paymentTabs">
+                    <div class="tabs">
+                        {{#list}}
+
+                        {{#js_compare "this.method == 'obp' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-value="{{tabClassId}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-phoneNo="{{phoneNo}}" data-apiUrl="{{ccPhoneApiURL}}">
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+
+                            <p>{{label}}&nbsp; <a href="callto:{{phoneNo}}">{{phoneNo}}</a>&nbsp; <span>{{phoneText}}</span></p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};"  onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.call_now}} {{else}} {{@global.commonLanguageSetting.common_call_now}}{{/if}} </a>
+
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'paypal' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{paypalSuccessUrl}}" data-cancelUrl="{{paypalCancelUrl}}" data-apiUrl="{{paypalApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'payu' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{payUSuccessUrl}}" data-cancelUrl="{{payuMoneyCancelUrl}}" data-apiUrl="{{payUApiURL}}" data-failureUrl="{{payUFailureURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>  
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'pesapal' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{pesapalSuccessUrl}}" data-cancelUrl="{{pesapalCancelUrl}}" data-apiUrl="{{pesapalApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'mercado' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{mercadoSuccessUrl}}" data-cancelUrl="{{mercadoCancelUrl}}" data-apiUrl="{{mercadoApiURL}}" data-failureUrl="{{mercadoFailureUrl}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'payfast' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{payfastSuccessUrl}}" data-cancelUrl="{{fastCancelUrl}}" data-apiUrl="{{payfastApiURL}}" data-failureUrl="{{payfastFailure_url}}">
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'braintree' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{braintreeSuccessUrl}}" data-cancelUrl="{{braintreeCancelUrl}}" data-apiUrl="{{braintreeApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+
+                        {{#js_compare "this.method == 'cod' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-apiUrl="{{codApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'pu' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-apiUrl="{{puApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'pickup' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}">
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'stripe' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{stripeSuccessUrl}}" data-cancelUrl="{{stripeCancelUrl}}" data-apiUrl="{{stripeApiUrl}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'velocity' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{velocitySuccessUrl}}" data-cancelUrl="{{velocityCancelUrl}}" data-apiUrl="{{velocityApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'boleto' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{bolatoSuccessUrl}}" data-cancelUrl="{{bolatoCancelUrl}}" data-apiUrl="{{bolatoApiURL}}" data-failureUrl="{{boletoFailureUrl}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'authorize' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{authorizeSuccessUrl}}" data-cancelUrl="{{authorizeCancelUrl}}" data-apiUrl="{{authorizeApiURL}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'hubtel' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{hubtelSuccessUrl}}" data-cancelUrl="{{hubtelCancelUrl}}" data-apiUrl="{{hubtelApiURL}}" data-failureUrl="{{hubtelFailureUrl}}">
+
+                            <div id="wallet_option{{this.paymentMethodKey}}">
+                                {{ewalletBalanceoption this}}
+                            </div>
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'ewallet' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}"  data-key="{{paymentMethodKey}}" data-sucessUrl="{{ewalletSuccessUrl}}" data-cancelUrl="{{ewalletCancelUrl}}" data-apiUrl="{{ewalletApiurl}}" data-failureUrl="{{ewalletFailureUrl}}" style="margin-top: 20px;">
+                            <div><b id = "ewallet_amountid">{{ewalletAmountHelper this.balanceAmount "ecom"}}</b></div>
+
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.confirm}} {{else}} {{@global.commonLanguageSetting.common_confirm}}{{/if}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'ewallet11' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}">
+                            <div><b id = "ewallet_amountid">{{ewalletAmountHelper this.balanceAmount "ecom"}}</b></div>
+                            <footer id="footer-nav" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-sucessUrl="{{ewalletSuccessUrl}}" data-cancelUrl="{{ewalletCancelUrl}}" data-apiUrl="{{ewalletApiurl}}" data-failureUrl="{{ewalletFailureUrl}}" style="margin-top: 20px;">
+
+                                <a class="paynowbtn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}}</a>
+                            </footer>
+                        </div>
+
+                        {{/js_compare}}
+
+
+                        {{/list}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

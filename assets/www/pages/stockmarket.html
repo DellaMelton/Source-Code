@@ -1,0 +1,45 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}; font-size: {{@global.style.headerBarSize}} ">
+    <div class="left sliding">
+        {{getSlideBack "common"}}
+    </div>
+    <div class="center sliding">{{@global.pageLanguageSetting.stock_market}}</div>
+    <!--<div class="right">-->
+    <!--<a   onclick="Stockrefresh();"class="icon-spin3" style="color:{{@global.style.headerBarTextColor}};">-->
+    <!--</a>-->
+    <div class="right"></div>
+</div></div>
+
+<div data-page="stockmarket-page" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <div class="page-content"  style="background:{{@global.style.appBackground}}">
+        <div class="bodypan stockMarket {{@global.style.appPageFont}}" style="color:{{@global.style.pageTextColor}};">
+
+
+            <div class="stock_index">
+                {{#stockArr}}
+                <div class="row" style="border-bottom:1px solid #444444;" stockName="{{symbol}}" onclick="stockMarketDetailPage(this)">
+                    <div class="col-60 eqPadding"><b style="color: #ffffff;font-size: 20px;">{{symbol}}</b><sub style="vertical-align: initial;padding-left: 5px;font-size:11px;color: #cccccc;">{{companyName}}</sub><br><span style="word-break: break-all;
+                     word-wrap: break-word; white-space: normal;color: #cccccc;">{{primaryExchange}}</span></div>
+                    <div class="col-40" style="text-align:right; padding: 5px 0px;">
+                        <div class="stockNum eqPadding" style="display: inline-block;width: 100%;padding: 0;font-size: 20px;">{{latestPrice}}</div>
+                        <div class="stock_percentage">
+                            <ul style="list-style-type:none;display:inline-block;margin:0;padding:0;">
+                                <li style="color:#cd5432;float:right;font-size: 15px;">{{change}}</li>
+
+                            </ul>
+                        </div>
+                        <div class="stock_percentage">
+                            <ul style="list-style-type:none;display:inline-block;margin:0;padding:0;">
+                                <li style="color:#32cd32;float:right;font-size: 11px;">{{checkPercent changePercent}}%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{/stockArr}}
+            </div>
+
+        </div>
+    </div>
+</div>

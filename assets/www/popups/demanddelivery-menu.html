@@ -1,0 +1,47 @@
+<div class="popup menu-popup tablet-fullscreen">
+    <div class="view toolbar-through">
+        <div class="pages">
+            <div class="page">
+
+                <section class="main_div {{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" style="background:{{@global.styleAndNavigation.menu[2]}}; color:{{@global.styleAndNavigation.menu[3]}}">
+                    <div class="navigation-pan">
+                        <style> #menuservice .leftMenu li{border-color:{{@global.styleAndNavigation.menu[3]}} ;color:{{@global.styleAndNavigation.menu[3]}} }  #menuservice .leftMenu li a{color:{{@global.styleAndNavigation.menu[3]}} } </style>
+                        <div class="profile-pan">
+                            <div>
+                                <span class="image">
+                                    {{#js_compare "this.setting.isLogin == \'true\' "}}
+                                        <a href="#" data-animate="true"  data-back="back" class="editProfilebutton icon-cog" style="left:185px; display:none;" > </a>
+                                        <img src="{{image}}" id="imgSchedule" alt=""  onclick="Appyscript.notificationprofile('demanddelivery');">
+                                    {{else}}
+                                        <span class="image"><img src="https://www.downloadapparea.com/newui/images/user-pic-news.png" onclick="Appyscript.notificationprofile('demanddelivery');"></span>
+                                    {{/js_compare}}
+                                </span>
+                                <a href="#" class="add-image {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}"  onclick="Appyscript.notificationprofile('demanddelivery');"><i class="icon-plus"></i></a>
+                            </div>
+                            <a href="#" class="edit-image" style="color:{{@global.styleAndNavigation.linkColor}};" ><i class="close icon-cancel link close-popup"></i></a>
+                            <span class="name {{@global.styleAndNavigation.heading[1]}} {{@global.styleAndNavigation.heading[1]}}" id="userName"  style="color:{{@global.styleAndNavigation.heading[2]}};">{{name}}</span>
+                            <span class="location" id="userLocation">{{location}}</span>
+                        </div>
+
+                        <div class="sub-menu hyperlocal-menu" id="menuservice">
+                            <ul class="leftMenu {{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" style="background:{{@global.styleAndNavigation.menu[2]}}; color:{{@global.styleAndNavigation.menu[3]}}">
+                                <li><a class="home close-popup"><i class="icon-th-large-1"></i>{{@global.pageLanguageSetting.dhome}}</a></li>
+                                {{#js_compare "this.setting.isLogin == \'true\' "}}
+                                    <li onclick="dDOrderHistory()"><a class="order"><i class="icon-back-in-time"></i>{{@global.pageLanguageSetting.order_history_food}}</a></li>
+                                     <li onclick="Appyscript.notificationprofile('demanddelivery');"><a class="profile"><i class="iconz-user"></i>{{@global.pageLanguageSetting.dir_profile}}</a></li>
+                                {{/js_compare}}
+                                {{#js_compare "this.setting.isLogin == \'true\' "}}
+                                <li style="border-color:{{@global.styleAndNavigation.borderColor}}" onclick="Appyscript.loginLogOut(this,'true');"><a class="close-popup"  id="loginLogout"><i class="iconz-logout"></i>{{@global.pageLanguageSetting.forum_logout}}</a></li>
+                                {{else}}
+                                <li style="border-color:{{@global.styleAndNavigation.borderColor}}" onclick="Appyscript.loginLogOut(this,'false');"><a class="close-popup" id="loginLogout"><i class="iconz-login"></i>{{@global.pageLanguageSetting.Login_Logout}}</a></li>
+                                {{/js_compare}}
+                            </ul>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+    <div class="center sliding">
+        <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+    </div>
+</div>
+</div>
+
+
+<div data-page="hyperlocal-appointmentpage" class="page navbar-through no-toolbar hideBorder-{{@global.styleAndNavigation.hideBorder}}" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+
+    <div class="toolbar ">
+        <div class="toolbar-inner toolbar-bottom {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}}; font-size: {{@global.style.headerBarSize}} " onclick="openBookAppointmentPage()">
+            <a href="#" style="color: {{@global.styleAndNavigation.button[3]}};" class="bottomBtn" > {{@global.pageLanguageSetting.nextButton}} </a>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <style>
+    #ul_SlotList li{padding:0px;}
+#ul_SlotList input {
+  display: none;
+}
+
+#ul_SlotList  label {
+  display:block;
+  text-align:center;
+  border: 1px solid transparent;
+  background:{{@global.styleAndNavigation.button[3]}};
+  color:{{@global.styleAndNavigation.button[2]}};
+  height: 100%;
+    line-height: 60px;
+    width: 100%;
+overflow:hidden;
+white-space:nowrap;
+text-overflow: ellipsis;
+padding: 0px 2px;
+}
+
+#ul_SlotList  input:checked + label {
+  background:{{@global.styleAndNavigation.button[2]}};
+  color:{{@global.styleAndNavigation.button[3]}};
+}
+    </style>
+        <section class="custumSchedule">
+            <div class="inputBox">
+                <h3 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}" style="color:{{@global.styleAndNavigation.subheading[2]}}">{{@global.pageLanguageSetting.selectDate}}</h3>
+                <small class="calender"><i class="icon-calendar-1" style="color:{{@global.styleAndNavigation.icon[1]}}"></i></small>
+                <input type="text" id="date_BookAppointment" onchange="change_SlotsDatewise()" name="date" placeholder="Select Date" class="date {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}"  style="border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.content[2]}}">
+                <small class="pic-select" style="background:{{@global.styleAndNavigation.icon[0]}}"><i class="icon-up-open-big" style="color:{{@global.styleAndNavigation.icon[1]}}"> </i></small>
+            </div>
+
+            <div class="selectTiming">
+                <h3 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}" style="color:{{@global.styleAndNavigation.subheading[2]}}" id="txt_heading"></h3>
+                <ul id="ul_SlotList" style="margin-bottom:50px;" class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}">
+                </ul>
+            </div>
+
+        </section>
+    </div>
+</div>
+

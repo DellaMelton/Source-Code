@@ -1,0 +1,51 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.apply_coupon}}</div>
+		</div>
+	</div>
+</div>
+
+<div data-page="demanddelivery-applycoupon" class="page navbar-through no-toolbar toolbar-through">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+		<style>.coupons{color:{{@global.styleAndNavigation.secondaryButton[1]}}; background:{{@global.styleAndNavigation.secondaryButton[0]}} }
+
+         .coupons .couponLink a, .coupons .couponHeading, .coupons .textdetail{color:{{@global.styleAndNavigation.secondaryButton[1]}};}
+         .coupons .couponDetail .icon-ok-4 {color:{{@global.styleAndNavigation.secondaryButton[0]}};}
+         .coupons .couponDetail:before{background-color:{{@global.styleAndNavigation.secondaryButton[1]}}; display:none;}
+         .coupons.active{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}} }
+         .coupons.active .couponLink a, .coupons.active .couponHeading, .coupons.active .textdetail{color:{{@global.styleAndNavigation.button[3]}};}
+         .coupons.active .couponDetail .icon-ok-4 {color:{{@global.styleAndNavigation.button[2]}};}
+         .coupons.active .couponDetail:before{ background-color:{{@global.styleAndNavigation.button[3]}}; display:block;}
+         </style>
+		<section class="coupon-screen {{@global.styleAndNavigation.field[0]}}  {{@global.styleAndNavigation.field[1]}}" >
+			<div class="searchBar" style="background-color: {{@global.styleAndNavigation.field[2]}}; border:1px solid {{@global.styleAndNavigation.borderColor}};">
+				<input type="text" id="applyCoupon" placeholder="{{@global.pageLanguageSetting.Search_Coupon}}" style="color: {{@global.styleAndNavigation.field[3]}}" value={{applyTextCoupon}}><button class="applyBtn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}" onclick="dDApplyCouponCode()">{{@global.pageLanguageSetting.Apply_Now}}</button>
+			</div>
+
+			<div class="coupon-Div">
+				{{#if data.length}}
+				<div class="coupon-heading">{{@global.pageLanguageSetting.Dont_Have_Coupon_Code}}</div>
+				{{#data}}
+				<div class="coupons {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" id="{{@index}}abc"  index="{{@index}}" ><img src="{{couponImagePath}}" width="120px" height="100px">
+					<div class="couponDetail">
+						<i class="icon-ok-4 ok"></i>
+						<div class="couponHeading">{{heading}}</div>
+						<div class="textdetail">{{@global.pageLanguageSetting.Use_Code}} {{code}} &amp; {{discription}}</div>
+						<div class="couponLink"><a href="#" class="more" onclick="couponreadmore(this,'{{code}}')">{{@global.pageLanguageSetting.Know_More}}  </a> <a href="#" class="hideMore" onclick="couponHidemore(this)"> {{@global.pageLanguageSetting.Hide_Know_More}}  </a>  <a href="#" class="link" onclick="couponActive(this,'{{code}}')">{{@global.pageLanguageSetting.choose}} {{code}} </a></div>
+					</div>
+				</div>
+				{{/data}}
+				{{/if}}
+
+			</div>
+		</section>
+	</div>
+</div>

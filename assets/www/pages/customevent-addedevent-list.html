@@ -1,0 +1,47 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}; font-size: {{@global.style.headerBarSize}} ">
+    <div class="left sliding">
+        <a onclick="back2Home()" class="link back" style="color:{{@global.style.headerBarTextColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+    <div class="center sliding"> <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+        {{@global.pageLanguageSetting.add_event}}
+    </div></div>
+    <div class="right">
+        <a  style="color:{{@global.style.headerBarTextColor}};">
+            <i class="icon iconz-location-chat--r"></i>
+        </a>
+    </div>
+</div>
+</div>
+<div data-page="customevent-usereventlist" class="page navbar-through no-toolbar toolbar-through {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBackroundColor}}">
+    <!-- Page content-->
+    <div class="page-content">
+        <div class="msg-code locationErrorMsg" style="display:block">{{> errorpage errorIcon="iconz-location-chat"}}</div>
+        <div class="listing-main" style="background:{{@global.styleAndNavigation.tab[0]}}" id="userEventlistPage">
+            <div class="post-main">
+
+                <div class="post" id="post0">
+                    <div class="post-img">
+                        <img src="images/image1.png" alt="" id="img0"/>
+                    </div>
+                    <div class="post-title" style="text-align:{{@global.styleAndNavigation.heading[3]}}">
+                        <div class="left"  style="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"><span style="color:{{@global.styleAndNavigation.heading[2]}}" id="eventname0">Office Party</span></div>
+                        <div class="right" style="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"><span style="color:{{@global.styleAndNavigation.heading[2]}}" id="adminStatus0">Published</span></div>
+                    </div>
+                    <div class="edit-section">
+                        <ul>
+                            <li onclick="changeStatus(0)" class=" {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"><a style="color:{{@global.styleAndNavigation.heading[2]}};" href="#" id="changeStatus0"><i class="iconz-edit"></i>inactive</a></li>
+                            <li onclick="editEvent(0)" class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}} "><a style="color:{{@global.styleAndNavigation.button[3]}};" href="#"><i style="color:{{@global.styleAndNavigation.iconColor}}" class="iconz-edit"></i>Edit</a></li>
+                            <li onclick="deleteEvent(0)" class="{{@global.styleAndNavigation.secondaryButton[0]}} {{@global.styleAndNavigation.secondaryButton[1]}}"><a style="color:{{@global.styleAndNavigation.secondaryButton[3]}}" href="#"><i style="color:{{@global.styleAndNavigation.iconColor}}" class="icon-trash" aria-hidden="true"></i>Delete</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>

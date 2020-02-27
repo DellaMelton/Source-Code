@@ -1,0 +1,94 @@
+<div class="navbar">
+    <div class="navbar-inner "
+         style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+            {{@global.pageLanguageSetting.checkout_food}}
+        </div>
+        <div class="right"></div>
+    </div>
+</div>
+
+
+<div data-page="dinein-ContinueCheckout" class="page navbar-through no-toolbar" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} content-{{@global.styleAndNavigation.content[3]}} heading-{{@global.styleAndNavigation.heading[3]}}"
+         style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+        <style>
+            .newsTand-MobileTab a {
+            color:{{@global.styleAndNavigation.tab[1]}};
+            background:{{@global.styleAndNavigation.tab[0]}};
+            }
+            .newsTand-MobileTab .tabViewall a.active,
+            .newsTand-MobileTab .tabmyCollection a.active {
+            color:{{@global.styleAndNavigation.tab[1]}};
+            background:{{@global.styleAndNavigation.activeColor}};
+            }
+            .billing-address input, .billing-address select, .shipping-address input, .shipping-address select, .billing-address textarea, .dashboard input, .selectTable{
+                color: {{@global.styleAndNavigation.content[2]}}; border-color: {{@global.styleAndNavigation.borderColor}}
+            }
+			::-webkit-input-placeholder { color:{{@global.styleAndNavigation.content[2]}} }
+			:-moz-placeholder {opacity: 1; color:{{@global.styleAndNavigation.content[2]}};  	}
+			::-moz-placeholder { opacity:1; color:{{@global.styleAndNavigation.content[2]}}	}
+			:-ms-input-placeholder {color:{{@global.styleAndNavigation.content[2]}}	}
+			::-ms-input-placeholder {color:{{@global.styleAndNavigation.content[2]}}	}
+
+        </style>
+        <div class="dashboard continewCheck">
+            <div class="billing-address tab" id="picup">
+                <div class="selectTable" id="pickAddress" onclick="Appyscript.popupPage('dinein-table-list')">
+
+                    <span id="pickAddress1">{{@global.pageLanguageSetting.dining_select_table}}</span>
+                    <span  id="pickAddress2"> </span>
+
+                </div>
+
+
+
+                <textarea name="instructionsText" placeholder="{{@global.pageLanguageSetting.instructions_foodorder}}" id="pickInstruction" class="comments"></textarea>
+
+
+
+
+            </div>
+
+            <div onclick="DineInProfileCheckboxPickup(this)" class="showBillingAddress {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" dir=".shipping-address"><span class="checkbox"></span>
+                <input data-role="none" type="checkbox" id="show_billing_address">{{@global.pageLanguageSetting.default_billing_address_food}}
+            </div>
+            <div class="billing-address shippingViewpickup tab" id="billingAddress"  style="display: none;">
+                <form id="foodcourtBillingpickup" >
+                    <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.default_billing_address_food}}</h2>
+                    <input data-role="none" id="bfname" type="text" placeholder="{{@global.pageLanguageSetting.first_name_food}} *" name="name">
+                    <input data-role="none" id="bpNo" type="tel" class="numberlength numberValidation" maxlength="15" placeholder="{{@global.pageLanguageSetting.telephone_food}} *" name="phone">
+                    {{#if contactInfo}}
+                    <input data-role="none" id="bemail" type="text" placeholder="{{@global.pageLanguageSetting.email_id_food}} *" value="{{contactInfo.email}}" name="email" >
+                    {{else}}
+                    <input data-role="none" id="bemail" type="text" name="email" placeholder="{{@global.pageLanguageSetting.email_id_food}} *">
+                    {{/if}}
+                    <input data-role="none" id="bAddress" type="text" placeholder="{{@global.pageLanguageSetting.address_food}} *" name="address">
+                    <input data-role="none" id="bCity" type="text" placeholder="{{@global.pageLanguageSetting.city_food}} *" name="city">
+                    <input data-role="none" id="bState" type="text" placeholder="{{@global.pageLanguageSetting.state_province_food}} "name="state">
+                    <input data-role="none" id="bZip" type="text" placeholder="{{@global.pageLanguageSetting.zip_postal_code_food}} " name="zip">
+                    {{#if billing}}
+                    {{#if billing.country}}
+                    <div id="bcountryTry"><select id="bCountry" name="country"><option value="{{billing.country}}">{{billing.country}}</option>{{getCountry "country"}}</select></div>
+                    {{else}}
+                    <div id="bcountryTry"><select id="bCountry" name="country"><option value="-1">{{@global.pageLanguageSetting.country_food}}</option>{{getCountry "country"}}</select></div>
+                    {{/if}}
+                    {{else}}
+                    <div id="bcountryTry"><select id="bCountry" name="country"><option value="-1">{{@global.pageLanguageSetting.country_food}}</option>{{getCountry "country"}}</select></div>
+                    {{/if}}
+                </form>
+            </div>
+
+
+            <a class="e-user_save {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onclick="DineInConfirmPayment()">{{@global.pageLanguageSetting.dining_countinue_pay}}</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+
+
+.merger_matrix{
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height:100%;
+}
+.merger_matrix .apps{
+    width:100%;
+    text-align:center;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    overflow:hidden;
+    box-sizing:border-box;
+    
+}
+.merger_matrix .apps a{padding:6% 6% 0 6%; height: 100%; box-sizing: border-box; display:block }
+.merger_matrix .apps img{ height:60%;}
+.merger_matrix .apps span{width:100%; max-height:34%; text-align:center; overflow:hidden; display:-webkit-box; text-overflow:ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; }
+.merger_matrixlist{display: block;}
+.merger_matrix2{display: block;}
+.merger_matrix2 .apps{
+    width:50%;
+    display:inline-block;
+    position:relative;
+    overflow:hidden;
+    float:left;
+    
+}
+
+
+
+/* New Ui Css */
+.merger_matrix.smallNav a span{font-size: 18px ;}
+.merger_matrix.mediumNav a span{font-size: 22px ;}
+.merger_matrix.largeNav a span{font-size: 24px ;}
+.merger_matrix.xlargeNav a span{font-size: 26px ; line-height:29px;}
+.merger_matrix.hide-border .apps{ border-width:0px !important;}
+.merger_matrix.hide-text span{ display:none;}
+.merger_matrix.hide-background a{ background-color:rgba(0,0,0,0) !important;}
+
+@media only screen and (min-width:600px){
+    
+    .merger_matrix.                                                                                                                                                                                                                                                           a span{line-height:inherit}
+    
+}

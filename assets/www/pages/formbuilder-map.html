@@ -1,0 +1,22 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+				{{getSlideBack ""}}        
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+    <div class="right"></div>
+</div></div>
+
+<div data-page="formbuilder-mapPage" class="page navbar-through no-toolbar " >
+<div class="backgroundAnimation">{{> innerBackground}}</div>
+<!-- Page content-->
+    <div class="page-content hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+        <style>
+            #map {
+                position: fixed !important;
+            }
+        </style>
+        <div class="form-page theme-{{formStyle.layout}} {{formStyle.content[0]}} {{formStyle.content[1]}} content-{{formStyle.content[3]}} label-{{formStyle.label[3]}} heading-{{formStyle.heading[3]}} icon-{{formStyle.icon[2]}} image-{{formStyle.hideImage}} icon-{{formStyle.hideIcon}} rounded-{{formStyle.fieldRounded}} button-{{formStyle.smallButton}}" style="color:{{formStyle.content[2]}};">
+            <div style="height: 100%; width: 400px;" id="map"></div>
+        </div>
+    </div>
+</div>

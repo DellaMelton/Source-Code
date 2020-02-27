@@ -1,0 +1,376 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+
+        <div class="left ">
+            {{#if @global.styleAndNavigation.innerLayout}}
+            <a href="index" class="link back"style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+            {{else}}
+            {{#root_Compare @global.style.layout "==" "bottom"}}
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+                <i class="icon icon-left-open-2" ></i></a>
+            {{else}}
+            {{#root_Compare @global.style.layout "==" "slidemenu"}}
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+                <i class="icon icon-left-open-2"  ></i></a>
+            {{else}}
+            <a href="index" class="link back"style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a> {{/root_Compare}}
+            {{/root_Compare}}
+            {{/if}}
+
+        </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.datingpagetitle}}</div>
+        </div>
+        <div class="right"><a class="iconz-option-vertical" style="color:{{@global.style.headerBarIconColor}};"  onclick="toggle_menu(this);"></a>
+        </div>
+    </div>
+</div>
+
+<div data-page="dating-Setting" class="page navbar-through toolbar-fixed no-toolbar dating">
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content">
+        {{else}} <!-- Page content-->
+        <div class="page-content"  style="background-color:{{@global.styleAndNavigation.pageBackroundColor}};">
+            {{/if}}
+
+            <style>
+			.controlIndicator,.radiobx .checkmark{border-color:{{@global.styleAndNavigation.secondaryButton[2]}}}
+			.controlIndicator::after {background:{{@global.styleAndNavigation.secondaryButton[2]}};}
+            .on .controlIndicator,.radiobx input:checked ~ .checkmark {
+                border-color:{{@global.styleAndNavigation.button[2]}};
+            }
+			.on .controlIndicator::after,.radiobx .checkmark:after {
+                background:{{@global.styleAndNavigation.button[2]}};
+            }
+
+			.checkbx:hover input ~ .checkmark,.checkbx .checkmark{background-color:{{@global.styleAndNavigation.secondaryButton[2]}}}
+			 .checkbox_container .checkbx .checkmark{border-color:{{@global.styleAndNavigation.secondaryButton[2]}}}
+			.checkbx input:checked ~ .checkmark{background-color:{{@global.styleAndNavigation.button[2]}};border-color:{{@global.styleAndNavigation.button[2]}}}
+			.checkbx input:checked .checkbx .checkmark:after{color: {{@global.styleAndNavigation.button[3]}}}
+
+        .active-btn{background-color: {{@global.styleAndNavigation.button[2]}} !important; color: {{@global.styleAndNavigation.button[3]}} !important;}
+
+        #distance-slider #distance-tab a{
+            background-color: {{@global.styleAndNavigation.secondaryButton[2]}}  !important;
+            color: {{@global.styleAndNavigation.secondaryButton[3]}} !important;
+        }
+        #distance-slider #distance-tab a.active {
+            background-color: {{@global.styleAndNavigation.button[2]}} !important;
+            color: {{@global.styleAndNavigation.button[3]}} !important;
+        }
+		.form-control,.dating_f_row input[type="text"],.dating_f_row textarea,.dating_f_row select{/*background-color: {{@global.styleAndNavigation.fieldBgColor}};*/ color: {{@global.styleAndNavigation.content[2]}} !important; border-color:{{@global.styleAndNavigation.fieldBorderColor}}; }
+		.dating .noUi-target{background:{{@global.styleAndNavigation.secondaryButton[2]}}}
+		.dating .noUi-connect{ background: {{@global.styleAndNavigation.button[2]}}}
+		.dating .noUi-horizontal .noUi-handle{border-color:{{@global.styleAndNavigation.button[2]}}}
+
+		.dating input::-webkit-input-placeholder,.dating textarea::-webkit-input-placeholder,.dating select::-webkit-input-placeholder {
+			color:{{@global.styleAndNavigation.content[2]}}
+			opacity: 1
+		}
+		.dating input:-moz-placeholder,.dating textarea:-moz-placeholder,.dating select:-moz-placeholder {
+			color: {{@global.styleAndNavigation.content[2]}}
+			opacity: 1
+		}
+
+		.dating input:-ms-input-placeholder,.dating textarea:-ms-input-placeholder,.dating select:-ms-input-placeholder {
+			color:{{@global.styleAndNavigation.content[2]}};
+			opacity: 1
+		}
+		.dating input::placeholder ,.dating textarea::placeholder ,.dating select::placeholder  {
+			color:{{@global.styleAndNavigation.content[2]}};
+			opacity: 1
+		}
+        </style>
+            <div class="setting-page {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}};">
+
+
+                <div class="bodypan">
+                    <div class="dating_f_row">
+                        <label class="">{{changeLabel_DefaultField "dating_tag_4" "1"}}*</label>
+                        <input id="jobtitle" placeholder="{{@global.pageLanguageSetting.job_title}}"  class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="text">
+                    </div>
+                    <!--                <div class="dating_f_row Mobile">-->
+                    <!--                    <label class="">Mobile Number*</label>-->
+                    <!--                    <input id="mbl" placeholder="Mobile Number"  class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="number">-->
+                    <!--                        </div>-->
+
+                    <div class="dating_f_row date">
+                        <label class="">{{changeLabel_DefaultField "dating_tag_2" "1"}}*</label>
+                        <div style="position:relative;">
+                            <input id="dob" placeholder="{{@global.pageLanguageSetting.dob}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="text">
+                            <input type="date" style="position:absolute !important; left:0px !important; top:0px !important; opacity:0 !important;" onchange="Appyscript.datingDateCh(this);">
+                        </div>
+                    </div>
+                    <div class="dating_f_row">
+                        <label class="">{{changeLabel_DefaultField "dating_tag_3" "1"}}*</label>
+                        <textarea id="goal" placeholder="{{@global.pageLanguageSetting.goal}}"  class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}"></textarea>
+                    </div>
+
+
+                    <div class="dating_f_row">
+                        <label class="flex_label"> {{changeLabel_DefaultField "dating_tag_9" "1"}}</label>
+                        <select type="select" name="select" id="infoStatus" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}">
+
+                            <option value = "single" >{{changeLabel_DefaultField "dating_tag_9" "2" "0"}}</option>
+                            <option value = "married" >{{changeLabel_DefaultField "dating_tag_9" "2" "1"}}</option>
+                            <option value = "widow" >{{changeLabel_DefaultField "dating_tag_9" "2" "2"}}</option>
+                            <option value = "divorced" >{{changeLabel_DefaultField "dating_tag_9" "2" "3"}}</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="dating_f_row">
+                        <label>{{changeLabel_DefaultField "dating_tag_1" "1"}}*</label>
+                        <select type="select" name="select" id="userGender" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}">
+
+                            <option value="male" >{{changeLabel_DefaultField "dating_tag_1" "2" "0"}}</option>
+                            <option value="female" >{{changeLabel_DefaultField "dating_tag_1" "2" "1"}}</option>
+                            <option value= "both" >{{changeLabel_DefaultField "dating_tag_1" "2" "2"}}</option>
+
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="dating_f_row" onclick="Appyscript.popupPage('locationdating');" >
+                        <label class="">{{changeLabel_DefaultField "dating_tag_7" "1"}}</label>
+                        <input   id="iLocation" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="text"  readonly>
+                    </div>
+
+                    <div class="dating_f_row">
+                        <label class="flex_label"> {{changeLabel_DefaultField "dating_tag_5" "1"}}</label>
+                        <select type="select" name="select" id="intrestGender" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}">
+
+                            <option value = "male" >{{changeLabel_DefaultField "dating_tag_5" "2" "0"}}</option>
+                            <option value = "female">{{changeLabel_DefaultField "dating_tag_5" "2" "1"}}</option>
+                            <option value = "both">{{changeLabel_DefaultField "dating_tag_5" "2" "2"}}</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="dating_f_row">
+                        <label>{{changeLabel_DefaultField "dating_tag_6" "1"}} ({{@global.pageLanguageSetting.years}}) </label>
+
+                        <div id="distance-slider">
+                            <div class="dating_f_row" style="box-sizing: border-box;">
+                                <span class="max" id="rangeValue3">18</span>
+                                <span class="min" style="float:right;" id="rangeValue4">113</span>
+                            </div>
+                            <div class="sd_bg_wp">
+                                <input id="dirctoryrang2" type="text" min ="18" max="100" step ="1" value ="18" style="width:100%;" />
+                                <input id="ageUpperLimit" type="hidden" min ="18" max="113" step ="1" value ="113" />
+                                <div id="datingYearGet"></div>
+                            </div>
+                        </div>
+                        <div id="distance-slider-tab2" style="display:none">
+                            <a onclick="Appyscript.clickAgeType(this)" class="active">{{@global.pageLanguageSetting.years}}</a>
+                        </div>
+                        <p style="margin:0px;padding:7px 0px 3px 0px;float:left; width:100%; border-color: {{@global.styleAndNavigation.fieldBorderColor}}"></p>
+                    </div>
+
+
+
+                    <div class="dating_f_row " style="display:none;">
+                        <label>{{@global.pageLanguageSetting.distance}}</label>
+                        <div id="distance-slider">
+                            <div id="distance-tab">
+                                <a onclick="Appyscript.datingDistanceType(this)"  id="datingkm" class="active {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}">{{@global.pageLanguageSetting.KM_dir}}</a>
+                                <a onclick="Appyscript.datingDistanceType(this)" id="datingmi" class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}">{{@global.pageLanguageSetting.Miles_dir}}</a>
+                            </div>
+                            <span class="max" id="rangeValue2">15 {{@global.pageLanguageSetting.Miles_dir}}</span>
+                            <div class="sd_bg_wp">
+                                <input id="dirctoryrang" type="text" min="1" max="100" step ="1" value ="15" style="width:100%;" />
+                                <div id="datingDistanceGet"></div>
+                            </div>
+                        </div>
+                        <div id="distance-slider-tab" style="display:none">
+                            <a onclick="Appyscript.clickDistanceType(this)" class="active">{{@global.pageLanguageSetting.Miles_dir}}</a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="dating_f_row">
+                        <label class="checkbx">{{changeLabel_DefaultField "dating_tag_8" "1"}}
+
+                            <input type="checkbox" class="checkbx" id="test1" checked="checked"/>
+                            <span class="checkmark"></span>
+                        </label>
+                        <p style="margin:0px;padding:14px 0px 3px 0px;float:left; width:100%; border-color: {{@global.styleAndNavigation.fieldBorderColor}}"></p>
+                    </div>
+
+                    <div class="dating_f_row"  id="datingDistance">
+                        <label class="">{{changeLabel_DefaultField "dating_tag_11" "1"}} ({{@global.pageLanguageSetting.Miles_dir}})</label>
+                        <input id="distancetitle" placeholder="{{@global.pageLanguageSetting.distance}}"  class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="tel">
+                    </div>
+
+
+
+                    <div id="customeDatingFeeds">
+                        <ul>
+                            {{#customFields}}
+                            {{#js_compare "this.defaultField !='1'  && this.customFieldActive != '0'"}}
+                            <li class="input datingCustomField" type="{{addField}}" mandatory="{{fieldMandatory}}" customFieldId="{{customFieldId}}">
+
+                                {{#js_compare "this.addField == 'select'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <select type="select" name="select" id="{{@index}}" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}">
+                                        {{#subFieldLebalArr}}
+                                        <option value="{{subFieldLebal}}" {{#isSelectedDating this.subFieldLebal ../fieldValue "1"}}{{/isSelectedDating}}>{{subFieldLebal}}</option>
+                                        {{/subFieldLebalArr}}
+                                    </select>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'textarea'"}}
+                                <div class="dating_f_row">
+                                    <label class="">{{fieldLabel}}*</label>
+                                    <textarea id="{{@index}}" placeholder="{{fieldLabel}}"   class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}">{{fieldValue}}</textarea>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'radio'"}}
+                                <div class="dating_f_row">
+                                    <label class="flex_label"> {{fieldLabel}}*</label>
+                                    {{#subFieldLebalArr}}
+                                    <label class="radiobx">{{subFieldLebal}}
+                                        <input name="{{../customFieldId}}" id="{{@index}}" checked="checked"  type="radio" value="{{subFieldLebal}}"{{#isSelected this.subFieldLebal ../fieldValue "3"}}{{/isSelected}}>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    {{/subFieldLebalArr}}
+                                    <p style="margin:0px;padding:0px 0px 3px 0px; width:100%; float:left; border-color: {{@global.styleAndNavigation.fieldBorderColor}}"></p>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'name'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <input id="{{@index}}"  placeholder="{{fieldLabel}}" value="{{fieldValue}}"  class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="text">
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'email'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <input type="email" name="email" value="{{fieldValue}}" id="{{@index}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}">
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'date'"}}
+                                <div class="dating_f_row">
+                                    <label class="">{{fieldLabel}}*</label>
+                                    <div style="position:relative;">
+                                        <input id="{{@index}}" placeholder="dob" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="text">
+                                        <input type="date" style="position:absolute !important; left:0px !important; top:0px !important; opacity:0 !important;" onchange="Appyscript.datingDateCh(this);">
+                                    </div>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'gender'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <select type="select" name="select" id="{{@index}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}">
+                                        {{#subFieldLebalArr}}
+                                        <option value="{{subFieldLebal}}"  >{{subFieldLebal}}</option>
+                                        {{/subFieldLebalArr}}
+                                    </select>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'country'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <select type="country" name="country" id="{{@index}}" class="form-control" value="{{fieldValue}}" placeholder="{{fieldLebal}}">
+                                        <option selected="selected" value="0">{{fieldLebal}} {{#if mandatory}}*{{/if}}</option>
+                                        {{getCountry fieldValue}}
+                                    </select>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'state'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <input type="text" name="state" id="{{@index}}" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}{{#if mandatory}}*{{/if}}">
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'phone'"}}
+                                <div class="dating_f_row">
+                                    <label> {{fieldLabel}}*</label>
+                                    <input type="tel" name="state" id="{{@index}}" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" placeholder="{{fieldLebal}}{{#if mandatory}}*{{/if}}">
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'text' || this.addField == 'distance' "}}
+                                <div class="dating_f_row">
+                                    <label class="">{{fieldLabel}}*</label>
+                                    <input id="{{@index}}" placeholder="{{fieldLabel}}" value="{{fieldValue}}" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="text">
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'checkbox'"}}
+                                <div class="dating_f_row">
+                                    <label class="flex_label"> {{fieldLabel}}*</label>
+                                    <div class="checkbox_container" value="{{fieldValue}}">
+                                        {{#subFieldLebalArr}}
+                                        <label class="checkbx">
+                                            <input name="{{@index}}" id="{{@index}}" type="checkbox" value="{{subFieldLebal}}" {{#isSelected this.subFieldLebal ../fieldValue "2"}}{{/isSelected}}>
+                                            {{subFieldLebal}}
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        {{/subFieldLebalArr}}
+                                    </div>
+                                    <p style="margin:0px;padding:0px 0px 3px 0px; width:100%; float:left; border-color: {{@global.styleAndNavigation.fieldBorderColor}}"></p>
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.addField == 'multiselect'"}}
+                                <div class="dating_f_row">
+                                    <label class="flex_label"> {{fieldLabel}}*</label>
+                                    <div class="checkbox_container" value="{{fieldValue}}">
+                                        {{#subFieldLebalArr}}
+                                        <label class="checkbx">
+                                            <input name="{{@index}}" id="{{@index}}" type="checkbox" value="{{subFieldLebal}}" {{#isSelected this.subFieldLebal ../fieldValue "2"}}{{/isSelected}}>
+                                            {{subFieldLebal}}
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        {{/subFieldLebalArr}}
+                                    </div>
+                                    <p style="margin:0px;padding:0px 0px 3px 0px; width:100%; float:left; border-color: {{@global.styleAndNavigation.fieldBorderColor}}"></p>
+                                </div>
+                                {{/js_compare}}
+
+
+                            </li>
+                            {{/js_compare}}
+                            {{/customFields}}
+
+                        </ul>
+                    </div>
+
+                    <div class="saveButton">
+                        <button class="dating_c_btn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};"  onclick="Appyscript.saveusersetting();" >
+                            {{@global.pageLanguageSetting.savedating}}</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+

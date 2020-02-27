@@ -1,0 +1,40 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.Payment_Confirm}}</div>
+		</div>
+		<span class="close-icon-right" onclick="Appyscript.dDBackFunction()"><a class="edit-image"><i class="close icon-cancel link"></i></a></span>
+	</div>
+</div>
+
+<div data-page="demanddelivery-paymentconfirmcallback" class="page navbar-through no-toolbar">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<div class="main-container-de payment-confirm bg-none {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+			<div id="dDBookPendingDiv">
+				<div class="cofirmIcon"  style="border-color:{{@global.styleAndNavigation.button[2]}};color: {{@global.styleAndNavigation.button[2]}};"><i class="icon-ok-4"></i></div>
+				<div class="confirMsg2 {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}} centerContent" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.Awesome_Your_Booking_Has_Been_Confirmed}}.</div>
+
+				<div class="msgContent" style="border-color:{{@global.styleAndNavigation.button[2]}};">
+					<div class="successIcon" style="background-color:{{@global.styleAndNavigation.button[2]}};">
+						<i class="{{Icon}}"></i>
+						<!--<p class="icon">-->
+							<!--<img src="{{Icon}}">-->
+						<!--</p>-->
+					</div>
+					<div class="content {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.Your_Package_Fit_In}}: {{vName}} <span>{{pointDuration}}</span></div>
+					<div class="content {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.order_id_food}}: <span>{{orderId}}</span></div>
+					<div class="content {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.Payment_Mode}}:<span class="paypal   {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.secondaryButton[1]}}; background:{{@global.styleAndNavigation.secondaryButton[0]}}"><i class="{{paymentIcon}}"></i>{{paymentMethodLableCon}}</span></div>
+				</div>
+
+				<div class="btnSucces">
+					<span class="successBtns  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}" onclick="dDContactSupport('{{deliveryBoyInfo.phone}}')"><i class="iconz-phone1" ></i>{{@global.pageLanguageSetting.Call_To_Driver}}</span>
+					<span class="successBtns trackbtn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}"  onclick="dDTrackLocation('{{deliveryBoyInfo.latitude}}','{{deliveryBoyInfo.longitude}}','{{pickupLat}}','{{pickupLong}}')"><i class="iconz-car"></i>{{@global.pageLanguageSetting.Track_Location}}</span>
+					<!--<span class="successBtns  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}"  onclick="dDCancelOrderAfterConfirmation('{{orderId}}')"><i class="icon-cancel-circle2"></i>{{@global.pageLanguageSetting.store_cancel_order}}</span>-->
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

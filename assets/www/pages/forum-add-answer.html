@@ -1,0 +1,66 @@
+<style>
+   .questionDiv h2{
+        color:{{@global.styleAndNavigation.form[6]}};
+   }
+    .questionDiv textarea{
+        color:{{@global.styleAndNavigation.form[2]}};
+       background-color:{{@global.styleAndNavigation.form[5]}}                                             
+    }
+.questionDiv ::-webkit-input-placeholder {color:{{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+.questionDiv :-moz-placeholder {color:{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+.questionDiv ::-moz-placeholder {color:{{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+.questionDiv :-ms-input-placeholder {color:{{@global.styleAndNavigation.form[2]}}; opacity:.6;}
+</style>
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2" onclick="cleartImage()"></i>
+            </a>
+        </div>
+        <div class="center sliding  {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{title}}</div>
+        <div class="right"></div>
+    </div>
+</div>
+<div data-page="forum-forumAddAnswer" class="page navbar-through no-toolbar toolbar-through">
+    <div class="toolbar forum-toolbar">
+        <div class="toolbar-inner toolbar-bottom">
+            <footer style="width:100%;">
+                <div class="submitAnswer {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}">
+                    <div class="checkIt" style="width:calc(100% - 90px)">
+                        <input type="checkbox" name="anonymousAnswer" id="anonymousAnswer" value="" {{#if isAllowAnonymously}} {{else}} style="display:none" {{/if}} />
+                        <label id="anonyu" for="anonymousAnswer" {{#if isAllowAnonymously}} style="color:{{@global.styleAndNavigation.button[3]}}" {{else}} style="display:none;" {{/if}}>{{@global.pageLanguageSetting.FORUM_ADD_ANNONYMOUS}}</label>
+                    </div>
+                    <div class="imageUpload" id="hideimgAnswere" style="background:{{@global.styleAndNavigation.button[3]}};" {{#if alluseranswerimage}} style="display:none" {{/if}} >
+                        <a style="color:{{@global.styleAndNavigation.button[2]}};" href="javascript:void(0)" onclick="selectEventPhotoForForum()"><span style="color:{{@global.styleAndNavigation.button[2]}};" class="iconz-camera"></span></a>
+                        <img src="" alt="" id="answerImage" height="200" width="200" style="display:none">
+                    </div>
+                    <div class="imageUpload" style="background:{{@global.styleAndNavigation.button[3]}};">
+                        <a style="color:{{@global.styleAndNavigation.button[2]}};" href="javascript:void(0)" onclick="submitAnswer('{{answerId}}')"><span style="color:{{@global.styleAndNavigation.button[2]}};" class="iconz-send "></span></a>
+                    </div>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Page content-->
+    <div class="page-content" style="background-color:{{@global.styleAndNavigation.form[4]}}">
+        <div class="homeScreenWrapper postAnswerWrapper">
+            <section>
+                <header class="questionDiv" style="background-color:{{@global.styleAndNavigation.contentBgColor}}">
+                    <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; float: left;">{{question}}</h2>
+                            {{#if image}}
+                    <div class="questionImage">
+                        <img src="images/image-5x3.png" id ="imageForum" height="100" width="100" style="background-image:url({{imageURL}}); background-size: contain; background-position: center; background-repeat: no-repeat;   float: right;">
+                    </div>
+                    {{/if}}
+                </header>
+                <section>
+                    <textarea onclick="setContentHeight()" placeholder="{{@global.pageLanguageSetting.FORUM_WRITE_ANSWER}}" class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" id="postAnswerText">{{answer}}</textarea>
+                </section>
+            </section>
+            
+        </div>
+        
+    </div>
+</div>

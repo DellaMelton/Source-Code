@@ -1,0 +1,99 @@
+<div class="popup tablet-fullscreen">
+    <style>
+    .popup .preloader {
+        display: none;
+        height: 20px;
+        margin-top: -10px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 20px;
+    }
+    .popup a.link {
+        color: #fff;
+    }
+    .plan_designOverlay{
+        padding: 20px;}
+
+
+    .plan_issues {
+    width: 100%;
+    overflow-x: scroll;
+    font-size: 16px;
+    list-style: outside none none;
+    margin: 0;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0px;
+    }
+    .plan_issues li {
+    width: 100%;
+    border: 1px solid rgb(143, 141, 147);
+    margin-left: 10px;
+    padding: 10px 10px 60px 10px;
+    text-align: center;
+    position: relative;
+}
+
+    .plan_issues li b{font-size:14px; text-transform:uppercase; display:block; }
+    .plan_issues li span{padding:15px 0; display:block;}
+    <!--.plan_issues li a{-->
+        <!--color: #fff;-->
+        <!--background: #243a4b;-->
+        <!--padding: 5px;-->
+        <!--font-size: 16px;-->
+        <!--display: block;-->
+        <!--margin: 10px 0;-->
+        <!---->
+    <!--}-->
+
+    .plan_issues li a {
+    padding: 5px;
+    font-size: 16px;
+    display: block;
+    margin: 10px 0;
+    position: absolute;
+    width: calc(100% - 30px);
+    bottom: 3px;
+}
+    
+        </style>
+    <div class="view navbar-fixed">
+        <div class="navbar">
+            <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left">   </div>
+                <div class="center {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{name}}</div>
+                <div class="right"><a href="#" class="link" onclick="Appyscript.dismisspayment()">X</a></div>
+            </div>
+        </div>
+        <div class="backgroundAnimation">
+            <div class="view background-view">{{> mainBackground}}</div>
+        </div>
+        <div class="backgroundAnimation">
+            {{#if @global.loginData.loginStyleAndNavigation.loginBackground}}{{#@global.loginData.loginStyleAndNavigation}}{{#js_compare "this.loginBackgroundType == 'color'"}}<div class="background-image" style="background-color:{{loginBackground}}"></div>{{/js_compare}}{{#js_compare "this.loginBackgroundType == 'img'"}}<div class="background-image portrait" style="background-image:url({{loginBackground}})"></div><div class="background-image landscape" style="background-image:url({{loginIpadBackground}})"></div>{{/js_compare}}<div class="background-theme {{@global.style.appTheme}}"></div>{{/@global.loginData.loginStyleAndNavigation}}{{/if}}
+        </div>
+        <div class="pages">
+            <div class="page" data-page="">
+                <div class="page-content {{@global.style.appPageFont}} {{@global.style.appPageCsize}}" style="color:{{@global.style.pageTextColor}}">
+                    <div class="plan_designOverlay">
+                        <ul class="plan_issues">
+                            {{#@global.loginData.inp.subsPriceYearly}}
+                            <li> <b class="{{@global.style.appPageHsize}}" >{{@global.commonLanguageSetting.yearly}}</b><a style="background:{{@global.style.primaryButtonBgColor}};color:{{@global.style.buttonTextColor}}" onclick="inappNative({{id2}})">{{@global.loginData.inp.subsCurrencyYearly}} {{@global.loginData.inp.subsPriceYearly}}</a> </li>
+                            {{/@global.loginData.inp.subsPriceYearly}}
+                            {{#@global.loginData.inp.subsPriceMonthly}}
+                            <li> <b class="{{@global.style.appPageHsize}}" >{{@global.commonLanguageSetting.monthly}}</b><a style="background:{{@global.style.primaryButtonBgColor}};color:{{@global.style.buttonTextColor}}" onclick="inappNative({id1}})">{{@global.loginData.inp.subsCurrencyMonthly}} {{@global.loginData.inp.subsPriceMonthly}}</a> </li>
+                            {{/@global.loginData.inp.subsPriceMonthly}}
+                            {{#@global.loginData.inp.editionPrice}}
+                            <li> <b class="{{@global.style.appPageHsize}}" >{{@global.commonLanguageSetting.one_time}}</b><a style="background:{{@global.style.primaryButtonBgColor}};color:{{@global.style.buttonTextColor}}" onclick="inappNative({id}})">{{@global.loginData.inp.editionCurrency}} {{@global.loginData.inp.editionPrice}}</a> </li>
+                            {{/@global.loginData.inp.editionPrice}}
+                        </ul>
+                    
+                    <h2 class="{{@global.style.appPageShsize}}"> Terms and Conditions</h2>
+                    {{termcondition}}
+                   
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

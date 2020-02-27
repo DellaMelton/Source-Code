@@ -1,0 +1,48 @@
+
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+
+    </div>
+    <div class="center sliding">
+        <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.Thank_mcom}}</div>
+    </div>
+</div>
+</div>
+
+<div data-page="hyperlocal-thankyou" class="page navbar-through no-toolbar hideBorder-{{@global.styleAndNavigation.hideBorder}}" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+    <div class="toolbar ">
+        <div class="toolbar-inner toolbar-bottom {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}}; font-size: {{@global.style.headerBarSize}} " onclick="continueToMainPage_Hyper()">
+            <a href="#" style="color: {{@global.styleAndNavigation.button[3]}};" class="bottomBtn" >{{@global.pageLanguageSetting.hyp_go_back_home}} </a>
+        </div>
+    </div>
+
+    <div class="page-content">
+
+
+        <style>
+            .confirmed-logo .icon-ok-4 {
+                border: 5px solid {{@global.styleAndNavigation.icon[1]}};
+            }
+        </style>
+
+        <div class="msg-code">
+            <div class="msg-container">
+                <div class="confirmed-logo" style="color:{{@global.styleAndNavigation.icon[1]}}">
+                    <span class="icon-ok-4" style="color:{{@global.styleAndNavigation.icon[1]}}"></span>
+                </div>
+                <h3 class="h3 appointmentHead {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">
+                    {{#js_compare "this.jobApproveStatus == '1'"}}
+                    {{@global.pageLanguageSetting.thankYouMessage}}
+                    {{else}}
+                    {{@global.pageLanguageSetting.appointment_not_confirmed}}
+                    {{/js_compare}}
+                </h3>
+                <p class=" {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">
+                    {{@global.pageLanguageSetting.bookingIdText}}
+                    {{orderID}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

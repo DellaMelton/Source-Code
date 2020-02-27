@@ -1,0 +1,262 @@
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding  {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+            <div class="topHeader">{{@global.pageLanguageSetting.order_details_mcom}}</div>
+        </div>
+        <div class="right">
+            <a class="link" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon-cart cursor-pointer" onclick="Appyscript.ecomAddToCartProduct('cartview');"><span class="cartNotification"></span></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div data-page="ecommerce-AccountDetails" class="page navbar-through toolbar-through">
+    <div class="toolbar">
+        <div class="toolbar-inner toolbar-bottom">
+            <a data-animate="true" data-back="back"  onclick="ecommercePayment(this);"  class="paynowbtn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};">{{@global.pageLanguageSetting.pay_now_mcom}}</a>
+        </div>
+    </div>
+
+
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} content-{{@global.styleAndNavigation.content[3]}} heading-{{@global.styleAndNavigation.heading[3]}} hideBorder-{{@global.styleAndNavigation.hideBorder}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+    <style type="text/css">
+    div[data-page='ecommerce-AccountDetails'] ::-webkit-input-placeholder {
+		color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+    div[data-page='ecommerce-AccountDetails'] :-moz-placeholder {
+		color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+    div[data-page='ecommerce-AccountDetails'] ::-moz-placeholder {
+		color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+    div[data-page='ecommerce-AccountDetails'] :-ms-input-placeholder {
+    	color:{{@global.styleAndNavigation.content[2]}};
+		opacity:0.6;
+    }
+
+	.billing-address input,
+	.billing-address select,
+	.shipping-address input,
+	.shipping-address select,
+	#InstructionsTab textarea,
+	.dashboard input {
+		color:{{@global.styleAndNavigation.content[2]}};
+		border-color:{{@global.styleAndNavigation.borderColor}}
+	}
+	</style>
+        <div class="wrap">
+            <div class="shipping-address">
+                <form id="billing">
+                    <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.billing_address_mcom}}</h2>
+                    <input type="text" id="bfname" placeholder="{{@global.pageLanguageSetting.please_enter_name_mcom}} *"  name="name" onblur="validate(this);"  />
+                    {{#js_compare "AppyTemplate.global.emailFinder == '' || AppyTemplate.global.emailFinder == undefined "}}
+                    <input type="text" id="email" placeholder="{{@global.pageLanguageSetting.please_enter_email_mcom}} *"  name="email" onblur="validate(this);"  />
+                    {{else}}
+                    <input type="text" id="email" value="{{@global.emailFinder}}"  name="email" onblur="validate(this);"  readonly />
+                    {{/js_compare}}
+                    <input type="tel"  id="bpNo" placeholder="{{@global.pageLanguageSetting.please_enter_telephone_mcom}}  *" name="phone" onblur="validate(this);"/>
+                    {{#if @root.addressType}}
+                    {{#if @root.plusCodeType}}
+                    <div class="wd100">
+                        <div class="wd50">
+                            <label>
+                            <input type="radio" checked="checked" onchange="changeBillingAddressType()" value="address" class="pluscode_radio" name="billingEcommerceAddressCheck" id="storeAddressCheck" checked="checked">
+                                {{@global.pageLanguageSetting.Address}}
+                            </label>
+                        </div>
+                        <div class="wd50">
+                            <label>
+                            <input type="radio" onchange="changeBillingAddressType()" value="pluscode" class="pluscode_radio" name="billingEcommerceAddressCheck" id="plusAddressCheck" >
+                                Plus Code
+                            </label>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    {{#if @root.plusCodeType}}
+                    <div id="billingPlusCodeSection"  {{#if @root.addressType}} style="display:none" {{/if}}>
+                        <input type="text" id="bPlusCode" placeholder="{{@global.pageLanguageSetting.ENTER_PLUS_CODE}}  *" name="pluscode" onblur="validatePlusCode('bPlusCode',false);"/>
+                        <button type="button" class="generate_code_btn"  onclick="goToPlusCodePage(false)" >{{@global.pageLanguageSetting.GENERATE_PLUS_CODE}}</button>
+                    </div>
+                    {{/if}}
+
+
+                    <div id="billingAddressSection" {{#if @root.addressType}} {{else}} style="display:none" {{/if}}>
+                        <input type="text" id="bAddress" placeholder="{{@global.pageLanguageSetting.please_enter_address_mcom}}  *" name="address" onblur="validate(this);"/>
+                        <input type="text" id="bCity" placeholder="{{@global.pageLanguageSetting.please_enter_city_mcom}}  *" name="city" onblur="validate(this);" />
+                        <input type="text" id="bState" placeholder="{{@global.pageLanguageSetting.please_enter_state_mcom}}  *"  name="state" onblur="validate(this);" />
+                        <input type="text" id="bZip" placeholder="{{@global.pageLanguageSetting.please_enter_zip_mcom}}  *"  name="zip" onblur="validate(this);" />
+                        <div id="bcountryTry">
+                            <select id="bCountry" name="country">
+                                <option value="Select Country">{{@global.pageLanguageSetting.country_mcom}}</option>
+                                {{getCountry "country"}}
+                            </select>
+
+
+                        </div>
+                    </div>
+
+                    {{#if @global.loginCheck}}
+                    <a onclick="updateaccountDeatils('billinginformation');" class="e-user_save {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" >{{@global.pageLanguageSetting.update_billing_information_mcom}}</a>
+                    {{/if}}
+                    <div class="showBillingAddress {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};">
+                        <span class="checkbox" onclick="ecomProfileCheckbox(this)"></span>
+                        <input type="checkbox" id="shippingCheckbox"> {{@global.pageLanguageSetting.shipping_address_different_from_billing_address_mcom}}
+                    </div>
+                </form>
+            </div>
+            <div class="shipping-address shippingView" style="display:none" >
+                <form id="shipping">
+                    <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.shipping_address_mcom}}</h2>
+                    <input type="text" id="sfname" placeholder="{{@global.pageLanguageSetting.please_enter_name_mcom}} *"  name="name" onblur="validate(this);"/>
+                    <input type="tel" id="spNo" placeholder="{{@global.pageLanguageSetting.please_enter_telephone_mcom}} *" name="phone" onblur="validate(this);"/>
+                    <input type="text" id="sCity" placeholder="{{@global.pageLanguageSetting.please_enter_city_mcom}} *" name="city"  onblur="validate(this);"/>
+                    {{#if @root.addressType}}
+                    {{#if @root.plusCodeType}}
+                    <div class="wd100">
+                        <div class="wd50">
+                            <label>
+                                <input type="radio" checked="checked" onchange="changeShippingAddressType()" value="address" class="pluscode_radio" name="shippingEcommerceAddressCheck">
+                                {{@global.pageLanguageSetting.Address}}
+                            </label>
+                        </div>
+                        <div class="wd50">
+                            <label>
+                                <input type="radio" onchange="changeShippingAddressType()" value="pluscode" class="pluscode_radio" name="shippingEcommerceAddressCheck" >
+                                Plus Code
+                            </label>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    {{#if @root.plusCodeType}}
+                    <div id="shippingPlusCodeSection"  {{#if @root.addressType}} style="display:none" {{/if}}>
+                    <input type="text" id="sPlusCode" placeholder="{{@global.pageLanguageSetting.ENTER_PLUS_CODE}}   *" name="pluscode" onblur="validatePlusCode('sPlusCode',true);"/>
+                    <button type="button" class="generate_code_btn"  onclick="goToPlusCodePage(true)" >{{@global.pageLanguageSetting.GENERATE_PLUS_CODE}}</button>
+                      </div>
+                     {{/if}}
+
+                    <div id="shippingAddressSection" {{#if @root.addressType}} {{else}} style="display:none" {{/if}}>
+                        <input type="text" id="ssAddress" placeholder="{{@global.pageLanguageSetting.please_enter_address_mcom}} *"  name="address" onblur="validate(this);"/>
+                        <input type="text" id="sState" placeholder="{{@global.pageLanguageSetting.please_enter_state_mcom}} *"  name="state" onblur="validate(this);" />
+                        <input type="text" id="sZip" placeholder="{{@global.pageLanguageSetting.please_enter_zip_mcom}} *" name="zip" onblur="validate(this);"/>
+                        <div id="scountryTry">
+                            <select id="sCountry" name="country" >
+                                <option value="Select Country">{{@global.pageLanguageSetting.country_mcom}}</option>
+                                {{getCountry "country"}}
+                            </select>
+                        </div>
+                        <!--<input type="text" placeholder="Delivery Date" id="date_deliveryDate" onclick="opencalenderecomm();">-->
+                    </div>
+                    {{#if @global.loginCheck}}
+                    <a onclick="updateaccountDeatils('shippinginformation');"class="e-user_save {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};">{{@global.pageLanguageSetting.update_shipping_information_mcom}} </a>
+                    {{/if}}
+                </form>
+            </div>
+            <div class="billing-address" id="InstructionsTab">
+                <form id="instructions">
+                    <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.instructions_mcom}}</h2>
+                    <textarea name="instructionsText" class="autoScroll"></textarea>
+                </form>
+            </div>
+
+<div class="showDateTime showDateTimeCheckbox">
+
+    <em onclick="ecommProfileCheckbox(this)"><span class="checkbox"></span>
+    <input data-role="none" type="checkbox" id="show_date_time">{{@global.pageLanguageSetting.delivery_date}}</em>
+</div>
+<div class = "billing-address dateTimePicker">
+<div class = "datePicker">
+<input type="text" placeholder="Delivery Date" id="date_deliveryDate">
+</div>
+
+<div class = "timePicker">
+    <input type="time" placeholder="Delivery Time" id="date_deliverytime">
+</div>
+</div>
+            <div class="billing-address payment-details clearfix">
+                <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{@global.pageLanguageSetting.payment_details_mcom}}</h2>
+                <ul class="pay-mobile-cart" id="ecomchergestotal">
+                    <li  id="subtotalecom">{{@global.pageLanguageSetting.subtotal_mcom}}
+                        {{#if @global.ecommCurrencySymbol}}
+                        <span style="color:{{@global.styleAndNavigation.heading[2]}}">{{format_currency currency}}{{maxSubTotalStore}}</span>
+                        {{else}}
+                        <span style="color:{{@global.styleAndNavigation.heading[2]}}">{{maxSubTotalStore}}{{format_currency currency}}</span>
+                        {{/if}}
+                    </li>
+                    {{#root_Compare @root.discountPrice "!=" "0.00"}}
+                    <li  id="discountecom">{{@global.pageLanguageSetting.discount_mcom}} <small class="payDetail" style="color:{{@global.styleAndNavigation.activeColor}}"> {{#js_compare "this.discountRate == 'Percentage' "}}({{discountRateee}}%){{/js_compare}} </small>
+                        {{#if @global.ecommCurrencySymbol}}
+                        <span style="color:{{@global.styleAndNavigation.heading[2]}}"> <small style="color:{{@global.styleAndNavigation.activeColor}}">-</small> {{format_currency currency}}{{MaxdiscountPrice}}</span>
+                        {{else}}
+                        <span style="color:{{@global.styleAndNavigation.heading[2]}}"> <small style="color:{{@global.styleAndNavigation.activeColor}}">-</small> {{MaxdiscountPrice}}{{format_currency currency}}</span>
+                        {{/if}}
+                    </li>
+                    {{/root_Compare}}
+                    {{#root_Compare @root.coupandiscount "!=" "0.00"}}
+                    <li   id="coupanPriceChange">{{@global.pageLanguageSetting.coupon_mcom}} <small class="payDetail" style="color:{{@global.styleAndNavigation.activeColor}}">{{#js_compare "this.coupandiscountType == 'Percentage' "}}({{couponDiscountee}}%){{/js_compare}} </small>
+                        {{#if @global.ecommCurrencySymbol}}
+                        <span style="color:{{@global.styleAndNavigation.heading[2]}}"> <small style="color:{{@global.styleAndNavigation.activeColor}}">-</small> {{format_currency currency}}{{maxcoupandiscount}}</span>
+                        {{else}}
+                        <span style="color:{{@global.styleAndNavigation.heading[2]}}"> <small style="color:{{@global.styleAndNavigation.activeColor}}">-</small> {{maxcoupandiscount}}{{format_currency currency}}</span>
+                        {{/if}}
+                    </li>
+                    {{/root_Compare}}
+
+                    <li  id="deliverychargeecom" {{#root_Compare @root.shippingPrice "==" "0.00"}} style="display:none" {{/root_Compare}}>{{@global.pageLanguageSetting.shipping_mcom}} <small class="payDetail" style="color:{{@global.styleAndNavigation.activeColor}}" id="shppingrateper"> {{#js_compare "this.shippingRate == 'Percentage' "}}({{shippingratee}}%){{/js_compare}} </small>
+                    {{#if @global.ecommCurrencySymbol}}
+                    <span style="color:{{@global.styleAndNavigation.heading[2]}}"> {{format_currency currency}}<span id="shippingecomtax">{{MaxshippingPrice}}</span></span>
+                    {{else}}
+                    <span style="color:{{@global.styleAndNavigation.heading[2]}}"> <span id="shippingecomtax">{{MaxshippingPrice}}</span>{{format_currency currency}}</span>
+                    {{/if}}
+                    </li>
+
+
+                    <li  id="taxecomecom" {{#root_Compare @root.taxPrice "==" "0.00"}}style="display:none" {{/root_Compare}}>{{@global.pageLanguageSetting.tax_mcom}} <small class="payDetail" style="color:{{@global.styleAndNavigation.activeColor}}" id="taxrateecomper"> {{#js_compare "this.taxRate == 'Percentage' "}}({{taxratee}}%){{/js_compare}}</small>
+                    {{#if @global.ecommCurrencySymbol}}
+                    <span style="color:{{@global.styleAndNavigation.heading[2]}}"> {{format_currency currency}}<span id="taxpricecom">{{taxPrice}}</span></span>
+                    {{else}}
+                    <span style="color:{{@global.styleAndNavigation.heading[2]}}"> <span id="taxpricecom">{{taxPrice}}</span>{{format_currency currency}}</span>
+                    {{/if}}
+                    </li>
+
+                    {{#miscTax.list}}
+
+                    <li  id="miscTaxecom"   {{#root_Compare @root.taxAmount "==" "0.00"}}style="display:none" {{/root_Compare}}>{{taxType}} <small class="payDetail" style="color:{{@global.styleAndNavigation.activeColor}}"> {{#js_compare "this.taxRate == 'Percentage' "}}({{taxrate}}%){{/js_compare}}</small>
+                    {{#if @global.ecommCurrencySymbol}}
+                    <span style="color:{{@global.styleAndNavigation.heading[2]}}"> {{format_currency currency}}{{maxTaxAmount}}</span>
+                    {{else}}
+                    <span style="color:{{@global.styleAndNavigation.heading[2]}}"> {{maxTaxAmount}}{{format_currency currency}}</span>
+                    {{/if}}
+                    </li>
+
+                    {{/miscTax.list}}
+                    <!--<li  id="gtotal">{{@global.pageLanguageSetting.grand_total_mcom}}-->
+                        <!--{{#if @global.ecommCurrencySymbol}}-->
+                        <!--<span class="gtotal grand-total" style="color:{{@global.styleAndNavigation.heading[2]}}">-->
+                                <!--{{format_currency currency}}<span id="grndtotal">{{maxGrandTotalStore}}</span>-->
+                            <!--</span>-->
+                        <!--{{else}}-->
+                        <!--<span class="gtotal grand-total" style="color:{{@global.styleAndNavigation.heading[2]}}"><span id="grndtotal">{{maxGrandTotalStore}}{{format_currency currency}}</span></span>-->
+                        <!--{{/if}}-->
+                    <!--</li>-->
+                    <li id="gtotal">{{@global.pageLanguageSetting.grand_total_mcom}} {{#if @global.ecommCurrencySymbol}}
+                        <span class="gtotal grand-total" id="grndtotal" style="color:{{@global.styleAndNavigation.heading[2]}}">{{format_currency currency}}{{maxGrandTotalStore}}</span> {{else}}
+                        <span class="gtotal grand-total" id="grndtotal" style="color:{{@global.styleAndNavigation.heading[2]}}">{{maxGrandTotalStore}}{{format_currency currency}}</span> {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

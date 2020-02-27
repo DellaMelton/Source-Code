@@ -1,0 +1,44 @@
+<div class="popup menu-popup tablet-fullscreen" >
+    <div class="view toolbar-through">
+        <div class="pages">
+            <div class="page hideBorder-{{@global.styleAndNavigation.hideBorder}}" style="background-color:{{@global.styleAndNavigation.menu[1]}};" data-page="couponDirectoryMenu">
+                
+                <div class="page-content {{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" style="background-color:{{@global.styleAndNavigation.menu[2]}}">
+                    <div class="profile-image">
+                        <div class="profileBackground" ></div>
+                        <div class="profileContentBx {{@global.styleAndNavigation.menu[0]}}">
+                            <a class="close icon-cancel link close-popup" href="#" style="color:{{@global.styleAndNavigation.menu[3]}};"></a>
+                            <div class="profileBx">
+                                <span class="image">
+
+                              <img src="images/image-1x1.png" id=profileImageDir style="background-image:url({{image}}); border: solid 5px {{@global.styleAndNavigation.menu[4]}};" alt="" {{#js_compare "this.setting.isLogin == \'true\' "}}
+                              onClick="Appyscript.coupondirectoryEditProfile(this)" {{/js_compare}}></span>
+                                </div>
+
+                            <span class="name" style="color:{{@global.styleAndNavigation.menu[3]}};">{{name}}</span>
+                        </div>
+                    </div>
+                    <div class="coupon-directory-menu"  id="">
+                        <!--$menuFont,$menuBackgroundColor, $menuTextColor, $menuIconColor-->
+                        <ul class="leftMenu ">
+                            {{#if @global.setting.homeButtonStatus}}
+                            {{else}}
+                            <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a class="{{@global.styleAndNavigation.menu[0]}}" onClick="Appyscript.clickHome()" style="color:{{@global.styleAndNavigation.menu[3]}};"><i class="iconz-home" style="color:{{@global.styleAndNavigation.menu[5]}};"></i> {{@global.pageLanguageSetting.back}} </a></li>
+                            {{/if}}
+                            <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a class="close-popup {{@global.styleAndNavigation.menu[0]}}" data-animate="true" style="color:{{@global.styleAndNavigation.menu[3]}}"><i class="icon-indent-left" style="color:{{@global.styleAndNavigation.menu[5]}};"></i>{{@global.pageLanguageSetting.main_categories}} </a></li>
+
+                            <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};" onclick="Appyscript.coupondirectorybookemarkedlist();"><a class="{{@global.styleAndNavigation.menu[0]}}" data-animate="true" style="color:{{@global.styleAndNavigation.menu[3]}}"><i class="iconz-bookmark " style="color:{{@global.styleAndNavigation.menu[5]}};"></i> {{@global.pageLanguageSetting.Bookmarks}} </a></li>
+                            <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}}" onclick="coupondirectoryOpenCouponList();"><a class="{{@global.styleAndNavigation.menu[0]}}" style="color:{{@global.styleAndNavigation.menu[3]}};" cdata-animate="true"><i class="iconz-account" style="color:{{@global.styleAndNavigation.menu[5]}};"></i> {{@global.pageLanguageSetting.cdir_my_coupons}} </a></li>
+                            {{#js_compare "this.setting.isLogin == \'true\' "}}
+                            <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a class="close-tutorial {{@global.styleAndNavigation.menu[0]}}" onclick="Appyscript.AppLogout();" style="color:{{@global.styleAndNavigation.menu[3]}}"><i class="iconz-logout" style="color:{{@global.styleAndNavigation.menu[5]}};"></i>{{@global.pageLanguageSetting.logout_dir}}</a></li>
+                            {{else}}
+                            <li style="border-bottom:1px solid {{@global.styleAndNavigation.menu[4]}};"><a class="{{@global.styleAndNavigation.menu[0]}}" onclick="Appyscript.loginPage('true');" style="color:{{@global.styleAndNavigation.menu[3]}}"><i class="iconz-login" style="color:{{@global.styleAndNavigation.menu[5]}}"></i>{{@global.pageLanguageSetting.Login_SignUp}}</a>
+                                {{/js_compare}}
+                        </ul>
+                    </div>
+                    
+                </div>
+    </div>
+</div>
+	</div>
+</div>

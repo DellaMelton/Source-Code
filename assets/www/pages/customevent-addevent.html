@@ -1,0 +1,185 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}; font-size: {{@global.style.headerBarSize}} ">
+    <div class="left sliding">
+        <a href="index"  class="link back" style="color:{{@global.style.headerBarTextColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+    <div class="center sliding"> <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+     {{@global.pageLanguageSetting.add_event}}
+
+    </div></div>
+    <div class="right">
+        <a  style="color:{{@global.style.headerBarTextColor}};">
+            <i class="icon iconz-location-chat--r"></i>
+        </a>
+    </div>
+</div></div>
+
+<div data-page="customevent-addevent" class="page navbar-through no-toolbar toolbar-through {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBackroundColor}}">
+    <!-- Page content-->
+    <div class="toolbar">
+        <div class="toolbar-inner toolbar-bottom">
+            <footer id="footer-nav">
+                <a class="done-btn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" onclick="saveEvent()" style="background: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}}">{{@global.pageLanguageSetting.Submit}}</a>
+                <a class="done-btn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}} cancel-btn" onclick="back2Home()" style="background: {{@global.styleAndNavigation.secondaryButton[2]}}; color: {{@global.styleAndNavigation.secondaryButton[3]}}">{{@global.pageLanguageSetting.cancel}}</a>
+                <!--                <a class="like wid25" onclick="Appyscript.ecomAddRemoveProductWishlist(this)" product-id="{{productId}}"  product-wishlist="{{wishlist}}"><span class="icon-heart-1"></span></a>-->
+                <!--                <a class="comment popupToPage wid25" data-animate="true" data-page="ecommerce-review" data-back="back" data-jsonID="'method':'reviewList'" data-catid={{productId}} ><span class="icon-comment"></span></a>-->
+
+            </footer>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <style>
+            #ceLocationResults li {
+                color:{{@global.styleAndNavigation.content[2]}};
+                border-color:{{@global.styleAndNavigation.borderColor}};
+            }
+            ul.event-request-form li span{color:}
+            ul.event-request-form li input, ul.event-request-form li select, ul.event-request-form li textarea{background-color:{{@global.styleAndNavigation.fieldBgColor}};border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.fieldTextColor}};}
+            ul.event-request-form li span small.pic-select, ul.event-request-form li .plus{background:{{@global.styleAndNavigation.button[2]}}}
+            ul.event-request-form li span small.pic-select i, ul.event-request-form li .plus i, ul.event-request-form li .toggle i{color:{{@global.styleAndNavigation.nav[3]}}}
+            ul.event-request-form li .toggle, ul.event-request-form li .toggle h3 {color:{{@global.styleAndNavigation.nav[2]}};background:{{@global.styleAndNavigation.nav[3]}} }
+             ul.event-request-form li .tabListing{border-color:{{@global.styleAndNavigation.borderColor}};}
+            ul.event-request-form li .event-listing-tabs{border-color:{{@global.styleAndNavigation.borderColor}};}
+            ul.event-request-form li .event-listing-tabs a{border-color:{{@global.styleAndNavigation.borderColor}}; background-color:{{@global.styleAndNavigation.tab[0]}};color:{{@global.styleAndNavigation.tab[1]}}}
+            ul.event-request-form li .event-listing-tabs a.active{color:{{@global.styleAndNavigation.tab[2]}}}
+
+
+            .event-listing-tabs-view li a, .event-listing-tabs-view .add-view a,a.event_remove,.add-more i{color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}} }
+            .addNew_venue{color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}}}
+            .event-listing-tabs-view,ul.event-request-form li li,ul.event-request-form li{border-color:{{@global.styleAndNavigation.borderColor}};}
+            .addEvent h3, .add-listing h3,.tabListing a.toggle i,.addEvent h3, .add-listing h3{color:{{@global.styleAndNavigation.nav[2]}}!important;}
+            .event-listing-tabs-view #imagelist{background-color:transparent!important;}
+            ul.event-request-form li span{color:{{@global.styleAndNavigation.title[3]}}!important;}
+            ul.event-request-form li span strong{color:{{@global.styleAndNavigation.title[3]}}!important;font-weight:bold;font-family:{{@global.styleAndNavigation.title[0]}}}
+            .event_describ .event-listing-tabs-view{border:solid 1px {{@global.styleAndNavigation.borderColor}};}
+            .event-request-form.time{background-color:{{@global.styleAndNavigation.tab[0]}};}
+            ul.event-request-form li li.addImg{outline:1px solid {{@global.styleAndNavigation.borderColor}}}
+            #imagecontainerview .add-view{background:{{@global.styleAndNavigation.title[2]}}!important;}
+
+                    </style>
+
+        <section class="addEvent sell-Pro">
+
+            <ul class="event-request-form accordion-list">
+                <li>
+                    <span class="unit" onclick="showCategoryDropdown()" id="categoryDropdownStatus"><select id="categoryDropdown" onchange="selectCategory(this)" class="FONT"><option>{{@global.pageLanguageSetting.Select_Category}}</option></select><small class="pic-select"><i class="icon-down-open"></i></small></span>
+
+                    <span class="unit" style="display:none" id="subcatContainer"><select onchange="selectSubcategory(this)" id="eventSubcategory"><option>{{@global.pageLanguageSetting.select_sub_category}}</option>
+                    </select><small class="pic-select"  onclick="showSubcategoryDropdown()"><i class="icon-down-open"></i></small></span>
+                    <span><input type="text" placeholder="{{@global.pageLanguageSetting.enter_event_name}}" id="eventName"></span>
+
+                </li>
+
+                <li>
+                    <span class="fullwith"  onclick="showGenreDropdown()"><select id="genreDropdown"><option>{{@global.pageLanguageSetting.select_genre}}</option></select><small class="pic-select"><i class="icon-down-open"></i></small></span>
+                </li>
+
+                <li class="event_describ newrow"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.describe_your_event}}</h3>
+    <span><input type="text" placeholder="Language, Cast etc" id="eventDesLan0"></span> <span><input type="text" placeholder="{{@global.pageLanguageSetting.DESCRIBE_EVENT_VALUE}}" id="eventDesVal0"></span>
+                    <div class="plus"><i class="icon-plus"></i></div>
+                </li>
+
+                <li>
+                    <h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.please_enter_the_review_text_mcom}}<i class="icon-edit-1"></i></h3>
+                    <textarea placeholder="{{@global.pageLanguageSetting.describe_your_event}}" id="eventDescription"></textarea>
+                </li>
+
+                <li class="tabListing accordion-item">
+                    <a class="toggle item-link {{@global.styleAndNavigation.nav[0]}} {{@global.styleAndNavigation.nav[1]}}"><h3>{{@global.pageLanguageSetting.ADD_MEDIA}}</h3><i class="icon-down-open"></i></a>
+                    <div class="tabs accordion-item-content">
+                        <div class="event-listing-tabs"><a href="#" class="images active" style="color:{{@global.styleAndNavigation.tab[3]}}" id="imagecontainer">{{@global.pageLanguageSetting.images_dir}}</a><a href="#" class="videos"  style="color:{{@global.styleAndNavigation.tab[3]}}" id="videocontainer">{{@global.pageLanguageSetting.videos}}</a></div>
+
+                        <div class="event-listing-tabs-view" id = "imagecontainerview">
+
+                            <ul id= "imagelist">
+<!--                                <li class="addImg">-->
+<!--                                    <img src="images/no-image.jpg" id="image0">-->
+<!--                                    <a href="#" onclick='remove(this,0)'>X</a>-->
+<!--                                </li>-->
+
+
+                            </ul>
+
+                            <div class="add-view">
+                                <span>{{@global.pageLanguageSetting.recommended_image_size}} <br><strong>768*300</strong>{{@global.pageLanguageSetting.pixels}}*</span>
+                                <a href="#" class="add-more" id="addmoreimage"><i class="icon-plus"></i>{{@global.pageLanguageSetting.add_more_dir}}</a>
+                            </div>
+                        </div>
+
+                        <div class="event-listing-tabs-view" style="display:none" id = "videocontainerview">
+                            <h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">Add Videos</h3>
+                            <input type="text" placeholder="youtube video URL" id="eventYoutubeUrl">
+
+                        </div>
+                    </div>
+
+                </li>
+
+
+                <li class="tabListing addVenue accordion-item" id ="venue0">
+                    <a class="toggle item-link {{@global.styleAndNavigation.nav[0]}} {{@global.styleAndNavigation.nav[1]}}"><h3>{{@global.pageLanguageSetting.add_venue}}</h3> <i class="icon-down-open"></i> </a>
+                    <ul class="event-request-form accordion-item-content">
+                        <li><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.venue}}*</h3>
+                            <span><input type="text" placeholder="Enter Venue" id="venueTxt0" onfocus="loadLocation(0)"></span>
+
+                        </li>
+
+                        <li>
+                            <span class="event_btn halfwidth"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.fromDir}}*</h3><input type="date" placeholder="Date" id="startDate0" onchange="eventStartDate(0)" onfocus="eventfocus(this)" onblur="eventBlur(this)"><i class="icon-calendar-1"></i></span>
+                            <span class="event_btn halfwidth"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.till}}*</h3><input type="date" placeholder="Date" id="endDate0" onchange="eventEndDate(0)" onfocus="eventfocus(this)" onblur="eventBlur(this)"><i class="icon-calendar-1"></i></span>
+                        </li>
+
+                        <li>
+                            <span class="halfwidth"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.time_format}}</h3><select id="timeFormat0" onchange="changeTimeFormat(0)">
+                                    <option value="12_hour">12 Hour</option>
+                                    <option value="24_hour">24 Hour</option>
+                                </select><small class="pic-select" onclick="showTimeFormatDropdown(0)"><i class="icon-down-open"></i></small></span>
+                            <span class="halfwidth"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.occurs_on}}*</h3><select id="eventOccur0"><option value="1">Once</option><option value="2">Daily</option><option value="3">Weekly</option><option value="4">Monthly</option><option value="5">Yearly</option></select><small class="pic-select" onclick="showEventOccuranceDropdown(0)"><i class="icon-down-open"></i></small></span>
+                        </li>
+
+                        <li class="event_describ">
+                            <div class="event-listing-tabs-view">
+                                <ul class="event-request-form time" id='timingRow00'>
+<!--                                    <a class="event_remov" href="#" onclick='removeTimingRow(0, 0)'>X</a>-->
+                                    <li class="timing">
+                                        <span class="event_btn halfwidth"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.start_time_food}} *</h3><input class="timepicker newInput executeTimeChangeFunction0" type="text" placeholder="Time" id="startTime00" onchange="eventStartTime(0, 0)"></span>
+                                        <span class="event_btn halfwidth"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.end_time}} *</h3><input class="timepicker executeTimeChangeFunction0" type="text" placeholder="Time" id="endTime00" onchange="eventEndTime(0, 0)"></span>
+                                    </li>
+
+                                    <li>
+                                        <span class="fullwith"><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.ticket_class}} *</h3><select id="ticketDropdown00"><option>{{@global.pageLanguageSetting.select_class}}</option></select><small class="pic-select" onclick="showTicketDropdown(0, 0)"><i class="icon-down-open"></i></small></span>
+                                    </li>
+
+                                    <li class="event_tickets">
+                                        <span><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.price_per_ticket}}*</h3><input type="number" placeholder="0" id="priceperTicket00" class="onlyNumberValidation"></span>
+                                        <span><h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}">{{@global.pageLanguageSetting.total_ticket}}</h3><input type="number" placeholder="1" id="totalTicket00" class="onlyNumberValidation"></span>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                            <div class="plus plus2" onclick="addtimingrow(0)"><i class="icon-plus"></i></div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="addNew_venue" id="addvenue"><i class="icon-plus"></i>{{@global.pageLanguageSetting.add_new_venue}}</div>
+                </li>
+
+                <li>
+                    <div class="checkEvent"><input type="checkbox" id ="eventCheck">{{@global.pageLanguageSetting.DONT_SHOW_PRICE_EVENT_LISTING}}</div>
+                </li>
+
+                <li>
+                    <h3 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}; text-align:{{@global.styleAndNavigation.heading[3]}}"><i class="icon-edit-1"></i>{{@global.pageLanguageSetting.Terms_and_Conditions}}</h3>
+                    <textarea placeholder="{{@global.pageLanguageSetting.Terms_and_Conditions}}" id="eventTerm"></textarea>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+</div>

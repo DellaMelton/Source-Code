@@ -1,0 +1,50 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+        </div>
+    </div>
+</div>
+
+
+<div data-page="hyperlocal-book-appointment" class="page navbar-through no-toolbar hideBorder-{{@global.styleAndNavigation.hideBorder}}" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+
+    <div class="toolbar">
+     <div class="toolbar-inner toolbar-bottom {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}}; font-size: {{@global.style.headerBarSize}} "  onclick="book_Appointment('{{selectedDate}}','{{timeValue}}')">
+            <a class="bottomBtn" style="color: {{@global.styleAndNavigation.button[3]}};">{{@global.pageLanguageSetting.Submit}}</a>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <section class="bookAppointment">
+            <div class="inputBox">
+                <h3 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}" style="color:{{@global.styleAndNavigation.subheading[2]}}">{{@global.pageLanguageSetting.patient_VisitorName}}</h3>
+                <small class="pic-select" style="background:{{@global.styleAndNavigation.icon[0]}}"><i class="iconz-user" style="color:{{@global.styleAndNavigation.icon[1]}}"> </i></small>
+                <input class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.content[2]}}" id="txt_Username" type="text" placeholder="{{@global.pageLanguageSetting.patient_VisitorName}}" value="{{username}}" />
+            </div>
+            
+            <div class="inputBox">
+                <h3 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}" style="color:{{@global.styleAndNavigation.subheading[2]}}">{{@global.pageLanguageSetting.email_hyp}}</h3>
+                <small class="pic-select" style="background:{{@global.styleAndNavigation.icon[0]}}"><i class="icon-email" style="color:{{@global.styleAndNavigation.icon[1]}}"> </i></small>
+                <input class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.content[2]}}" id="txt_Email"  type="text" placeholder="{{@global.pageLanguageSetting.email_hyp}}" value="{{email}}"/>
+            </div>
+            
+            <div class="inputBox">
+                <h3 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}" style="color:{{@global.styleAndNavigation.subheading[2]}}">{{@global.pageLanguageSetting.phone_hyp}}</h3>
+                <small class="pic-select" style="background:{{@global.styleAndNavigation.icon[0]}}"><i class="icon-mobile-3" style="color:{{@global.styleAndNavigation.icon[1]}}"> </i></small>
+                <input class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.content[2]}}" id="txt_Phone" type="number" placeholder="{{@global.pageLanguageSetting.phone_hyp}}" value="{{phone}}"/>
+            </div>
+
+            <div class="inputBox  inputBox2">
+                <h3 class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}}" style="color:{{@global.styleAndNavigation.subheading[2]}}">{{@global.pageLanguageSetting.special_request}}</h3>
+                <textarea placeholder="{{@global.pageLanguageSetting.special_request}}" id="txt_Notes" class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.content[2]}}" rows="3"></textarea>
+            </div>
+        </section>
+</div>
+
+</div>
+

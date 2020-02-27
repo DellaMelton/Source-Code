@@ -1,0 +1,244 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        {{getSlideBack ""}}
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+    <div class="right">
+        {{getSlideRightBack ""}}
+        {{#if memberRegister}}
+        <a class="settings"  style="color:{{@global.style.headerBarIconColor}};">
+            <i class="icon iconz-download" onclick="Appyscript.takeScreenShot()"></i>
+        </a>
+        {{/if}}
+
+    </div>
+</div></div>
+
+<div data-page="loyaltycard-page" class="page navbar-through no-toolbar">
+    <style type="text/css">
+        .member-card.theme-1 .pointBalance:before { content: ""; position: absolute; top: -25px; left: 0; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 25px solid {{@global.styleAndNavigation.point[1]}} ; box-sizing:border-box; }
+        .member-card.theme-1 .pointBalance:after { content: ""; position: absolute; bottom: -25px; left: 0; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-top: 25px solid {{@global.styleAndNavigation.point[1]}} ; box-sizing:border-box;}
+
+        </style>
+    <!-- Page content-->
+    <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[3]}};">
+        {{#if memberRegister}}
+        {{#loyaltyCard}}
+
+        {{#ifCondloyaljs groupName}}
+
+        <div id="flip0" class="member-card theme-{{@global.styleAndNavigation.layout}}  lifetime-{{fulltimecard}} pointes-{{loyaltypointenabled}} qrcode-{{@root.settings.enable_qr}} hideBorder-{{@global.styleAndNavigation.hideBorder}} flip-container" >
+            <div class="flipper">
+                <div class="card-box front">
+                    <img src="images/image-2x1.png" style="background-image:url({{loyaltycardBgImaged}})" class="top-img" />
+                    {{#if loyaltycardHeading}} <h1 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[3]}}; background-color:{{@global.styleAndNavigation.heading[2]}};">{{loyaltycardHeading}}</h1>{{/if}}
+
+
+                    {{#root_Compare @root.settings.add_point "==" "1"}}
+                    <div class="member-area ">
+                        {{else}}
+                        <div class="member-area singleButton">
+                            {{/root_Compare}}
+
+                            {{#@root.memberMe}}
+                            <div class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}} member-details" style="text-align:{{@global.styleAndNavigation.subheading[3]}}; color:{{@global.styleAndNavigation.content[2]}};">
+                                {{@global.pageLanguageSetting.name}}: <span class="group-name">{{userName}}</span> <br />
+                                {{@global.pageLanguageSetting.memberId}}: <span class="memberkey ">{{cardNumber}}</span> <br />
+                                {{#js_compare "this.groupName !== '' "}}
+                                {{@global.pageLanguageSetting.grouplabel}}: <span class="group-name">{{groupName}}</span>
+                                <br />
+                                {{/js_compare}}
+
+                                {{@global.pageLanguageSetting.dateOfIssue}}:
+                                <span class="group-name">{{#if @root.memberMe}}{{convertToDateFormatManifest @root.memberMe.validFrom}}{{else}}{{convertToDateFormatManifest loyaltycardissuedate}}{{/if}} </span><br />
+                                {{@global.pageLanguageSetting.validTill}}: <span>
+                                    {{#js_compare "this.fulltimecard == '0'"}}
+                                    {{#if @root.memberMe}}{{convertToDateFormatManifest @root.memberMe.validTo}}{{else}}{{convertToDateFormatManifest loyaltyCardTillDate}}{{/if}}
+                                    {{else}}
+                                    {{@global.pageLanguageSetting.fulltimeCard}}
+                                    {{/js_compare}}
+                                </span>
+
+                                <br />
+
+                                <div class="copunContainer">
+                                    <img src="{{memberBarCodeImg}}" alt="" />
+                                </div>
+
+                            </div>
+
+
+                            {{/@root.memberMe}}
+
+
+                            <div class="memberCardCopun point-wrap">
+
+
+
+                                {{#js_compare "this.loyaltypointenabled === '0' "}}
+                                {{else}}
+
+                                <div class="pointBalance pointBalance{{pointcount}} {{@global.styleAndNavigation.point[0]}}" style="background:{{@global.styleAndNavigation.point[1]}}; color:{{@global.styleAndNavigation.point[2]}}; border-color:{{@global.styleAndNavigation.point[3]}}">
+                                    {{pointbalance}}<span class="pointMark">{{@global.pageLanguageSetting.points}}</span><span class="pointBalText">{{@global.pageLanguageSetting.balance}}</span>
+                                </div>
+
+
+                                {{showhideaddbutton2 enableAddPoints keyIndex}}
+                                <a class="btnStyle btnSecond {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" onclick="Appyscript.loyatyredeem('redeem','{{keyIndex}}')" style="background:{{@global.styleAndNavigation.secondaryButton[2]}}; color:{{@global.styleAndNavigation.secondaryButton[3]}}">{{@global.pageLanguageSetting.redeem}}</a>
+                                {{/js_compare}}
+                            </div>
+                            <div class="info-wrapper">
+                                 {{#if @global.styleAndNavigation.showIcon}}
+                                <a  class="icon-info-2 pull-right" onclick="document.getElementById('flip0').classList.toggle('hover'); document.getElementsByClassName('iconz-download')[0].style.display='none';" style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}"></a>
+                                {{else}}
+                                   <a  class="pull-right" onclick="document.getElementById('flip0').classList.toggle('hover');document.getElementsByClassName('iconz-download')[0].style.display='none'; " style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}; padding: 0 10px; width: auto;"> {{@global.pageLanguageSetting.termsconditions}}</a> 
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="back-screen" >
+                        <a style="color:{{@global.styleAndNavigation.icon[1]}}" class="icon-cancel-circle-1" onclick="document.getElementById('flip0').classList.toggle('hover'); document.getElementsByClassName('iconz-download')[0].style.display='block';"></a>
+                        <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[3]}}; border-color:{{@global.styleAndNavigation.borderColor}}">{{loyaltycardtc}}</h2>
+                        <div class="terms-text {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}"> {{loyaltycardDescription}}</div>
+                    </div>
+
+                </div>
+            </div>
+
+            {{else}}
+            {{#ifCondloyaljsnofond groupName}}
+
+            {{#js_compare "this.groupName == 'default' || this.groupName == 'Default'"}}
+
+            <div id="flip0" class="member-card theme-{{@global.styleAndNavigation.layout}}  lifetime-{{fulltimecard}} pointes-{{loyaltypointenabled}} qrcode-{{@root.settings.enable_qr}} hideBorder-{{@global.styleAndNavigation.hideBorder}} flip-container" >
+                <div class="flipper">
+                    <div class="card-box front">
+                        <img src="images/image-2x1.png" style="background-image:url({{loyaltycardBgImaged}})" class="top-img" />
+                        {{#if loyaltycardHeading}} <h1 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[3]}}; background-color:{{@global.styleAndNavigation.heading[2]}};">{{loyaltycardHeading}}</h1>{{/if}}
+
+
+                        {{#root_Compare @root.settings.add_point "==" "1"}}
+                        <div class="member-area ">
+                            {{else}}
+                            <div class="member-area singleButton">
+                                {{/root_Compare}}
+
+                                {{#@root.memberMe}}
+                                <div class="{{@global.styleAndNavigation.subheading[0]}} {{@global.styleAndNavigation.subheading[1]}} member-details" style="text-align:{{@global.styleAndNavigation.subheading[3]}}; color:{{@global.styleAndNavigation.content[2]}};">
+                                    {{@global.pageLanguageSetting.name}}: <span class="group-name">{{userName}}</span> <br />
+                                    {{@global.pageLanguageSetting.memberId}}: <span class="memberkey ">{{cardNumber}}</span> <br />
+                                    {{#js_compare "this.groupName !== '' "}}
+                                    {{@global.pageLanguageSetting.grouplabel}}: <span class="group-name">{{groupName}}</span>
+                                    <br />
+                                    {{/js_compare}}
+
+                                    {{@global.pageLanguageSetting.dateOfIssue}}:
+                                    <span class="group-name">{{#if @root.memberMe}}{{convertToDateFormatManifest @root.memberMe.validFrom}}{{else}}{{convertToDateFormatManifest loyaltycardissuedate}}{{/if}} </span><br />
+                                    {{@global.pageLanguageSetting.validTill}}: <span>
+                                {{#js_compare "this.fulltimecard == '0'"}}
+                                {{#if @root.memberMe}}{{convertToDateFormatManifest @root.memberMe.validTo}}{{else}}{{convertToDateFormatManifest loyaltyCardTillDate}}{{/if}}
+                                {{else}}
+                                {{@global.pageLanguageSetting.fulltimeCard}}
+                                {{/js_compare}}
+                            </span>
+
+                                    <br />
+
+                                    <div class="copunContainer">
+                                        <img src="{{memberBarCodeImg}}" alt="" />
+                                    </div>
+
+                                </div>
+
+
+                                {{/@root.memberMe}}
+
+
+                                <div class="memberCardCopun point-wrap">
+
+
+
+                                    {{#js_compare "this.loyaltypointenabled === '0' "}}
+                                    {{else}}
+
+                                    <div class="pointBalance pointBalance{{pointcount}} {{@global.styleAndNavigation.point[0]}}" style="background:{{@global.styleAndNavigation.point[1]}}; color:{{@global.styleAndNavigation.point[2]}}; border-color:{{@global.styleAndNavigation.point[3]}}">
+                                        {{pointbalance}}<span class="pointMark">{{@global.pageLanguageSetting.points}}</span><span class="pointBalText">{{@global.pageLanguageSetting.balance}}</span>
+                                    </div>
+
+
+                                    {{showhideaddbutton enableAddPoints keyIndex}}
+                                    <a class="btnStyle btnSecond {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" onclick="Appyscript.loyatyredeem('redeem','{{keyIndex}}')" style="background:{{@global.styleAndNavigation.secondaryButton[2]}}; color:{{@global.styleAndNavigation.secondaryButton[3]}}">{{@global.pageLanguageSetting.redeem}}</a>
+                                    {{/js_compare}}
+                                </div>
+                                <div class="info-wrapper">
+                                    {{#if @global.styleAndNavigation.showIcon}}
+                                <a  class="icon-info-2 pull-right" onclick="document.getElementById('flip0').classList.toggle('hover'); document.getElementsByClassName('iconz-download')[0].style.display='none';" style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}"></a>
+                                 {{else}}
+                                   <a  class="pull-right" onclick="document.getElementById('flip0').classList.toggle('hover');document.getElementsByClassName('iconz-download')[0].style.display='none'; " style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}; padding: 0 10px; width: auto;"> {{@global.pageLanguageSetting.termsconditions}}</a> 
+                                {{/if}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="back-screen" >
+                            <a style="color:{{@global.styleAndNavigation.icon[1]}}" class="icon-cancel-circle-1" onclick="document.getElementById('flip0').classList.toggle('hover'); document.getElementsByClassName('iconz-download')[0].style.display='block';"></a>
+                            <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[3]}}; border-color:{{@global.styleAndNavigation.borderColor}}">{{loyaltycardtc}}</h2>
+                            <div class="terms-text {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}"> {{loyaltycardDescription}}</div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                {{else}} {{/js_compare}}
+
+                {{else}}
+                {{/ifCondloyaljsnofond}}
+
+                {{/ifCondloyaljs}}
+                {{/loyaltyCard}}
+
+                {{else}}
+                <form>
+
+
+
+                    <div class="appypie-login signup-page">
+                        <ul>
+                            <li class="heading {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}};text-align:{{@global.styleAndNavigation.subheading[3]}}">
+                                {{@global.pageLanguageSetting.memberRequestFroms}}
+                            </li>
+
+                            <li class="input">
+                                <span class="iconz-user" style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}; border-color:{{@global.styleAndNavigation.borderColor}};"></span>
+                                <input type="text" id="memberfname" placeholder="{{@global.pageLanguageSetting.name}}*" style="background-color:{{@global.styleAndNavigation.inputBackgroundColor}}; color:{{@global.styleAndNavigation.fieldTextColor}}; border-color:{{@global.styleAndNavigation.borderColor}}">
+                                <b class="arrow" style="border-right-color:{{@global.styleAndNavigation.borderColor}}"></b>
+                            </li>
+                            <li class="input">
+                                <span class="icon-email" style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}; border-color:{{@global.styleAndNavigation.borderColor}}"></span>
+                                <input type="email" id="memberemailId" placeholder="{{@global.pageLanguageSetting.email}}*" style="background-color:{{@global.styleAndNavigation.inputBackgroundColor}}; color:{{@global.styleAndNavigation.fieldTextColor}}; border-color:{{@global.styleAndNavigation.borderColor}}">
+                                <b class="arrow" style="border-right-color:{{@global.styleAndNavigation.borderColor}}"></b>
+                            </li>
+                            <li class="input">
+                                <span class="iconz-phone1" style="background:{{@global.styleAndNavigation.icon[0]}}; color:{{@global.styleAndNavigation.icon[1]}}; border-color:{{@global.styleAndNavigation.borderColor}}"></span>
+                                <input type="tel" id="memberpNo" placeholder="{{@global.pageLanguageSetting.phone}}" style="background-color:{{@global.styleAndNavigation.inputBackgroundColor}}; color:{{@global.styleAndNavigation.fieldTextColor}}; border-color:{{@global.styleAndNavigation.borderColor}}">
+                                <b class="arrow" style="border-right-color:{{@global.styleAndNavigation.borderColor}}"></b>
+                            </li>
+
+
+                            <li class="login-btn"><a onclick="Appyscript.memberregister();" class="{{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}}">{{@global.pageLanguageSetting.signup}}</a></li>
+
+
+                        </ul>
+                    </div>
+                </form>
+                {{/if}}
+
+
+
+            </div>
+        </div>
+
+

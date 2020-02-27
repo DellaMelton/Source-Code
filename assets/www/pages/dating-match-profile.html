@@ -1,0 +1,58 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            {{getNavigation @global.style.layout "menu"}}
+        </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.congratulation}}</div>
+        </div>
+        <div class="right">
+        </div>
+    </div>
+</div>
+
+
+<div data-page="dating-MatchProfile" class="page navbar-through toolbar-fixed no-toolbar dating hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">
+        {{else}} <!-- Page content-->
+        <div class="page-content  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background-color:{{@global.styleAndNavigation.pageBackroundColor}}">
+            {{/if}} <style>.match_bg{ background: {{@global.styleAndNavigation.button[2]}};}</style>
+            <div class="match_container">
+                <div class="match_bg"></div>
+                <div class="match-img">
+                    <div class="match-img-inner first_person">
+                        <img style="background-image:url({{matchData.userPic}});" alt="" src="images/image-1x1.png" class="img"/>
+                    </div>
+                    <div class="match-img-inner second_person">
+                        <img style="background-image:url({{matchData.friendPic}});" alt="" src="images/image-1x1.png" class="img"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodypan">
+                <div class="match_content">
+                    <p class="big"><strong>{{@global.pageLanguageSetting.congratulation}}!</strong></p>
+                    <p class="big"><strong>{{@global.pageLanguageSetting.y_u}} {{matchData.friendName}}  {{@global.pageLanguageSetting.each_other}}</strong></p>
+                    <hr />
+
+                    <div style="margin-top:50px; margin-bottom:50px;">
+                        <p class="big"><strong>{{matchData.friendName}},{{matchData.friendAge}}</strong></p>
+                        <p>{{matchData.friendLocation}}</p>
+                    </div>
+
+                    <button class="dating_c_btn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" onclick="Appyscript.datingChat({{matchData.friendId}},'{{matchData.friendPic}}','{{matchData.friendName}}');" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}}; width:auto">{{@global.pageLanguageSetting.send_msg}}</button>
+
+                    <div class="keep_swip">
+                        Or <a onclick="Appyscript.datingFind();" style="color:{{@global.styleAndNavigation.linkColor}}">{{@global.pageLanguageSetting.keep_swap}} <i class="icon-right-open"></i></a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    
+    

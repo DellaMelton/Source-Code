@@ -1,0 +1,161 @@
+
+.flashswiper,.flashswiper1 {
+    height: 100%;
+}
+
+.slideIcon{
+    width: 80px;
+    margin: 0 auto;
+    border-radius: 100%;
+    height: 80px;
+    text-align: center
+}
+.slideIcon i{font-size: xx-large;}
+.slideIcon i:before{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.swiperImg img{width:100%;}
+.swipe_like{
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    z-index: 1;
+    
+}
+.swipe_like,.swipe_share{
+    padding: 4px 8px;
+    border-radius: 100%;
+    margin:0px 2px;
+}
+.swipe_like a,.swipe_share a{font-size:20px;color:#ffffff;}
+.slideAction .shareLikeIcons{ position: absolute; bottom: 5px; right: 10px;display:flex;}
+.slideAction .shareLikeIcons .swipe_like{
+    position:relative;
+    top:0px;
+}
+.slideAction .shareLikeIcons .swipe_share{
+    z-index:1;
+}
+.headingWhenTop{display:none;}
+.heading-top .swipe_like{top:90%;}
+.img-full .swiperImg{ background-position:center center; background-repeat:no-repeat; background-size:cover; height:100%; width:100%;}
+.img-full .swiperImg img{display:none}
+.swiperImg h2{
+    width:100%;
+    min-height:32px;
+    line-height:25px;
+    padding: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin:0px;
+    word-break:break-word;
+}
+.img-full.heading-bottom h2{position: absolute; bottom:50px;}
+.img-full.heading-top h2{position: absolute; top:0px;}
+.img-full.heading-middle h2{position:
+    absolute;top: 50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    
+}
+
+/*condition for center*/
+.img-middle .swiperImg{ background-position:center center; background-repeat:no-repeat; background-size:cover; height:100%; width:100%;background:none!important;}
+.img-middle .swiperImg img{display: block;}
+.img-middle .forImageAndText{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+.img-middle.heading-bottom h2{position:absolute;bottom:0px;}
+.img-middle.heading-top .headingWhenTop{display:block;}
+.img-middle.heading-top .headingNormal{display:none;}
+.img-middle.heading-middle h2{position:
+    absolute;top: 50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    
+}
+/*condition for center*/
+
+/*condition for top*/
+
+.img-top .swiperImg img{display:block;}
+.img-top .swiperImg{ background-position:top center; background-repeat:no-repeat; background-size:cover; height:100%; width:100%;background:none!important;}
+.img-top .forImageAndText{
+    position: absolute;
+    top:0;}
+.img-top.heading-bottom h2{position:relative;}
+.img-top.heading-top .headingWhenTop{display:block;}
+.img-top.heading-top .headingNormal{display:none;}
+.img-top.heading-top .forImageAndText img{margin-top:0px;}
+.img-top.heading-middle h2{position:
+    absolute;top: 50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    
+}
+/*condition for top*/
+
+
+.slideAction{
+    position: absolute;
+    bottom: 0 ;
+    width: 100%;
+    height: 100%;
+    top:100%;
+    z-index:2;
+    
+}
+.swiper-slide-active.active .slideAction{
+    top: 0;
+    transition:.7s all cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition:.7s all cubic-bezier(0, 1, 0.5, 1);
+}
+.swiper-slide-active.removeAnimation .slideAction{
+    transition: none;
+    -webkit-transition: none;}
+
+.forImageAndText{width:100%;}
+/*.uptrans{
+ transition:.7s all cubic-bezier(0, 1, 0.5, 1);
+ -webkit-transition:.7s all cubic-bezier(0, 1, 0.5, 1);
+ 
+ }*/
+div.slidearrow{
+    position: absolute;
+    z-index: 588888;
+    left: 0;
+    height: 30px;
+    overflow: hidden;
+    border-bottom: 10px solid;
+    width: 100%;
+    top: -35px;
+}
+.swiper-slide-active.active .slideAction div.slidearrow{
+    transform: rotate(180deg);
+    top: 0px !important;
+}
+div.divtoopen{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 35px 10px 0px;
+    box-sizing: border-box;
+}
+.swiper-slide-active.active .slideAction div.divtoopen{
+    padding-top: 45px !important;
+    padding-bottom:35px;
+    
+}
+
+.flashswiper .msg-code, .flashswiper1 .msg-code{width:100%}
+.changedImage img{
+    background-repeat:no-repeat!important;
+    background-position:center center!important;
+    background-size:contain!important;
+    width:100%;
+}
+

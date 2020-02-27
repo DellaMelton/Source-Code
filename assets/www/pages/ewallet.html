@@ -1,0 +1,61 @@
+<div class="navbar" style="display: block;">
+    <div class="navbar-inner navbar-on-center" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            {{getNavigationEwalletProfile ""}}
+
+        </div>
+        <div class="center sliding mediumHeaderBar lucidaConsole" style="left: -0.5px;">{{pageTitle}}</div>
+        <div class="right"><a class="iconz-option-vertical" onclick="toggle_menu(this);" style="color:#ffffff;"></a></div>
+    </div>
+</div>
+
+<div data-page="ewallet-profile" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <style type="text/css">
+        .wallet-card{background-color:{{@global.styleAndNavigation.bannerbgColor}};color:{{@global.styleAndNavigation.bannerTextColor}};}
+        .wallet-card-detail .profile-img{border-color:{{@global.styleAndNavigation.bannerBorderColor}};}
+        .transaction-detail{background: {{@global.styleAndNavigation.listBgColor}};color:{{@global.styleAndNavigation.listContentColor}};}
+        .moneyIcon{border-color:{{@global.styleAndNavigation.listBorderColor}};}
+        .moneyIcon .badge{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+        .moneyDetail::before {
+            background:{{@global.styleAndNavigation.listBorderColor}};
+        }
+    .transactionsummary h4{color:{{@global.styleAndNavigation.listheadingColor}};}
+        </style>
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+        <div class="ewallet_container">
+            <div class="wallet-card {{@global.styleAndNavigation.bannerContentSize}} {{@global.styleAndNavigation.bannerFont}} ">
+                <div class="pull-left flip e-wallet-wth">
+                    {{this.userName}}
+                </div>
+                {{#js_compare "this.setting.allow_add_money === 1"}}
+                <div class="pull-right flip e-wallet-wth" onclick="addMoneypageEvent()">
+                    + {{this.languageSetting.add_money}}
+                </div>
+
+                {{/js_compare}}
+
+                <div class="wallet-card-detail">
+                    <div class="profile-img">
+                        <img src={{this.userProfilePic}} alt="images/vandor-pic.jpg">
+
+                    </div>
+                    <div class="total-earning">
+                        <p>{{this.languageSetting.ewallet_remainingbal}}</p>
+                        <h2 id="profile_amountId">{{ewalletAmountHelper this.userData.balanceAmount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="transaction-history colorBlack">
+                <p>{{this.languageSetting.transaction_history}}</p>
+                <div id="ew_transactionsid_profile" class="{{@global.styleAndNavigation.bannerFont}}">
+
+                </div>
+
+                <div style="float: right;display:none;" onclick="eventonViewall()" id = "viewall_transactionId"><a href="#" style="color:{{@global.styleAndNavigation.linkColor}}">{{this.languageSetting.newsstand_view_all}}</a></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

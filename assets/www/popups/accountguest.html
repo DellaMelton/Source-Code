@@ -1,0 +1,120 @@
+<div class="popup tablet-fullscreen">
+    <style>
+    .account-main {
+        background:#f6f6f6;
+        height:100vh;
+        float: left;
+        width: 100%;
+        position: relative;
+    }
+    .account-header {
+        float: left;
+        width: 100%;
+        position: fixed;
+        border-bottom: 1px solid #e0e0e0;
+        z-index:111;
+    }
+    .account-header h1 {
+        font-size: 19px;
+        font-family: arial;
+        color: #000;
+        font-weight: 300;
+        margin: 15px 0px;
+        padding-left: 50px;
+    }
+    .account-header span {
+        float: left;
+        color: #949494;
+        position: absolute;
+        left: 23px;
+        top: 4px;
+        font-size: 37px;
+    }
+    .account-form-section {
+        box-sizing: border-box;
+        float: left;
+        margin-top: 50px;
+        padding: 20px 25px;
+        position: relative;
+        width: 100%;}
+    .account-form-section h4 {
+        color: #222222;
+        font-size: 20px;
+        font-family: arial;
+        font-weight: 400;
+        margin-bottom:
+    }
+    .account-form-user {
+        float: left;
+        width: 100%;
+    }
+    .account-form-user span {
+        border: 2px solid #fff;
+        font-size: 37px;
+        padding: 10px;
+        border-radius: 100%;
+        background: #b6b5b5;
+        color: #e9e9e9;
+    }
+    .account-form-user h3 {
+        display: inline-block;
+        padding-left: 25px;
+        color: #363636;
+        font-family: arial;
+        font-weight: 400;
+        margin: 0px;
+    }
+    .accont-form-btn {
+        float: left;
+        width: 100%;
+        text-align: center;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+    .accont-form-btn button  {
+        display: block;
+        margin: auto;
+        width: 100%;
+        background: #fff;
+        outline: none;
+        border: 1px solid #d9d9d9;
+        padding: 15px 0px;
+        font-size: 15px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+    
+        </style>
+    <div class="view navbar-fixed">
+        <div class="navbar">
+            <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left sliding">
+                    <a href="" class=" link icon-left-open-2"
+                        style="color:{{@global.style.headerBarTextColor}};" onclick="Appyscript.dismisspayment()">
+                        
+                    </a>
+                </div>
+                <div class="center {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}"> Account  </div>
+            </div>
+        </div>
+        <div class="pages">
+            <div class="page loginpopup" data-page="error">
+                <div class="page-content {{@global.style.appPageFont}} {{@global.style.appPageCsize}}" style="color:{{@global.style.pageTextColor}}">
+                    <div class="account-main">
+                        <div class="account-form-section">
+                            <h4>You are signed in as a Guest</h4>
+                            <div class="account-form-user">
+                                <span><i class="iconz-user"></i></span>
+                                <h3>Guest</h3>
+                            </div>
+                        </div>
+                        <div class="accont-form-btn">
+                            <button value="Login" onclick="Appyscript.logoutguestApp()">Log Out</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

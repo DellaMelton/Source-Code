@@ -1,0 +1,691 @@
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+            <div class="topHeader">{{#if @root.innerlanguage}}{{innerlanguagedata.payment_method}} {{else}} {{@global.commonLanguageSetting.common_payment_method}}{{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-page="paymentPage-ewallet" class="page navbar-through toolbar-fixed no-toolbar">
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}} content-{{@global.styleAndNavigation.content[3]}} heading-{{@global.styleAndNavigation.heading[3]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}};-webkit-transform: translate3d(0,0,0);-webkit-overflow-scrolling: auto !important;">
+        <style type="text/css">
+            .payment-mode .payment-nav a {
+                color:{{@global.styleAndNavigation.tab[1]}};
+                background-color:{{@global.styleAndNavigation.tab[0]}};
+            }
+        .payment-mode .payment-nav a.active {
+            color:{{@global.styleAndNavigation.tab[1]}};
+            background-color:{{@global.styleAndNavigation.tab[2]}};
+        }
+        .payment-mode .form-field select {background: #fff;}
+        .form-field {
+            float: left;
+            width: 100%;
+            display: block;
+            position:relative;
+        }
+        
+        .form-field input, .form-field select {
+            height: 35px;
+            margin-bottom: 10px;
+            width: 100%;
+            outline: none;
+            border: none;
+            box-sizing: border-box;
+            padding:0px 5px;
+            
+        }
+        .form-field label{
+            color:{{@global.styleAndNavigation.button[3]}};;
+            display: inline-block;
+            font-weight: bold;
+            line-height: 27px;
+            text-align: left;
+            width:100%;
+            
+            .form-field  input[type="submit"]{ border:0px; background:#0CC; color:#fff; font-weight:bold; }
+            .form-input-field  .pic-select {
+                background: #00cccc none repeat scroll 0 0;
+                height: 23px;
+                padding: 12px 0 0;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                top: 0px;
+                width: 40px;
+                z-index: 0;}
+            .form-field-new .pic-select{ color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}} none repeat scroll 0 0;
+                height: 23px;
+                padding: 12px 0 0;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                top: 27px;
+                width: 40px;
+                z-index: 0;}
+            
+            .payment-form {
+                float: left;
+                width: 100%;
+                margin-top: 10px;
+                text-align:center;
+            }
+            
+            .pay-field ::-webkit-input-placeholder {
+                color:{{@global.styleAndNavigation.content[2]}};
+                opacity:0.6;
+            }
+            .pay-field :-moz-placeholder {
+                color:{{@global.styleAndNavigation.content[2]}};
+                opacity:0.6;
+            }
+            .pay-field ::-moz-placeholder {
+                color:{{@global.styleAndNavigation.content[2]}};
+                opacity:0.6;
+            }
+            .pay-field :-ms-input-placeholder {
+                color:{{@global.styleAndNavigation.content[2]}};
+                opacity:0.6;
+            }
+            
+            .pay-field input[type="text"], .pay-field select, .pay-field textarea{
+                color:{{@global.styleAndNavigation.content[2]}};
+                border-color:{{@global.styleAndNavigation.borderColor}}
+            }
+
+             .example.ewalletStripe button{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+             .example.ewalletStripe .input,.ElementsApp, .ElementsApp .InputElement{color:{{@global.styleAndNavigation.content[2]}} !important}
+             .example.ewalletStripe .baseline{background-color:{{@global.styleAndNavigation.content[2]}}}
+             .example.ewalletStripe label {
+                 opacity: 0.7;
+             }
+
+        </style>
+        <div class="payment-mode">
+            <div class="listing-tabs">
+                <div class="payment-nav tabs-click" style="border-bottom:{{@global.styleAndNavigation.borderColor}}">
+                    {{#list}}
+                    {{if method}}
+                    <a href="#tab{{method}}" class="{{getPayment tabClassId}} {{tabClassId}}{{tabActive}} tab-link " label="{{label}}" onclick="Appyscript.clickEventOnPaymenttab('{{method}}')"></a>
+                    {{/if}}
+                    {{/list}}
+                </div>
+            </div>
+            <div class="tabs-animated-wrap">
+                <div class="wrap" id="paymentTabs">
+                    <div class="tabs">
+                        {{#list}}
+                        {{#js_compare "this.method == 'card' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}">
+                            
+                            <form id="creditCardThroughPaypal">
+                                <p>{{label}}</p>
+                                <div class="login-feald">
+                                    <input type="number" id="cnumber" name="cardNumber" placeholder="{{@global.commonLanguageSetting.credit_card_place_holder}}" class="card-number numberlength numberValidation" maxlength="20">
+                                        </div>
+                                <div class="expiry-date">
+                                    <span><input type="number" id="ExpairyMonth" name="expairyMonth" placeholder="MM" class="numberlength numberValidation" maxlength="2">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.expiry_month}} {{else}}  {{@global.commonLanguageSetting.common_expiry_month}}{{/if}} </span><span class="mid"> &nbsp; </span><span><input type="number" id="ExpairyYear" name="expairyYear" placeholder="YYYY" class="numberlength numberValidation" maxlength="4"> {{#if @root.innerlanguage}}{{@root.innerlanguagedata.expiry_year}} {{else}}  {{@global.commonLanguageSetting.common_expiry_year}}{{/if}} </span>
+                                </div>
+                                <div class="login-feald" style="display:none">
+                                    <label>Card Security Code</label>
+                                </div>
+                                <div class="cvv">
+                                    <input type="number" id="cvvCode" name="cvvCode" placeholder="CVV"  class="numberlength numberValidation" maxlength="4">
+                                        <p>{{#if @root.innerlanguage}}{{@root.innerlanguagedata.cvv_code}} {{else}}{{@global.commonLanguageSetting.common_check_the_back_of_your_credit_card_for_cvv}}{{/if}}</p>
+                                        </div>
+                                <div class="login-feald">
+                                    <input type="text" id="cHolder" name="cardHolder" placeholder="{{#if @root.innerlanguage}}{{@root.innerlanguagedata.card_holder_name}} {{else}} {{@global.commonLanguageSetting.common_card_holder_name}}{{/if}}" class="card-number card-name">
+                                        </div>
+                                <footer id="footer-nav" data-label="{{label}}" data-key="{{paymentMethodKey}}"  data-clientId="{{clientId}}" data-secretKey="{{secretKey}}">
+                                    <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}}</a>
+                                </footer>
+                            </form>
+                        </div>
+                        {{/js_compare}}
+                        
+                        
+                        {{#js_compare "this.method == 'payu' "}}
+                            <div class="tab{{tabActive}}" id="tab{{method}}">
+
+                                <form action="" method="post" id="payu" name="payu" >
+
+                                    <p>{{label}}</p>
+                                    <div class="login-feald">
+                                        <label for="payUmoney-email">User {{@root.languageSetting.email_dir}}</label>
+                                        <input id="payUmoney-email" name="address" type="text" placeholder="{{@root.languageSetting.email_dir}}"/>
+                                    </div>
+
+                                    <div class="login-feald">
+                                        <label for="payUmoney-phone">{{@root.languageSetting.phone_Dir}}</label>
+                                        <input id="payUmoney-phone" name="city" type="text" placeholder="{{@root.languageSetting.phone_Dir}}"/>
+                                    </div>
+
+                                    <div class="login-feald">
+                                        <label for="payUmoney-address">{{@root.languageSetting.address_food}}</label>
+                                        <input id="payUmoney-address" name="address" type="text" placeholder="{{@root.languageSetting.address_food}}"/>
+                                    </div>
+
+                                    <div class="login-feald">
+                                        <label for="payUmoney-city">{{@root.languageSetting.city_food}}</label>
+                                        <input id="payUmoney-city" name="city" type="text" placeholder="{{@root.languageSetting.city_food}}"/>
+                                    </div>
+
+                                    <div class="login-feald">
+                                        <label for="payUmoney-state">{{@root.languageSetting.state_province_mcom}}</label>
+                                        <input id="payUmoney-state" name="state" type="text" placeholder="{{@root.languageSetting.state_province_mcom}}"/>
+                                    </div>
+
+                                    <div class="login-feald">
+                                        <label for="payUmoney-zip">{{@root.languageSetting.pincode_foodcourt}}</label>
+                                        <input id="payUmoney-zip" name="zip" type="number" placeholder="Your Zip"/>
+                                    </div>
+
+                                    <footer id="footer-nav"  data-label="{{label}}" data-key="{{paymentMethodKey}}" data-merchantId="{{merchantId}}"  data-saltKey="{{saltKey}}">
+                                        <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}} {{ewalletAmountHelper @root.amount}}</a>
+                                    </footer>
+
+                                </form>
+
+                            </div>
+                        {{/js_compare}}
+                        
+                        {{#js_compare "this.method == 'paypal' "}}
+                        
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-paypalId="{{paypalId}}">
+
+                            <p>{{label}}</p>
+                            <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{@root.languageSetting.paywithPaypal}} {{ewalletAmountHelper @root.amount}}</a>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'payfast' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}">
+                            <form action="" method="post" id="payfast" name="payfast" >
+                                <p>{{label}}</p>
+                                <div class="login-feald">
+                                    <label for="payfast-email">User {{@root.languageSetting.email_dir}}</label>
+                                    <input id="payfast-email" name="address" type="text" placeholder="{{@root.languageSetting.email_dir}}" readonly />
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="payfast-phone">{{@root.languageSetting.phone_Dir}}</label>
+                                    <input id="payfast-phone" name="city" type="text" placeholder="{{@root.languageSetting.phone_Dir}}"readonly />
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="payfast-address">{{@root.languageSetting.address_food}}</label>
+                                    <input id="payfast-address" name="address" type="text" placeholder="{{@root.languageSetting.address_food}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="payfast-city">{{@root.languageSetting.city_food}}</label>
+                                    <input id="payfast-city" name="city" type="text" placeholder="{{@root.languageSetting.city_food}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="payfast-state">{{@root.languageSetting.state_province_mcom}}</label>
+                                    <input id="payfast-state" name="state" type="text" placeholder="{{@root.languageSetting.state_province_mcom}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="payfast-zip">{{@root.languageSetting.pincode_foodcourt}}</label>
+                                    <input id="payfast-zip" name="zip" type="number" placeholder="Your Zip"/>
+                                </div>
+
+
+                                <footer id="footer-nav"  data-label="{{label}}" data-key="{{paymentMethodKey}}" data-payfastmerId="{{merchantId}}" data-merchantKey="{{merchantKey}}">
+                                    <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}} {{ewalletAmountHelper @root.amount}}</a>
+                                </footer>
+
+                            </form>
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'bolato' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-boletoPublicKey="{{boletoPublicKey}}">
+                            <form action="" method="post" id="bolato" name="bolato" >
+                                <p>{{label}}</p>
+<!--                                <a class="BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{@root.languageSetting.paywithPaypal}} {{ewalletAmountHelper @root.amount}}</a>-->
+                                <div class="login-feald">
+                                    <label for="bolato-email">User {{@root.languageSetting.email_dir}}</label>
+                                    <input id="bolato-email" name="address" type="text" placeholder="{{@root.languageSetting.email_dir}}" readonly/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="bolato-phone">{{@root.languageSetting.phone_Dir}}</label>
+                                    <input id="bolato-phone" name="city" type="text" placeholder="{{@root.languageSetting.phone_Dir}}" readonly/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="bolato-address">{{@root.languageSetting.address_food}}</label>
+                                    <input id="bolato-address" name="address" type="text" placeholder="{{@root.languageSetting.address_food}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="bolato-city">{{@root.languageSetting.city_food}}</label>
+                                    <input id="bolato-city" name="city" type="text" placeholder="{{@root.languageSetting.city_food}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="bolato-state">{{@root.languageSetting.state_province_mcom}}</label>
+                                    <input id="bolato-state" name="state" type="text" placeholder="{{@root.languageSetting.state_province_mcom}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="bolato-zip">{{@root.languageSetting.pincode_foodcourt}}</label>
+                                    <input id="bolato-zip" name="zip" type="number" placeholder="Your Zip"/>
+                                </div>
+
+
+                                <footer id="footer-nav"  data-label="{{label}}" data-key="{{paymentMethodKey}}" data-boletoPublicKey="{{boletoPublicKey}}">
+                                    <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}} {{ewalletAmountHelper @root.amount}}</a>
+                                </footer>
+
+                            </form>
+                        </div>
+                        {{/js_compare}}
+                        
+                        
+                        {{#js_compare "this.method == 'stripe' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}">
+                         
+                         <style type="text/css">
+                             
+                             .example.ewalletStripe button{background: {{@global.styleAndNavigation.buttonbgColor}};color: {{@global.styleAndNavigation.buttonTextColor}};}
+                             .example.ewalletStripe .input,.ElementsApp, .ElementsApp .InputElement{color:{{@global.styleAndNavigation.content[2]}} !important}
+                             .example.ewalletStripe .baseline{background-color:{{@global.styleAndNavigation.content[2]}}}
+                             .example.ewalletStripe label {
+                                 opacity: 0.7;
+                             }
+                         </style>
+                         <div class="globalContent">
+                             
+                             <div class="cell example ewalletStripe">
+                                 <form>
+                                     <div data-locale-reversible>
+                                         
+                                         <div class="row" data-locale-reversible style="margin:0 -10px;">
+                                             <div class="field">
+                                                 <input id="ewalletStripe-phone" data-tid="elements_examples.form.phone_placeholder" class="input empty" type="text" placeholder="Phone" required="" autocomplete="address-line1">
+                                                     <label for="ewalletStripe-phone" data-tid="elements_examples.form.phone_label">{{@root.languageSetting.phone_Dir}}</label>
+                                                     <div class="baseline"></div>
+                                                     </div>
+                                             
+                                             <div class="field">
+                                                 <input id="ewalletStripe-email" data-tid="elements_examples.form.email_placeholder" class="input empty" type="text" placeholder="Email" required="" autocomplete="address-line2">
+                                                     <label for="ewalletStripe-email" data-tid="elements_examples.form.email_label">{{@root.languageSetting.email_dir}}</label>
+                                                     <div class="baseline"></div>
+                                                     </div>
+                                             
+                                             <div class="field">
+                                                 <input id="ewalletStripe-address" data-tid="elements_examples.form.address_placeholder" class="input empty" type="text" placeholder="185 Berry St" required="" autocomplete="address-line3">
+                                                     <label for="ewalletStripe-address" data-tid="elements_examples.form.address_label">{{@root.languageSetting.address_food}}</label>
+                                                     <div class="baseline"></div>
+                                                     </div>
+                                             <div class="field ">
+                                                 <input id="ewalletStripe-city" data-tid="elements_examples.form.city_placeholder" class="input empty" type="text" placeholder="San Francisco" required="" autocomplete="address-level4">
+                                                     <label for="ewalletStripe-city" data-tid="elements_examples.form.city_label">{{@root.languageSetting.city_food}}</label>
+                                                     <div class="baseline"></div>
+                                                     </div>
+                                             <div class="field half-width">
+                                                 <input id="ewalletStripe-state" data-tid="elements_examples.form.state_placeholder" class="input empty" type="text" placeholder="CA" required="" autocomplete="address-level5">
+                                                     <label for="ewalletStripe-state" data-tid="elements_examples.form.state_label">{{@root.languageSetting.state_province_mcom}}</label>
+                                                     <div class="baseline"></div>
+                                                     </div>
+                                             <div class="field half-width">
+                                                 <input id="ewalletStripe-zip" data-tid="elements_examples.form.postal_code_placeholder" class="input empty" type="text" placeholder="94107" required="" autocomplete="postal-code" name="my-postal-code">
+                                                     <label for="ewalletStripe-zip" data-tid="elements_examples.form.postal_code_label">{{@root.languageSetting.pincode_foodcourt}}</label>
+                                                     <div class="baseline"></div>
+                                                     </div>
+                                         </div>
+                                     </div>
+                                     <div class="row" style="margin:0 -10px;">
+                                         <div class="field">
+                                             <div id="ewalletStripe-card-number" class="input empty"></div>
+                                             <label for="ewalletStripe-card-number" data-tid="elements_examples.form.card_number_label">{{@root.languageSetting.card}}</label>
+                                             <div class="baseline"></div>
+                                             
+                                             
+                                         </div>
+                                     </div>
+                                     <div class="row" style="margin:0 -10px;">
+                                         <div class="field half-width">
+                                             <div id="ewalletStripe-card-expiry" class="input empty"></div>
+                                             <label for="ewalletStripe-card-expiry" data-tid="elements_examples.form.card_expiry_label">{{@root.languageSetting.expiration}}</label>
+                                             <div class="baseline"></div>
+                                         </div>
+                                         <div class="field half-width">
+                                             <div id="ewalletStripe-card-cvc" class="input empty"></div>
+                                             <label for="ewalletStripe-card-cvc" data-tid="elements_examples.form.card_cvc_label">{{@root.languageSetting.cvc}}</label>
+                                             <div class="baseline"></div>
+                                         </div>
+                                     </div>
+                                     <button type="submit" data-tid="elements_examples.form.pay_button" style="width: 100%;margin-left: 0; margin-right: 0;">{{@root.languageSetting.pay_with_card}} {{ewalletAmountHelper @root.amount}}</button>
+                                 </form>
+                             </div>
+                             
+                         </div>
+                         
+                        </div>
+                        {{/js_compare}}
+
+
+
+                        {{#js_compare "this.method == 'authorizenet' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}">
+
+                            <style type="text/css">
+
+                             .example.ewalletStripe button{color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};}
+                             .example.ewalletStripe .input,.ElementsApp, .ElementsApp .InputElement{color:{{@global.styleAndNavigation.content[2]}} !important}
+                             .example.ewalletStripe .baseline{background-color:{{@global.styleAndNavigation.content[2]}}}
+                             .example.ewalletStripe label {
+                                 opacity: 0.7;
+                             }
+                             .example.ewalletStripe .login-feald input,.example.ewalletStripe .expiry-date input,.example.ewalletStripe .cvv input{ border-style: solid;}
+                             .example.ewalletStripe #footer-nav{padding:0;}
+                         </style>
+                            <div class="globalContent">
+
+                                <div class="cell example ewalletStripe">
+                                    <form id="authorizeCardDetails">
+                                        <p style="margin: 0">{{label}}</p>
+                                            <div style="margin: 0 -10px 0px;width: 100%;display: inline-block;">
+                                                <div class="field">
+                                                    <input id="ewalletAuth-phone" data-tid="elements_examples.form.phone_placeholder" class="input empty" type="text" placeholder="Phone" required="" autocomplete="address-line1">
+                                                    <label for="ewalletAuth-phone" data-tid="elements_examples.form.phone_label">{{@root.languageSetting.phone_Dir}}</label>
+                                                    <div class="baseline"></div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <input id="ewalletAuth-email" data-tid="elements_examples.form.email_placeholder" class="input empty" type="text" placeholder="Email" required="" autocomplete="address-line2">
+                                                    <label for="ewalletAuth-email" data-tid="elements_examples.form.email_label">{{@root.languageSetting.email_dir}}</label>
+                                                    <div class="baseline"></div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <input id="ewalletAuth-address" data-tid="elements_examples.form.address_placeholder" class="input empty" type="text" placeholder="185 Berry St" required="" autocomplete="address-line3">
+                                                    <label for="ewalletAuth-address" data-tid="elements_examples.form.address_label">{{@root.languageSetting.address_food}}</label>
+                                                    <div class="baseline"></div>
+                                                </div>
+                                                <div class="field ">
+                                                    <input id="ewalletAuth-city" data-tid="elements_examples.form.city_placeholder" class="input empty" type="text" placeholder="San Francisco" required="" autocomplete="address-level4">
+                                                    <label for="ewalletAuth-city" data-tid="elements_examples.form.city_label">{{@root.languageSetting.city_food}}</label>
+                                                    <div class="baseline"></div>
+                                                </div>
+
+                                                <div class="row" style="margin:0 -5px;">
+                                                    <div class="field half-width">
+                                                        <input id="ewalletAuth-state" data-tid="elements_examples.form.state_placeholder" class="input empty" type="text" placeholder="CA" required="" autocomplete="address-level5">
+                                                        <label for="ewalletAuth-state" data-tid="elements_examples.form.state_label">{{@root.languageSetting.state_province_mcom}}</label>
+                                                        <div class="baseline"></div>
+                                                    </div>
+                                                    <div class="field half-width">
+                                                        <input id="ewalletAuth-zip" data-tid="elements_examples.form.postal_code_placeholder" class="input empty" type="text" placeholder="94107" required="" autocomplete="postal-code" name="my-postal-code">
+                                                        <label for="ewalletAuth-zip" data-tid="elements_examples.form.postal_code_label">{{@root.languageSetting.pincode_foodcourt}}</label>
+                                                        <div class="baseline"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="login-feald">
+                                            <input type="number" id="cnumber" placeholder="xxxxx-xxxxx-xxxxx-xxxxx" name="cardNumber" class="card-number numberlength numberValidation" maxlength="20">
+                                        </div>
+                                        <div class="expiry-date">
+                                            <span><input type="number" id="ExpairyMonth" name="expairyMonth" placeholder="MM" class="numberlength numberValidation" maxlength="2"> {{#if @root.innerlanguage}}{{@root.innerlanguagedata.expiry_month}} {{else}}  {{@global.commonLanguageSetting.common_expiry_month}}{{/if}} </span><span class="mid"> &nbsp; </span><span><input type="number" id="ExpairyYear" name="expairyYear" placeholder="YY" class="numberlength numberValidation" maxlength="2"> {{#if @root.innerlanguage}}{{@root.innerlanguagedata.expiry_year}} {{else}}  {{@global.commonLanguageSetting.common_expiry_year}}{{/if}}</span>
+                                        </div>
+                                        <div class="login-feald" style="display:none">
+                                            <label>Card Security Code</label>
+                                        </div>
+                                        <div class="cvv">
+                                            <input type="number" id="cvvCode" name="cvvCode" placeholder="CVV" class="numberlength numberValidation" maxlength="4">
+                                            <p>{{#if @root.innerlanguage}}{{@root.innerlanguagedata.cvv_code}} {{else}}{{@global.commonLanguageSetting.common_check_the_back_of_your_credit_card_for_cvv}}{{/if}}</p>
+                                        </div>
+                                        <div class="login-feald">
+                                            <input type="text" id="cHolder" name="cardHolder" placeholder="{{#if @root.innerlanguage}}{{@root.innerlanguagedata.card_holder_name}} {{else}} {{@global.commonLanguageSetting.common_card_holder_name}}{{/if}}" class="card-number card-name">
+                                        </div>
+                                        <footer id="footer-nav" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-test-account="{{authorizenet_payment_mode}}" data-apiLogin-Key="{{authorizenet_apiLoginID}}" data-client-key="{{authorizenet_client_id}}" data-transaction-key="{{authorizenet_transaction_key}}">
+
+                                            <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}} {{ewalletAmountHelper @root.amount}}</a>
+
+                                        </footer>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        {{/js_compare}}
+
+                        {{#js_compare "this.method == 'volecity' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}" style="-webkit-transform: translate3d(0,0,0);-webkit-overflow-scrolling: auto !important;">
+                            <style>
+                                .msg-container{
+                                    position: static !important;
+                                    margin:0 !important;
+                                }
+                            </style>
+                            
+                            <form id="velocityCardDetails">
+                                
+                                <p>{{label}}</p>
+                                
+                                <div class="login-feald">
+                                    <input onkeyup="velocitySearchFunction(this)" type="number" id="cnumberVel" name="cardNumber" placeholder="{{@global.commonLanguageSetting.credit_card_place_holder}}" class="card-number numberlength numberValidation"   maxlength="20">
+                                </div>
+                                
+                                <div class="payment-form" style="display:none">
+                                    <div class="form-field form-field-new ">
+                                        
+                                        <label for="cardtype" id="cardtype">Card Type:</label>
+                                        <select name="catdtype" id="velocityCardType">
+                                            <option value="Select">Select</option>
+                                            <option value="Visa">Visa</option>
+                                            <option value="MasterCard">MasterCard</option>
+                                            <option value="Discover">Discover</option>
+                                            <option value="AmericanExpress">American Express</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="expiry-date">
+                                    <span><input type="number" id="ExpairyMonthVel" name="expairyMonth" placeholder="MM" class="numberlength numberValidation" maxlength="2"> {{#if @root.innerlanguage}}{{@root.innerlanguagedata.expiry_month}} {{else}}  {{@global.commonLanguageSetting.common_expiry_month}}{{/if}} </span><span class="mid"> &nbsp; </span><span><input type="number" id="ExpairyYearVel" name="expairyYear" placeholder="YY" class="numberlength numberValidation" maxlength="2"> {{#if @root.innerlanguage}}{{@root.innerlanguagedata.expiry_year}} {{else}}  {{@global.commonLanguageSetting.common_expiry_year}}{{/if}}</span>
+                                </div>
+                                <div class="login-feald" style="display:none">
+                                    <label>Card Security Code</label>
+                                </div>
+                                <div class="cvv">
+                                    <input type="number" id="cvvCodeVel" name="cvvCode" placeholder="CVV" class="numberlength numberValidation" maxlength="4">
+                                        <p>{{#if @root.innerlanguage}}{{@root.innerlanguagedata.cvv_code}} {{else}}{{@global.commonLanguageSetting.common_check_the_back_of_your_credit_card_for_cvv}}{{/if}}</p>
+                                </div>
+                                <div class="login-feald">
+                                    <input type="text" id="cHolderVel" name="cardHolder" placeholder="{{#if @root.innerlanguage}}{{@root.innerlanguagedata.card_holder_name}} {{else}} {{@global.commonLanguageSetting.common_card_holder_name}}{{/if}}" class="card-number card-name">
+                                </div>
+                                <footer id="footer-nav" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-applicationProfileId="{{applicationProfileId}}" data-workflowId="{{workflowId}}" data-merchantProfileId="{{merchantProfileId}}" data-identityToken="{{identityToken}}">
+                                    
+                                    
+                                    <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}}</a>
+                                    
+                                </footer>
+                            </form>
+                            
+                            <div class="msg-code" style="display:none;">
+                                <div class="msg-container">
+                                    <span class="icon appyicon-no-data" style="color:{{@global.style.pageIconColor}}; font-family:{{@global.style.appPageFont}};">  </span>
+                                    <span class="{{@global.style.appPageCsize}}" style="color:{{@global.style.pageTextColor}}; font-family:{{@global.style.appPageFont}}; margin-top:20px;">
+                                        Sorry! We are unable to process your request please pay using other payment method</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/js_compare}}
+                        {{#js_compare "this.method == 'hubtel' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}">
+                            
+                            <div class="pay-field pr" style="border-bottom:1px solid {{@global.styleAndNavigation.borderColor}}; font-size:20px; padding-bottom:8px;">
+                                <label style="width:100%;display:inline-block !important; font-weight:bold; text-align:center; color:{{@global.styleAndNavigation.content[2]}};
+                                    ">{{@global.pageLanguageSetting.price_mcom}}: {{format_currency @global.grndtotal.currency}}<span>{{@global.grndtotal.grandtaotal}}</span></label>
+                            </div>
+                            <div class="pay-field">
+                                <label>{{@global.pageLanguageSetting.customer_name_foodcourt}}*</label>
+                                <input id="paymentcustomer_name" placeholder="{{@global.pageLanguageSetting.customer_name_foodcourt}}*" type="text" name="CustomerName"  value="{{@global.billingdata.name}}" />
+                            </div>
+                            <div class="pay-field" style="display:none">
+                                <label>{{@global.pageLanguageSetting.email_id_mcom}}</label>
+                                <input id="paymentemail" placeholder="{{@global.pageLanguageSetting.email_id_mcom}}" type="text"  name="CustomerEmail"  />
+                            </div>
+                            <div class="pay-field" style="display:none">
+                                <label>{{@global.pageLanguageSetting.price_mcom}}</label>
+                                <input type="text" id="paymentprice"  name="{{@global.pageLanguageSetting.price_mcom}}" value="{{@global.grndtotal}}" readonly />
+                            </div>
+                            <div class="pay-field">
+                                <label>{{@global.pageLanguageSetting.fc_mobile}}*</label>
+                                <input type="text" id="paymentmobileno" placeholder ="{{@global.pageLanguageSetting.fc_mobile}}*" name="CustomerMsisdn" value="{{@global.billingdata.phone}}"  />
+                            </div>
+                            
+                            <div class="pay-field">
+                                <label>{{@global.pageLanguageSetting.mobile_payment}}*</label>
+                                <div class="se_option">
+                                    <select name = "Channel" id="paymentmobile" onchange="showhidevocher()">
+                                        <option value = "" >{{@global.pageLanguageSetting.select_mobile_wallet}}</option>
+                                        <option value = "mtn-gh">{{@global.pageLanguageSetting.MTN_ghana}}</option>
+                                        <option value = "vodafone-gh">{{@global.pageLanguageSetting.vodafone_ghana}}</option>
+                                        <option value = "tigo-gh">{{@global.pageLanguageSetting.tigo_ghana}}</option>
+                                        <option value = "airtel-gh">{{@global.pageLanguageSetting.airtel_ghana}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div style="display:none" id="vouchercodefld">
+                                <div class="pay-field" style="margin: 10px 0 30px 0;">
+                                    <strong>{{@global.pageLanguageSetting.instructions_mcom}} </strong> <br>
+                                    {{@global.pageLanguageSetting.vodaphone_intraction}}
+                                    
+                                </div>
+                                
+                                
+                                <div class="pay-field"  >
+                                    <label>{{@global.pageLanguageSetting.voucher_code}}*</label>
+                                    <input type="text" id="vouchercode" placeholder ="{{@global.pageLanguageSetting.voucher_code}}*" name="Token" />
+                                </div>
+                            </div>
+                            <!--<div class="pay-field">-->
+                            <!--<label>{{@global.pageLanguageSetting.please_enter_the_review_text_mcom}}</label>-->
+                            <!--<textarea id="paymentdescription" name="description"   maxlength="500" required></textarea>-->
+                            <!--</div>-->
+                            
+                            <footer id="footer-nav" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">
+                                <a  class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};">{{@global.pageLanguageSetting.paybyhubtel}}</a>
+                            </footer>
+                        </div>
+                        {{/js_compare}}
+                        
+                        {{#js_compare "this.method == 'ewallet' "}}
+                        <div class="tab{{tabActive}} clearfix" id="tab{{method}}">
+                            <div><b id = "ewallet_amountid">{{ewalletAmountHelper this.balanceAmount "ecom"}}</b></div>
+                            <footer id="footer-nav" data-label="{{label}}" data-key="{{paymentMethodKey}}" style="margin-top: 20px;">
+                                
+                                <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.paymentRegistrationInfo(this,'{{page}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}}</a>
+                            </footer>
+                            
+                        </div>
+                        
+                        {{/js_compare}}
+                        
+                        {{#js_compare "this.method == 'mercado' "}}
+                        <div class="tab{{tabActive}}" id="tab{{method}}" data-label="{{label}}" data-key="{{paymentMethodKey}}" data-merchantId="{{merchantId}}" data-saltKey="{{saltKey}}">
+                            
+                            <form action="" method="post" id="payMercado" name="payMercado" >
+                                <p>{{label}}</p>
+                                <div class="login-feald">
+                                    <label for="ewalletEmail">User {{@root.languageSetting.email_dir}}</label>
+                                    <input id="ewalletEmail" name="address" type="text" placeholder="{{@root.languageSetting.email_dir}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="ewalletPhone">{{@root.languageSetting.phone_Dir}}</label>
+                                    <input id="ewalletPhone" name="city" type="text" placeholder="{{@root.languageSetting.phone_Dir}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="ewalletAddress">{{@root.languageSetting.address_food}}</label>
+                                    <input id="ewalletAddress" name="address" type="text" placeholder="{{@root.languageSetting.address_food}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="ewalletCity">{{@root.languageSetting.city_food}}</label>
+                                    <input id="ewalletCity" name="city" type="text" placeholder="{{@root.languageSetting.city_food}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="ewalletState">{{@root.languageSetting.state_province_mcom}}</label>
+                                    <input id="ewalletState" name="state" type="text" placeholder="{{@root.languageSetting.state_province_mcom}}"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="ewalletZip">{{@root.languageSetting.pincode_foodcourt}}</label>
+                                    <input id="ewalletZip" name="zip" type="text" placeholder="Your Zip"/>
+                                </div>
+
+                                <div class="login-feald">
+                                    <label for="email">{{@root.languageSetting.email_dir}}</label>
+                                    <input id="email" name="email" type="email" placeholder="{{@root.languageSetting.email_dir}}"/>
+                                </div>
+                                
+                                <div class="login-feald">
+                                    <label for="cardNumber">{{@root.languageSetting.card_number}}:</label>
+                                    <input type="number" id="cardNumber" name="cardNumber"  data-checkout="cardNumber" placeholder="4509 9535 6623 3704"  />
+                                    
+                                </div>
+                                <div class="login-feald">
+                                    <label for="securityCode">{{@root.languageSetting.security_code}}:</label>
+                                    <input type="number" id="securityCode" name="securityCode"  data-checkout="securityCode" placeholder="123" />
+                                </div>
+                                <div class="login-feald">
+                                    <label for="cardExpirationMonth">{{@root.languageSetting.expiry_month_mcom}}:</label>
+                                    <input type="number" id="cardExpirationMonth" name="cardExpirationMonth"    data-checkout="cardExpirationMonth" placeholder="mm" />
+                                </div>
+                                <div class="login-feald">
+                                    <label for="cardExpirationYear">{{@root.languageSetting.expiry_year_mcom}}:</label>
+                                    <input type="number" id="cardExpirationYear" name="cardExpirationYear"   data-checkout="cardExpirationYear" placeholder="yyyy" />
+                                </div>
+                                <div class="login-feald">
+                                    <label for="cardholderName">{{@root.languageSetting.card_holder_name_mcom}}:</label>
+                                    <input type="text" id="cardholderName" name="cardholderName"  data-checkout="cardholderName" placeholder="APRO" />
+                                </div>
+                                <div class="login-feald">
+                                    <!---  <input type="submit" value="Document Type" />onClick="Mercadopago.getIdentificationTypes(identificationHandler);" --->
+                                    <select id="docType" name="docType" data-checkout="docType" >
+                                        
+                                        <option value = "CPF">CPF </option>
+                                    </select>
+                                </div>
+                                <div class="login-feald">
+                                    <label for="docNumber">{{@root.languageSetting.document_number}}:</label>
+                                    <input type="number" id="docNumber" name="docNumber"   data-checkout="docNumber" placeholder="12345678901" />
+                                </div>
+                                
+                                
+                                <footer id="ewallet-footer-nav" data-label="{{label}}" data-key="{{paymentMethodKey}}"  data-clientId="{{clientId}}" data-secretKey="{{secretKey}}">
+                                    <a class="paynowbtn BtText {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};" onClick="Appyscript.clickEvent_paymentBtn(this,'{{page}}', '{{@root.amount}}');">{{#if @root.innerlanguage}}{{@root.innerlanguagedata.place_order}} {{else}} {{@global.commonLanguageSetting.common_place_order}}{{/if}} {{ewalletAmountHelper @root.amount}}</a>
+                                </footer>
+                            </form>
+                            
+                        </div>
+                        {{/js_compare}}
+                        {{/list}}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+

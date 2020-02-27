@@ -1,0 +1,122 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{#ifCond data.userData.id @global.pageLanguageSetting.checkdatingprofileedit}}
+                {{@global.pageLanguageSetting.pageMyprofile}}
+                {{else}}
+                {{data.userData.name}}   {{/ifCond}}  </div>
+        </div>
+        <div class="right"><a class="appyicon-edit-image" {{#ifCond data.userData.id @global.pageLanguageSetting.checkdatingprofileedit}}
+
+                              {{else}}
+                              style="display:none"
+                              {{/ifCond}}   onclick="Appyscript.datingPhotoProfileEdit()" style="color:{{@global.style.headerBarIconColor}};"></a>
+        </div>
+    </div>
+</div>
+
+<div data-page="dating-Profile" class="page navbar-through dating hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+    <style type="text/css">
+ .dating_f_row p{border-color: {{@global.styleAndNavigation.content[2]}}}
+ .dating input::-webkit-input-placeholder {
+			color:{{@global.styleAndNavigation.content[2]}}
+			opacity: 1
+		}
+		.dating input:-moz-placeholder{
+			color: {{@global.styleAndNavigation.content[2]}}
+			opacity: 1
+		}
+
+		.dating input:-ms-input-placeholder{
+			color:{{@global.styleAndNavigation.content[2]}};
+			opacity: 1
+		}
+		.dating input::placeholder{
+			color:{{@global.styleAndNavigation.content[2]}};
+			opacity: 1
+		}
+ </style>
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+
+    <!-- Page content-->
+    <div class="page-content  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}};">
+        {{else}} <!-- Page content-->
+        <div class="page-content  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}};background-color:{{@global.styleAndNavigation.pageBackroundColor}};">
+            {{/if}}
+
+            <div class="dating_my_profile">
+                <ul id="singleImage">
+                    {{#data.userPics}}
+                    {{#if imgUrl}}
+                    <li>
+                        <a class="edit-pro appyicon-pencil-edit-button" href="javascript:void()" onclick="Appyscript.datingPhotoProfileEdit()" style="color:{{@global.styleAndNavigation.iconColor}}"></a>
+                        <img src="images/image-1x1.png" ontouchstart="return false" id="userprofilepic" style="background:url({{imgUrl}})" class="swiper-lazy"  class="img"/>
+                        <div class="preloader"></div>
+                    </li>
+                    {{/if}}
+                    {{/data.userPics}}
+                </ul>
+            </div>
+
+            <div class="profile-des"  style="border-color: {{@global.styleAndNavigation.fieldBorderColor}};">
+                <h2 class="dating_title text-center {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{data.userData.name}}, {{data.age}}
+                    <!--                        <span class="inside_element">(+91 123 456 7890)</span>-->
+                </h2>
+
+
+                <div class="dating_sub_title text-center {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}"><span style="font-size:80%">My Profile</span><span style="border-color: {{@global.styleAndNavigation.heading[2]}};opacity: .4;"></span></div>
+
+                <div class="dating_c_form pro">
+
+                    {{#data.customProfile}}
+                    {{#js_compare "this.customFieldActive != '0'"}}
+                    {{if}} {{#js_compare "this.addField == \'checkbox\' || this.addField == \'multiselect\'"}}
+                    <div class="dating_f_row">
+                        <label>{{fieldLabel}}</label>
+                        <p>{{replaceHashCheckbox fieldValue addField}} </p>
+                    </div>
+                    {{else}}
+
+                    {{#js_compare "this.customFieldTagId =='dating_tag_6'"}}
+                    <div class="dating_f_row">
+                        <label>{{fieldLabel}}</label>
+                        <p>{{ageHelpervalue fieldValue}} </p>
+                    </div>
+                    {{/js_compare}}
+
+                    {{else if}}  {{#js_compare "this.customFieldTagId != 'dating_tag_6'"}}
+                    <div class="dating_f_row">
+                        <label>{{fieldLabel}}</label>
+                        <p>{{dynamicCustomData fieldValue}} </p>
+                    </div>
+                    {{/js_compare}}
+
+                    {{/js_compare}}
+                    {{/js_compare}}
+
+                    {{/data.customProfile}}
+                </div>
+
+
+
+                <!--                        <div class="dating_sub_title text-center {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}"><span style="font-size:80%">Privacy Setting</span><span style="border-color: {{@global.styleAndNavigation.heading[2]}}; opacity: .4;"></span></div>-->
+                <!--                        -->
+                <!--                        <div class="dating_f_row"> -->
+                <!--                            <label>Change Password</label>-->
+                <!--                            <input id="20" placeholder="********" value="" class="form-control {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" type="password" style="color:{{@global.styleAndNavigation.content[2]}}"> -->
+                <!--                            <i class="icon appyicon-pencil-edit-button"  style="color: {{@global.styleAndNavigation.iconColor}}"></i>-->
+                <!--                        </div>-->
+                <!--                        -->
+                <!--                        <button class="dating_c_btn  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};"  onclick="Appyscript.saveusersetting();" >Update</button> -->
+            </div>
+
+        </div>
+
+
+    </div>
+

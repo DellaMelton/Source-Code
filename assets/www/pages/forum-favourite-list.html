@@ -1,0 +1,27 @@
+﻿<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding  {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{title}}</div>
+        <div class="right"></div>
+    </div>
+</div>
+<div data-page="forum-favourite-list" class="page navbar-through no-toolbar">
+    <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <div class="page-content">
+        <section class="homeScreenSection" id="forumFavouriteScrollContent" onscroll="Appyscript.scrollForumFavouritePage(this);">
+            <div class="homeScreenUserBlock" id="favouriteListId">
+                <!--List-->
+                {{> forumFavouriteListData}}
+            </div>
+            {{#js_compare "this.data.length == '0' "}}
+            <div class="forumErrorMessage" style="display: inline-block;text-align: center;width: 100%;position: absolute;top: 50%;transform: translateY(-50%);">
+                <div class="msg-code">{{> errorpage errorIcon="appyicon-no-data"}} </div>
+            </div>
+            {{/js_compare}}
+        </section>
+    </div>
+</div>

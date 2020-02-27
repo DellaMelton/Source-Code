@@ -1,0 +1,34 @@
+
+
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+
+        <div class="left sliding">
+            <a  style="color:{{@global.style.headerBarIconColor}};"  onclick="mainView.router.back()">
+                <i class="icon icon-left-open-2"  ></i>
+            </a>
+
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{languageSetting.location}}</div>
+        <div class="right">
+            <a onclick="mainView.router.back()" style="color:{{@global.style.headerBarIconColor}};"><i class="icon-ok-4"></i></a></div>
+    </div>
+    </div>
+</div>
+
+<div data-page="foodcourt-MapPage" class="page navbar-through no-toolbar " >
+    <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content">
+        <div class="input-pan">
+            <div class="input-field " style="border-color: {{@global.styleAndNavigation.borderColor}}; "><i class="icon-target-1" ></i><input type="search" id='foodLocationInput' name='foodLocationInput' onKeyPress='fcSearchLocation();' onkeyup='fcSearchLocation();' value="{{currentfoodLoc}}"/>
+            </div>
+            <ul id='plusCodeListIdfood'>
+            </ul>
+        </div>
+        
+            <div style="height: 100%; width: 100%;" id="map"></div>
+        </div>
+    </div>
+
+

@@ -1,0 +1,43 @@
+
+
+<div class="navbar">
+    <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        
+        <div class="left sliding">
+            {{#js_compare "this.showSideMenu == \'1\' "}}
+            
+            {{getNavigation @global.style.layout "menu"}}
+            
+            {{else}}
+            
+            {{#root_Compare @global.style.layout "==" "slidemenu"}}
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+                <i class="icon icon-left-open-2"  ></i></a>
+            {{else}}
+            {{#root_Compare @global.style.layout "==" "bottom"}}
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+                <i class="icon icon-left-open-2"  ></i></a>
+            {{else}}
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};" onClick="Appyscript.clickHome()">
+                <i class="icon icon-left-open-2"  ></i></a>
+            {{/root_Compare}}
+            {{/root_Compare}}
+            
+            {{/js_compare}}
+            
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{languageSetting.location}}</div>
+    </div>
+</div>
+
+<div data-page="contact-MapPage" class="page navbar-through no-toolbar " >
+    <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content">
+        
+        
+            <div style="height: 100%; width: 100%;" id="map"></div>
+        </div>
+    </div>
+
+

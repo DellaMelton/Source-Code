@@ -1,0 +1,76 @@
+<div class="navbar">
+	<div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.My_Demand}}</div>
+		</div>
+	</div>
+</div>
+
+<div data-page="demanddelivery-mydemand" class="page navbar-through no-toolbar ">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+	<div class="page-content">
+		<style>.kilometer{color:{{@global.styleAndNavigation.content[2]}}; } .innerDiv{ border-color:{{@global.styleAndNavigation.borderColor}}; }
+		.icon.active{border-color:{{@global.styleAndNavigation.button[2]}} !important;}
+		.icon.active .v-name{ background-color:{{@global.styleAndNavigation.button[2]}} !important; color:{{@global.styleAndNavigation.button[3]}} !important}
+		.icon.active i.more{display:inline-block !important;}
+            </style>
+		<div id="map-canvas" class="map-section"></div>
+
+		<div class="package-section {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+			<div class="top-section">
+				<div class="row33">
+					<i class="icon-back-in-time bold-icon"></i> {{@global.pageLanguageSetting.distance}} <span class="kilometer">00 KM </span>
+				</div>
+				<div class="row67 right-align">
+					<div class="pack-msg"><span class="dur-hours boldText"  style="color:{{@global.styleAndNavigation.content[2]}};">Min. time 00 mins.</span></div>
+				</div>
+			</div>
+
+
+
+			<!------- Vechile Type -------->
+			<div class="vechile-type">
+				<div class="centerContent" style="height: 100px !important;">
+					{{#data}}
+					<div class="circle icon-details">
+						<div class="icon" id="{{@index}}iconActive" style="border-color:{{@global.styleAndNavigation.content[2]}}" onclick="dDPriceDetails(this)" index="{{@index}}">
+							<div>
+								{{#js_compare "this.vehicleInfo.type != 'custom'"}}
+								<i class="{{vehicleInfo.icon}}" style="color:{{@global.styleAndNavigation.content[2]}}"></i>
+								{{else}}
+								<img src="{{vehicleInfo.icon}}">
+								{{/js_compare}}
+							</div>
+							<span class="v-name {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="background-color:{{@global.styleAndNavigation.secondaryButton[0]}}; color:{{@global.styleAndNavigation.secondaryButton[1]}}">{{vehicleInfo.name}}</span>
+							{{#if @global.ecommCurrencySymbol}}
+								<span  onclick="dDOpenPriceDetails();" class="v-price {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" >{{format_currency @global.currencyData}}{{priceDetail.finalAmountToPay}} <i class="more"  style="background-color:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}}">i</i></span>
+							{{else}}
+								<span  onclick="dDOpenPriceDetails();" class="v-price {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" >{{priceDetail.finalAmountToPay}} {{format_currency @global.currencyData}} <i class="more"  style="background-color:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}}">i</i></span>
+							{{/if}}
+						</div>
+					</div>
+					{{/data}}
+				</div>
+			</div>
+			<!------- Vechile Type -------->
+
+			<div class="coupon-pan">
+				<div class="innerDiv">
+					<a href="javascript:;" onclick="dDApplyCoupon()" class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.linkColor}}"><b><i class="icon-vcard"></i> {{@global.pageLanguageSetting.apply_coupon}}</b></a>
+					<!--<div class="row50 btn-deman" onclick="dDSetupPayment()"><i class="icon-credit-card-2"></i>{{@global.pageLanguageSetting.Setup_Payment}}</div>-->
+				</div>
+			</div>
+
+			<div class="book-pan">
+				<div class="btn-deman active {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}" onclick="dDBookNow()">{{@global.pageLanguageSetting.dd_book_now}}</div>
+				{{#if @global.advancebooking}}<div class="btn-deman  {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="color:{{@global.styleAndNavigation.secondaryButton[1]}}; background:{{@global.styleAndNavigation.secondaryButton[0]}}" onclick="dDBookLater()">{{@global.pageLanguageSetting.Book_Later}}</div>{{/if}}
+			</div>
+		</div>
+	</div>
+</div>

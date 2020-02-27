@@ -1,0 +1,106 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{data.userData.name}}</div>
+        </div>
+    </div>
+</div>
+
+
+<div data-page="dating-ViewProfile" class="page navbar-through dating hideBorder-{{@global.styleAndNavigation.hideBorder}} {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content">
+        {{else}} <!-- Page content-->
+        <div class="page-content"  style="background-color:{{@global.styleAndNavigation.pageBackroundColor}};">
+            {{/if}}
+
+
+
+            <div class="view-profile">
+                <div data-pagination=".swiper-pagination" data-next-button=".swiper-button-next" data-loop="true" data-prev-button=".swiper-button-prev" data-preload-images="false" data-lazy-loading="true" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {{#data.userPics}}
+                        {{#js_compare "this.imgUrl != false"}}
+                        <div class="swiper-slide" id="datingimageslide" >
+                            <img src="images/image-1x1.png" ontouchstart="return false" id="userprofilepic" style="background:url({{imgUrl}})" class="swiper-lazy img"/>
+                            <div class="preloader"></div>
+                        </div>
+                        {{/js_compare}}
+                        {{else}}
+
+
+
+                        <div class="swiper-slide" id="datingimageslide" >
+                            <img src="images/image-1x1.png" ontouchstart="return false" id="userprofilepic" style="background:url({{data.userData.profile_image}})" class="swiper-lazy img"/>
+                            <div class="preloader"></div>
+                        </div>
+                        {{/data.userPics}}
+                    </div>
+                    <div class="swiper-pagination "></div>
+                </div>
+
+                <div class="dating_like_dislike" style="bottom: inherit;position: relative;margin-top: -37px;text-align: center;">
+                    <a  class="red-bg like-btn trigger"  onclick="Appyscript.userunlike({{data.userData.id}},'{{data.userData.name}}','{{data.userData.profile_image}}');" style="background-color: {{@global.styleAndNavigation.secondaryButton[2]}}; color: {{@global.styleAndNavigation.secondaryButton[3]}};">{{#if @global.styleAndNavigation.datingCrossIconType}}{{#root_Compare @global.styleAndNavigation.datingCrossIconType "==" "icon"}}<span class="{{@global.styleAndNavigation.datingCrossIcon}}"></span>{{else}}<img src="{{@global.styleAndNavigation.datingCrossIcon}}"> {{/root_Compare}}{{else}}<span class="icon-cancel"></span>{{/if}}</a>
+                    <a  class="like-btn trigger" style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};"   onclick="Appyscript.userlike({{data.userData.id}},'{{data.userData.name}}','{{data.userData.profile_image}}');">{{#if @global.styleAndNavigation.datingHeartIconType}}{{#root_Compare @global.styleAndNavigation.datingHeartIconType "==" "icon"}}<span class="{{@global.styleAndNavigation.datingHeartIcon}}"></span>{{else}}<img src="{{@global.styleAndNavigation.datingHeartIcon}}"> {{/root_Compare}}{{else}}<span class="icon-heart-1"></span>{{/if}}</a>
+
+                </div>
+
+                <div class="profile-des">
+
+                    <h2 class="dating_title text-center {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}">{{data.userData.name}}, {{data.age}}
+                        <span class="inside_element">{{locationManage data.customProfile[6].fieldValue}}</span>
+                    </h2>
+
+                    <!--                           <div class="dating_sub_title text-center  {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"  id ="profileSummary" style="color:{{@global.styleAndNavigation.heading[2]}}"><span style="font-size:80%">{{data.customProfile[2].fieldLabel}}</span><span style="border-color: {{@global.styleAndNavigation.heading[2]}};opacity: .4;"></span></div>-->
+
+
+                    <div class="dating_sub_title text-center  {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}"  id ="profileSummary" style="color:{{@global.styleAndNavigation.heading[2]}}"><span style="font-size:80%">{{data.customProfile[2].fieldLabel}}</span><span style="border-color: {{@global.styleAndNavigation.heading[2]}};opacity: .4;"></span></div>
+                    <div class="truncate">
+                        <p>{{data.customProfile[2].fieldValue}}
+                        </p>
+                    </div>
+
+
+                    <div class="dating_sub_title text-center {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}"><span style="font-size:80%">{{@global.pageLanguageSetting.basic_information}}</span><span style="border-color: {{@global.styleAndNavigation.heading[2]}};opacity: .4;"></span></div>
+                    <ul class="basic_information {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}};">
+                        {{#data.customProfile}}
+
+
+
+                        {{#js_compare "this.isHideField !='1'  && this.customFieldActive != '0'"}}
+
+
+                            {{#js_compare "this.addField == \'checkbox\' || this.addField == \'multiselect\'"}}
+                                <li><span>{{fieldLabel}}:</span>{{replaceHashCheckbox fieldValue addField}}</li>
+                            {{else}}
+
+                                {{#js_compare "this.customFieldTagId == 'dating_tag_6' && this.isHideField !='1' "}}
+                                    <li><span>{{fieldLabel}}:</span>{{ageHelpervalue fieldValue}}</li>
+                                {{/js_compare}}
+                                <!--{{#js_compare "this.customFieldTagId == 'dating_tag_7' && this.isHideField !='1' "}}-->
+                                    <!--<li><span>{{fieldLabel}}:</span>{{fieldValue}}</li>-->
+                                <!--{{/js_compare}}-->
+
+                            {{else if}}
+                                {{#js_compare "this.customFieldTagId != 'dating_tag_6' && this.customFieldTagId != 'dating_tag_7' && this.customFieldTagId != 'dating_tag_3'  "}}
+                                    {{checkvaluefield fieldLabel fieldValue}}
+                                {{/js_compare}}
+                            {{/js_compare}}
+                        {{/js_compare}}
+
+
+                        {{/data.customProfile}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+

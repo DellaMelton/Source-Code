@@ -1,0 +1,42 @@
+<div class="popup menu-popup tablet-fullscreen">
+    <div class="view">
+            <div class="navbar"><div class="navbar-inner " style="background-color:{{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left sliding">
+                    <a href="" class="close link icon-left-open-2 close-popup" style="color:{{@global.style.headerBarIconColor}};">
+                    </a>
+                </div>
+                <div class="center sliding">
+                    <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}"> Profile</div>
+                </div>
+                <div class="right"></div>
+            </div></div>
+            
+            
+        <div class="pages" style="background-color: {{@global.styleAndNavigation.pageBgColor}}">
+            <div class="page hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+
+                <div class="page-content" style="background-color: {{@global.styleAndNavigation.menu[2]}};">
+                <div class="profile-image profile-edit" style="margin-top:100px;">
+                	<div class="profileBackground" ></div>
+                    <div class="profileContentBx">
+                        <div class="profileBx" style="text-align:center;">
+                            <span class="image"  onclick="selectPhotoDir(0,'profile')">
+                            <img src="images/image-1x1.png" style="background-image:url({{image}});height:100px;width:100px;border-radius: 100%;border: 5px solid  {{@global.styleAndNavigation.menu[4]}};background-size:cover;" id="profileImageDir" alt=""></span>
+                        </div>
+                        <!--<span class="name" id="userName" style="">{{name}}</span>
+                        <span class="location" id="userLocation" style="">{{location}}</span>-->
+                    </div>    
+                </div>
+                
+                <div class="input-group" style="text-align:center;text-align: center;display: flex;max-width: 235px;border: 1px solid  {{@global.styleAndNavigation.form[3]}}; margin: 6px auto;padding: 5px 0px; background:{{@global.styleAndNavigation.form[5]}}">
+                      <span class="input-group-addon iconz-user {{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" style="vertical-align:middle;color:{{@global.styleAndNavigation.form[6]}};padding: 0px 5px;"> </span>
+                      <input type="text" class="form-control  {{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" style="background:transparent;border:0px;vertical-align:middle;vertical-align: text-bottom;color:{{@global.styleAndNavigation.form[2]}};" placeholder="Username" aria-describedby="basic-addon1" id="profileName" value="{{name}}">
+                    </div>
+                    <div class="input-group" style="text-align:center;">
+                      <button class="hyper-sent-btn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" style="max-width: 240px;padding: 10px;box-shadow: 0px;border: 0px;background-color:  {{@global.styleAndNavigation.button[2]}};color:  {{@global.styleAndNavigation.button[3]}};width:100%;"  value="{{saveBtnTxt}}" onclick="Appyscript.saveProfilePicForForum()">{{saveBtnTxt}}</button>
+                    </div>
+        </div>
+    </div>
+</div>
+	</div>
+</div>

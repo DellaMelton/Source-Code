@@ -1,0 +1,132 @@
+<div class="popup menu-popup tablet-fullscreen cstm-popup">
+    <div class="view toolbar-through">
+        <div class="pages">
+            <div class="page">
+                <section class="page-content {{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" style="background:{{@global.styleAndNavigation.menu[2]}}; color:{{@global.styleAndNavigation.menu[3]}}">
+                    <div class="navigation-pan">
+                        <div class="profile-pan" style="position: absolute;">
+                            <a href="#" class="edit-image {{@global.styleAndNavigation.menu[0]}} {{@global.styleAndNavigation.menu[1]}}" style="color:{{@global.styleAndNavigation.linkColor}};"><i class="close icon-cancel link close-popup"></i></a>
+                        </div>
+                        <div class="icon-details">
+                            <p class="icon" style="border-color:{{@global.styleAndNavigation.menu[3]}}">
+                                {{#js_compare "this.vehicleInfo.type != 'custom'"}}
+                                <span class="{{vehicleInfo.icon}}"  style="color:{{@global.styleAndNavigation.menu[3]}}"></span>
+                                {{else}}
+                                <img src="{{vehicleInfo.icon}}">
+                                {{/js_compare}}
+                            </p>
+                            <p class="boldText full-width font-large"  style="color:{{@global.styleAndNavigation.menu[3]}}">{{vehicleInfo.name}}</p>
+                            <p  style="color:{{@global.styleAndNavigation.menu[3]}}">{{@global.pageLanguageSetting.Affordable_Compact_Rides}}</p>
+
+                        </div>
+                        <div class="sub-menu hyperlocal-menu">
+                            <div class="base-cont">
+                                {{#priceDetail}}
+                                {{#otherServiceChanges}}
+                                <div class="deliverypWay">
+                                    <span class="left">{{label}}</span>
+                                    {{#if @global.ecommCurrencySymbol}}
+                                        <span class="right">{{format_currency @global.currencyData}}{{price}}</span>
+                                    {{else}}
+                                        <span class="right">{{price}} {{format_currency @global.currencyData}}</span>
+                                    {{/if}}
+                                </div>
+                                {{/otherServiceChanges}}
+                                {{/priceDetail}}
+                                <div class="deliverypWay">
+                                    <span class="left">{{@global.pageLanguageSetting.Dd_Actual_Price}}</span>
+                                    {{#if @global.ecommCurrencySymbol}}
+                                        <span class="right">{{format_currency @global.currencyData}}{{priceDetail.actualPrice}}</span>
+                                    {{else}}
+                                        <span class="right">{{priceDetail.actualPrice}} {{format_currency @global.currencyData}}</span>
+                                    {{/if}}
+                                </div>
+
+                                {{#js_compare "this.priceDetail.taxInformation != undefined"}}
+                                <div class="deliverypWay">
+                                    <span class="left">{{@global.pageLanguageSetting.TAX_AMOUNT}}</span>
+                                    {{#js_compare "this.priceDetail.taxInformation.taxType == 2"}}
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">{{format_currency @global.currencyData}}{{priceDetail.taxInformation.taxAmount}}{{@global.pageLanguageSetting.Dd_Flat}}</span>
+                                        {{else}}
+                                            <span class="right">{{priceDetail.taxInformation.taxAmount}} {{format_currency @global.currencyData}}{{@global.pageLanguageSetting.Dd_Flat}}</span>
+                                        {{/if}}
+                                        {{else}}
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">{{format_currency @global.currencyData}}{{priceDetail.taxInformation.taxAmount}}%</span>
+                                        {{else}}
+                                            <span class="right">{{priceDetail.taxInformation.taxAmount}} {{format_currency @global.currencyData}}%</span>
+                                        {{/if}}
+                                    {{/js_compare}}
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.priceDetail.misctaxInformation != undefined"}}
+                                <div class="deliverypWay">
+                                    {{#priceDetail.misctaxInformation}}
+                                    <span class="left">{{taxLabel}}</span>
+                                    {{#js_compare "this.taxType == 2"}}
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">{{format_currency @global.currencyData}}{{taxAmount}}{{@global.pageLanguageSetting.Dd_Flat}}</span>
+                                        {{else}}
+                                            <span class="right">{{taxAmount}} {{format_currency @global.currencyData}}{{@global.pageLanguageSetting.Dd_Flat}}</span>
+                                        {{/if}}
+                                    {{else}}
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">{{format_currency @global.currencyData}}{{taxAmount}}%</span>
+                                        {{else}}
+                                            <span class="right">{{taxAmount}} {{format_currency @global.currencyData}}%</span>
+                                        {{/if}}
+                                    {{/js_compare}}
+                                    {{/priceDetail.misctaxInformation}}
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.priceDetail.discountInformation != undefined"}}
+                                <div class="deliverypWay">
+                                    <span class="left">{{@global.pageLanguageSetting.Dd_Discount_Amount}}</span>
+                                    {{#js_compare "this.priceDetail.discountInformation.discountType == 2"}}
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">-{{format_currency @global.currencyData}}{{priceDetail.discountInformation.discountAmount}}{{@global.pageLanguageSetting.Dd_Flat}}</span>
+                                        {{else}}
+                                            <span class="right">-{{priceDetail.discountInformation.discountAmount}} {{format_currency @global.currencyData}}{{@global.pageLanguageSetting.Dd_Flat}}</span>
+                                        {{/if}}
+                                    {{else}}
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">-{{format_currency @global.currencyData}}{{priceDetail.discountInformation.discountAmount}}%</span>
+                                        {{else}}
+                                            <span class="right">-{{priceDetail.discountInformation.discountAmount}} {{format_currency @global.currencyData}}%</span>
+                                        {{/if}}
+                                    {{/js_compare}}
+                                </div>
+                                {{/js_compare}}
+
+                                {{#js_compare "this.priceDetail.couponInformation != undefined"}}
+                                <div class="deliverypWay">
+                                    <span class="left">{{@global.pageLanguageSetting.Dd_Coupon_Amount}}</span>
+                                        {{#if @global.ecommCurrencySymbol}}
+                                            <span class="right">-{{format_currency @global.currencyData}}{{priceDetail.couponInformation.discountCouponAmount}}</span>
+                                        {{else}}
+                                            <span class="right">-{{priceDetail.couponInformation.discountCouponAmount}} {{format_currency @global.currencyData}}</span>
+                                        {{/if}}
+                                </div>
+                                {{/js_compare}}
+
+                                <div class="deliverypWay">
+                                    <span class="left boldText">{{@global.pageLanguageSetting.Dd_grand_total}}:</span>
+                                    {{#if @global.ecommCurrencySymbol}}
+                                        <span class="right boldText">{{format_currency @global.currencyData}}{{finalFriceHelper priceDetail.finalAmountToPay}}</span>
+                                    {{else}}
+                                        <span class="right boldText">{{priceDetail.finalAmountToPay}} {{format_currency @global.currencyData}}</span>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

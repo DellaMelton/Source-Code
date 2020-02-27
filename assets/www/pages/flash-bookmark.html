@@ -1,0 +1,33 @@
+<div class="navbar"><div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        <a  style="color:{{@global.style.headerBarIconColor}};"  onclick="mainView.router.back()">
+            <i class="icon icon-left-open-2"  ></i>
+        </a>
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{pageTitle}}</div>
+    <div class="right"></div>
+</div></div>
+
+<div data-page="flashcard-likesPage" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <style>.swipe_like.on  a {color:{{@global.styleAndNavigation.iconActiveColor}} !important}</style>
+    <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <div class="page-content">
+        <div data-preload-images="false" data-lazy-loading="true" class="swiper-container flashswiper1">
+            
+            <div class="swiper-wrapper img-{{@global.styleAndNavigation.layout}} heading-{{@global.styleAndNavigation.subheading[5]}}">
+                
+                {{#list}}
+                <div class="swiper-slide" data-index="{{@index}}">
+                  
+                    
+                </div>
+                {{else}}
+                <div class="msg-code">{{> errorpage errorIcon="appyicon-no-data"}} </div>
+                {{/list}}
+            </div>
+            
+        </div>
+    </div>
+</div>
+

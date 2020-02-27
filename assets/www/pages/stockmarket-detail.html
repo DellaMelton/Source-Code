@@ -1,0 +1,129 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}; font-size: {{@global.style.headerBarSize}} ">
+    <div class="left sliding">
+        {{getSlideBack "common"}}
+    </div>
+    <div class="center sliding">{{@global.pageLanguageSetting.stock_market_details}}</div>
+    <div class="right"></div>
+</div></div>
+
+<div data-page="stockmarketdetails-page" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <div class="page-content"  style="background:{{@global.style.appBackground}}">
+        <div class="bodypan stockMarket {{@global.style.appPageFont}}" style="color:{{@global.style.pageTextColor}};">
+
+            {{#stockDataArr}}
+            <div class="stock_details" style="padding:10px;">
+                <div class="stock_details-head">
+                    <div class="row">
+                        <div>
+                            <div class="stockNum" style="font-size: 30px;color:#ffffff;float:left;">{{symbol}}</div>
+                            <div class="stockNum" style="font-size: 30px;color:#ffffff;float:left;">{{latestPrice}}</div>
+                            <div class="stock_percentage" style="float:left;">
+                                <ul style="list-style-type:none; display:inline-block; margin: 0px; padding: 0;padding-top: 12px;">
+
+                                    <li style="color:#32cd32; float:right; padding-left:5px; ont-size:18px;">{{checkPercent changePercent}}%</li>
+                                </ul>
+                            </div>
+                            <div class="stock_datetime" style="display: inline-block;clear: both;width: 100%;">
+                                <div style="color:#cccccc;font-size:12px;">{{latestTime}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="stocks_listing" style="padding-right:3px;float:left;width:48%;">
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.open}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{open}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.high}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{high}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.low}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{low}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.vol}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{latestVolume}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div clss="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.close}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{close}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div clss="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">PreVol</div>
+                                    <div style="color:#ffffff;font-size:13px">{{previousVolume}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div clss="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">PriExch</div>
+                                    <div style="color:#ffffff;font-size:13px">{{primaryExchange}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stocks_listing" style="float:left; padding-left:3px;width:48%;">
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.wk_high}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{week52High}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.wk_low}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{week52Low}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.avg_vol}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{avgTotalVolume}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.extended_price}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{extendedPrice}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">{{@global.pageLanguageSetting.extended_change}}</div>
+                                    <div style="color:#ffffff;font-size:13px">{{extendedChange}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">P/Rat</div>
+                                    <div style="color:#ffffff;font-size:13px">{{peRatio}}</div>
+                                </div>
+                            </div>
+                            <div class="stocks_details">
+                                <div class="stock_elements" style="display:flex;justify-content:space-between;">
+                                    <div style="text-transform:capitalize;color:#cccccc;font-size:14px">PreClose</div>
+                                    <div style="color:#ffffff;font-size:13px">{{previousClose}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {{/stockDataArr}}
+        </div>
+    </div>
+</div>

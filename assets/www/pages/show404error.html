@@ -1,0 +1,27 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        {{getSlideBack ""}}
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{title}}</div>
+    <div class="right"></div>
+</div></div>
+
+
+<div data-page="error-page" class="page navbar-through no-toolbar">
+    <!-- Page content-->
+    <div class="page-content">
+        <div class="msg-code">
+
+            <div class="msg-container">
+                {{#js_compare "this.iconType === 'img' "}}<img src="{{errorIcon}}" class="imgIcon">
+                {{else}}
+                <span class="icon {{errorIcon}}" style="color:{{@global.style.pageIconColor}}; font-family:{{@global.style.appPageFont}};">  </span>
+                {{/js_compare}}
+                {{#if heading}}<h2 class="{{@global.style.appPageShsize}}" style="color:{{@global.style.pageTextColor}}; font-family:{{@global.style.appPageFont}}; display:none">{{heading}}</h2>  {{/if}}
+                <span class="{{@global.style.appPageCsize}}" style="color:{{@global.style.pageTextColor}}; font-family:{{@global.style.appPageFont}}; margin-top:10px; display:none;">{{errortext}}</span>
+
+            </div>
+        </div>
+
+    </div>
+</div>

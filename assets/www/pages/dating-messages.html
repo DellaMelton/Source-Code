@@ -1,0 +1,122 @@
+<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}; font-size: {{@global.style.headerBarSize}} ">
+        <div class="left sliding">
+
+            <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+                <i class="icon icon-left-open-2"></i>
+            </a>
+        </div>
+        <div class="center sliding">
+            <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.messages}}</div>
+        </div>
+        <div class="right">
+            <div class="notification_dating_wp"><a href="#" onclick="Appyscript.datingnotification();"   style="color:{{@global.style.headerBarIconColor}};"><i class="icon-bell-2"><span class="count"  style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};border-color:{{@global.styleAndNavigation.fieldBorderColor}};" >{{@global.pageLanguageSetting.notifycount}}</span></i></a></div>
+        </div>
+    </div>
+</div>
+
+
+<div data-page="dating-Messages" class="page navbar-through toolbar-fixed no-toolbar dating hideBorder-{{@global.styleAndNavigation.hideBorder}}">
+    {{#if @global.styleAndNavigation.background}} <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; ">
+        {{else}} <!-- Page content-->
+        <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}};  background-color:{{@global.styleAndNavigation.pageBackroundColor}};">
+            {{/if}}
+<style type="text/css">
+                .dating .matchingList li a,.dating .matching-page .search-box .right-inner-addon input{background-color:{{@global.styleAndNavigation.fieldBgColor}}; color:{{@global.styleAndNavigation.fieldTextColor}}}
+                .dating .matching-page .search-box .right-inner-addon input::placeholder{color:{{@global.styleAndNavigation.fieldTextColor}}; opacity:1}
+                .dating .matching-page .search-box .right-inner-addon i{color:{{@global.styleAndNavigation.iconColor}};}
+                .matchingList li{background-color:{{@global.styleAndNavigation.fieldBgColor}};}
+</style>
+            <div class="bodypan matching-page">
+                <div class="row ">
+                    <div class="col-md-12 search-box">
+                        <div class="right-inner-addon">
+                            <i class="iconz-search"></i>
+                            <input class="form-control"  id="myInput" placeholder="{{@global.pageLanguageSetting.Search}}" type="text"  onKeyUp="datingMatchFilter(this)" style="margin:0">
+                        </div>
+                    </div>
+                </div>
+
+                <!--                <div class="dating_sub_title text-center {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}"><span style="font-size:80%">Online Users</span><span style="border-color: {{@global.styleAndNavigation.heading[2]}};opacity: .4;"></span></div> -->
+                <!--                <div class="dating_chat_user_wp">-->
+                <!--                <ul class="dating_chat_user">-->
+                <!--                    <li class="online-user">-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li class="online-user">-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li class="online-user">-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <img style="background:url(https://cdncloudfront.com/images/Female.png) no-repeat 0 0;" src="images/image-1x1.png" alt="">-->
+                <!--                        <span>Christy</span>-->
+                <!--                        <i class="icon-circle"></i>-->
+                <!--                    </li>-->
+                <!--                </ul>-->
+                <!--                </div>-->
+
+
+
+            </div>
+
+
+
+            <ul class="matchingList" id="myUL">
+                <div id="Datingmatcheslist" style="display:none" >
+                    <span>No User Found </span>
+                </div>
+
+                {{#machedData}}
+                <li>
+                    <a onclick="Appyscript.datingChat({{userData.id}},'{{userData.profile_image}}','{{userData.name}}');" data-name="{{userData.name}}" id="{{userData.id}}">
+                    <span class="matchingImageWrapper">
+                        <img style="background:url(
+                            {{userData.profile_image}}) no-repeat 0 0;" src="images/image-1x1.png" alt="">
+
+                            {{#js_compare "this.chatCount == '0'"}}  {{else}}<span id="chatid{{userData.id}}"  class="count"  style="background-color: {{@global.styleAndNavigation.button[2]}}; color: {{@global.styleAndNavigation.button[3]}};border-color:{{@global.styleAndNavigation.fieldBorderColor}};" >{{chatCount}}
+
+                            </span> {{/js_compare}}
+                            </span>
+                        <div class="matchingListText">
+                            <p class="name trunkTxt">{{userData.name}}</p>
+                            <p class="position">{{userDescription.jobTitle}}</p>
+                        </div>
+                    </a>
+                </li>
+                {{/machedData}}
+            </ul>
+
+        </div>
+    </div>
+
+

@@ -1,0 +1,104 @@
+<div class="popup tablet-fullscreen">
+    <style>.popup .preloader {
+        display: none;
+        height: 20px;
+        margin-top: -10px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 20px;
+    }
+    .popup a.link {
+        color: #fff;
+    }
+    .plan_designOverlay{
+        padding: 20px;}
+    
+    
+    .plan_issues {
+        width: 100%;
+        overflow-x: scroll;
+        font-size: 16px;
+        list-style: outside none none;
+        margin: 0;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0px;
+    }
+    .plan_issues li {
+        width: 100%;
+        border: 1px solid rgb(143, 141, 147);
+        margin-left: 10px;
+        padding: 10px 10px 60px 10px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .plan_issues li b{font-size:14px; text-transform:uppercase; display:block; }
+    .plan_issues li span{padding:15px 0; display:block;}
+    <!--.plan_issues li a{-->
+        <!--color: #fff;-->
+        <!--background: #243a4b;-->
+        <!--padding: 5px;-->
+        <!--font-size: 16px;-->
+        <!--display: block;-->
+        <!--margin: 10px 0;-->
+        <!---->
+        <!--}-->
+    
+    .plan_issues li a {
+        padding: 5px;
+        font-size: 16px;
+        display: block;
+        margin: 10px 0;
+        position: absolute;
+        width: calc(100% - 30px);
+        bottom: 3px;
+    }
+    
+        </style>
+    <div class="view navbar-fixed">
+        <div class="navbar">
+            <div class="navbar-inner" style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+                <div class="left">   </div>
+                <div class="center {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.commonLanguageSetting.mob_activate_account}}</div>
+                <div class="right"><a href="#" class="link" onclick="Appyscript.loginPage()">X</a></div>
+            </div>
+        </div>
+        <div class="backgroundAnimation">
+            <div class="view background-view">{{> mainBackground}}</div>
+        </div>
+        <div class="pages">
+            <div class="page" data-page="login-activeStatus">
+                <div class="page-content {{@global.style.appPageFont}} {{@global.style.appPageCsize}}" style="color:{{@global.style.pageTextColor}}">
+                    <div class="page-content">
+                        <style type="text/css">
+                            .appypie-login ::-webkit-input-placeholder {
+                                color:{{@global.loginData.loginStyleAndNavigation.loginFieldBgColor[1]}};
+                            }
+                            .appypie-login :-moz-placeholder {
+                                color:{{@global.loginData.loginStyleAndNavigation.loginFieldBgColor[1]}};
+                            }
+                            .appypie-login ::-moz-placeholder {
+                                color:{{@global.loginData.loginStyleAndNavigation.loginFieldBgColor[1]}};
+                            }
+                            .appypie-login :-ms-input-placeholder {
+                                color:{{@global.loginData.loginStyleAndNavigation.loginFieldBgColor[1]}};
+                            }
+                        </style>
+                        {{#@global.loginData.loginStyleAndNavigation}}
+                        <div class="appypie-login login-page theme-{{loginLayout}} {{loginContent[0]}} {{loginContent[1]}} content-{{loginContent[3]}} heading-{{loginHeading[3]}}" style="color:{{loginContent[2]}};">
+                            <div class="heading {{loginHeading[0]}} {{loginHeading[1]}}" style="text-align: center;">{{@global.commonLanguageSetting.your_account_inactive_changed_activate}}</div>
+                            <ul>
+                                <li class="login-btn" onclick="Appyscript.activeLoginStatus();"><a  class="{{loginButton[0]}} {{loginButton[1]}} " style="background-color:{{loginButton[2]}}; color:{{loginButton[3]}}">{{@global.commonLanguageSetting.mob_activate_account}}</a></li>
+                            </ul>
+                        </div>
+
+                        {{/@global.loginData.loginStyleAndNavigation}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

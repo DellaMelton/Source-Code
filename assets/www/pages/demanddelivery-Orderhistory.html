@@ -1,0 +1,142 @@
+<div class="navbar">
+	<div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+		<div class="left sliding">
+			<a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+				<i class="icon icon-left-open-2"></i>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{@global.pageLanguageSetting.order_history_food}}</div>
+		</div>
+	</div>
+</div>
+
+<div data-page="demanddelivery-orderHistory" class="page navbar-through no-toolbar">
+	<!-- Page content-->
+	<div class="backgroundAnimation">{{> innerBackground}}</div>
+        <div class="page-content">
+			<style>.main-subheader .active{    background: {{@global.styleAndNavigation.tab[2]}};     color: {{@global.styleAndNavigation.tab[3]}}!important; } .main-subheader{  background: {{@global.styleAndNavigation.tab[0]}};     color: {{@global.styleAndNavigation.tab[1]}};}
+.orderInfo{color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}}
+.detailBtn .btn-deman{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}}}
+.phone-number{color:{{@global.styleAndNavigation.button[3]}}; background:{{@global.styleAndNavigation.button[2]}} }
+</style>
+        <div class="main-container-de  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; text-align:{{@global.styleAndNavigation.content[3]}}">
+		<div class="order-history">
+			<div class="main-subheader">
+				<span class="inProgress">{{@global.pageLanguageSetting.In_Progress}}</span>
+				<span class="allOrders">{{@global.pageLanguageSetting.All_Order}}</span>
+			</div>
+
+			<!------------ In Progress Tab 1 --------------->
+			<div>
+				{{#if data.length}}
+					{{#data}}
+						{{#js_compare "this.orderStatus == 1 || this.orderStatus == 2 || this.orderStatus == 3 || this.orderStatus == 4 || this.orderStatus == 5"}}
+							<div class="orderInfo inProgressTab  {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" id="inProgressDD{{@index}}">
+								<div>
+									<i class="icon-right-open detail-open"></i>
+									{{#js_compare "this.deliveryBoyInfo != undefined"}}
+										<span class="phone-number" onclick="dDContactSupport('{{deliveryBoyInfo.phone}}')">
+												<span class="iconz-phone1"></span>
+										</span>
+									{{/js_compare}}
+									<div onclick="dDOrderStatus('{{orderId}}','{{dDOrderStatusKey}}','{{addedon}}','{{orderStatus}}')">
+										<div class="order-row">
+											<span class="boldText">{{@global.pageLanguageSetting.order_id_food}}:</span>
+											<span class="boldText">{{orderId}} <small>{{@global.pageLanguageSetting.Placed_On}} {{addedon}}</small></span>
+
+										</div>
+
+										<div class="order-row">
+											<span class="boldText">{{@global.pageLanguageSetting.To}}:</span>
+											<span class="ligthText">{{dropToDetail.recieverName}}</span>
+										</div>
+
+										<div class="order-row">
+											<span class="boldText">{{@global.pageLanguageSetting.amount}}:</span>
+											{{#if @global.ecommCurrencySymbol}}
+												<span class="ligthText">{{format_currency priceDetail.currencySymbol}}{{priceDetail.finalAmountToPay}}</span>
+											{{else}}
+												<span class="ligthText">{{priceDetail.finalAmountToPay}} {{format_currency priceDetail.currencySymbol}}</span>
+											{{/if}}
+										</div>
+
+										<div class="order-row">
+											<span class="boldText">{{@global.pageLanguageSetting.status}}:</span>
+											<span class="ligthText">{{dDOrderStatusKey}}</span>
+										</div>
+										{{#js_compare "this.deliveryBoyInfo != undefined"}}
+											<div class="order-row">
+												<span class="boldText">{{@global.pageLanguageSetting.Delivery_By}}:</span>
+												<span class="ligthText">{{deliveryBoyInfo.firstName}} {{deliveryBoyInfo.lastName}}</span>
+											</div>
+										{{/js_compare}}
+									</div>
+							    </div>
+
+								<div class="detailBtn {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" >
+									{{#js_compare "this.orderStatus == 1"}}
+										<button index="{{@index}}" onclick="dDCancelOrder('{{orderId}}',this)" class="btn-deman {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}">{{@global.pageLanguageSetting.store_cancel_order}}</button>
+										{{#js_compare "this.bookLater == 1"}}
+											<button class="btn-deman right {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" onclick="dDRescheduleOrder('{{orderId}}','{{pickupFromDetail.latitude}}','{{pickupFromDetail.longitude}}','{{dropToDetail.latitude}}','{{dropToDetail.longitude}}')">{{@global.pageLanguageSetting.Reschedule}}</button>
+										{{/js_compare}}
+									{{/js_compare}}
+								</div>
+							</div>
+
+							<!------------ All Order Tab 2 --------------->
+						{{else}}
+
+							<div class="orderInfo allOrdersTab">
+								<i class="icon-right-open detail-open"></i>
+								<div class="order-row">
+									<span class="boldText">{{@global.pageLanguageSetting.order_id_food}}:</span>
+									<span class="boldText">{{orderId}}<small>{{@global.pageLanguageSetting.Placed_On}} {{addedon}}</small></span>
+								</div>
+
+								<div class="order-row">
+									<span class="boldText">{{@global.pageLanguageSetting.To}}:</span>
+									<span class="ligthText">{{dropToDetail.recieverName}}</span>
+								</div>
+
+								<div class="order-row">
+									<span class="boldText">{{@global.pageLanguageSetting.amount}}:</span>
+									{{#if @global.ecommCurrencySymbol}}
+										<span class="ligthText">{{format_currency priceDetail.currencySymbol}}{{priceDetail.finalAmountToPay}}</span>
+									{{else}}
+										<span class="ligthText">{{priceDetail.finalAmountToPay}} {{format_currency priceDetail.currencySymbol}}</span>
+									{{/if}}
+								</div>
+
+								<div class="order-row">
+									<span class="boldText">{{@global.pageLanguageSetting.status}}:</span>
+									<span class="ligthText">{{dDOrderStatusKey}}</span>
+								</div>
+								{{#js_compare "this.deliveryBoyInfo != undefined"}}
+									<div class="order-row">
+										<span class="boldText">{{@global.pageLanguageSetting.Delivery_By}}:</span>
+										<span class="ligthText">{{deliveryBoyInfo.firstName}} {{deliveryBoyInfo.lastName}}</span>
+									</div>
+
+
+									<div class="cancelBtn">
+										<a href=""></a>
+										<a class="btn-deman bg-none {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" onclick="dDOrderDetails('{{orderId}}','{{dDOrderStatusKey}}','{{addedon}}','{{orderStatus}}','{{pickupFromDetail.pickupAddress}}','{{pickupFromDetail.senderName}}','{{pickupFromDetail.senderMobileNo}}','{{dropToDetail.dropAddress}}','{{dropToDetail.recieverName}}','{{dropToDetail.recieverMobileNo}}','{{orderDeliveredDate}}','{{vehicleInfo.name}}','{{priceDetail.finalAmountToPay}}','{{paymentDetail.paymentLabel}}','{{orderPickedDate}}','{{shippingType.type}}','{{shippingType.content}}','{{shippingType.declaredValue}}','{{priceDetail.currencySymbol}}','{{deliveryBoyInfo.firstName}}','{{deliveryBoyInfo.lastName}}')">{{@global.pageLanguageSetting.View_Details}}</a>
+									</div>
+								{{else}}
+									<div class="cancelBtn">
+										<a href=""></a>
+										<a class="btn-deman bg-none {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" onclick="dDOrderDetails('{{orderId}}','{{dDOrderStatusKey}}','{{addedon}}','{{orderStatus}}','{{pickupFromDetail.pickupAddress}}','{{pickupFromDetail.senderName}}','{{pickupFromDetail.senderMobileNo}}','{{dropToDetail.dropAddress}}','{{dropToDetail.recieverName}}','{{dropToDetail.recieverMobileNo}}','{{orderDeliveredDate}}','{{vehicleInfo.name}}','{{priceDetail.finalAmountToPay}}','{{paymentDetail.paymentLabel}}','{{orderPickedDate}}','{{shippingType.type}}','{{shippingType.content}}','{{shippingType.declaredValue}}','{{priceDetail.currencySymbol}}')">{{@global.pageLanguageSetting.View_Details}}</a>
+									</div>
+								{{/js_compare}}
+
+							</div>
+						{{/js_compare}}
+					{{/data}}
+				{{/if}}
+			</div>
+
+		</div> 
+        </div>
+    </div>
+</div>

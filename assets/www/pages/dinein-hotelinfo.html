@@ -1,0 +1,114 @@
+<div class="navbar"><div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+    <div class="left sliding">
+        <a href="index" class="link back" style="color:{{@global.style.headerBarIconColor}};">
+            <i class="icon icon-left-open-2"></i>
+        </a>
+    </div>
+    <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">
+        <div class="topHeader">
+            {{name}}
+        </div>
+    </div>
+
+    <div class="right">
+        <a onclick="CartPageDineIn('cart')" class="localHeaderIconRight ui-link" style="color:{{@global.style.headerBarIconColor}};"> <span class="subValue" style="color:{{@global.styleAndNavigation.button[3]}};background:{{@global.styleAndNavigation.button[2]}};">{{@global.foodCartCount}}</span><div class="headerIcon"><i class="icon-cart"></i></div></a>
+    </div>
+</div>
+</div>
+
+<div data-page="dinein-Category" class="page navbar-through no-toolbar toolbar-through">
+    <div class="toolbar ">
+        <div class="toolbar-inner toolbar-bottom"  style="background-color:{{@global.styleAndNavigation.button[2]}}; color:{{@global.styleAndNavigation.button[3]}}">
+            <button class="hotel-sent-btn2 {{@global.styleAndNavigation.button[0]}} {{@global.styleAndNavigation.button[1]}}" onclick="hotelMenuPageDineIn(this,id);">{{@global.pageLanguageSetting.place_order_food}}</button>
+        </div>
+    </div>
+    <!-- Page content-->
+    <div class="page-content {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+
+        <style>
+		.hotel-sent-btn{background-color:{{@global.styleAndNavigation.offerButton.offerBgColor}}; color:{{@global.styleAndNavigation.offerButton.offerTextColor}} }
+	</style>
+
+        <section class="food-Order">
+
+            <ul class="foodOrder-cat-listing" >
+                <div data-pagination=".swiper-pagination" data-preload-images="false" data-lazy-loading="true" class="swiper-banner swiper-banner-{{@index}} swiper-container swiper-init">
+                    <div class="swiper-wrapper">
+                        {{#imgList}}
+                        <div class="swiper-slide">
+
+
+                            {{#js_compare "this.type == 'video'"}}
+                            {{#js_compare "this.videoType == 'custom'"}}
+                            <div class="swiper-slide" onclick="openVideoStreamFoodCourtDineIn('{{name}}','{{@root.name}}');">
+                                <img src="images/transparent-bg.png" class="swiper-lazy" />
+                                <div class="video-icon icon-play-circle2-1"></div>
+                                <div class="preloader"></div>
+                            </div>
+                            {{else}}
+                            <div class="swiper-slide" onclick="openYouTubeVedioFoodCourtDineIn('{{name}}','{{@root.name}}');">
+                                <img src="images/transparent-bg.png" class="swiper-lazy" style="background-image:url(https://img.youtube.com/vi/{{youtubeID name}}/default.jpg); "/>
+                                <div class="video-icon icon-play-circle2-1"></div>
+                                <div class="preloader"></div>
+                            </div>
+                            {{/js_compare}}
+                            {{else}}
+                            <div class="swiper-slide"  onclick="foodcourtviewimageDineIn('vdetails','{{@index}}');">
+                                <li class="dashboard-image" style="background-image:url({{name}})"><img src="images/transparent-bg.png" alt=""></li>
+                            </div>
+                            {{/js_compare}}
+                        </div>
+                        {{/imgList}}
+                    </div>
+                    <div  class="swiper-pagination banner-pagination-{{@index}}"></div>
+                </div>
+            </ul>
+
+            <div class="top-list-icon" style="color:{{@global.styleAndNavigation.iconColor}};">
+                {{#if @global.setting.share_restra}}<span class="like-btn" onclick="shareVenderDetailsDineIn(this,'{{id}}');"><i class="iconz-share-alt"></i></span>{{/if}}
+               <!-- <span class="like-btn" onclick="shareVenderDetailsDineIn(this,'{{id}}');"><i class="iconz-share-alt"></i></span>-->
+                {{#js_compare "this.favoriteList != '1'"}}
+                <span class="share-btn" onclick="addVenderFavouritesDineIn(this,'{{id}}','add');"><i class="appyicon-like" ></i></span>
+                {{else}}
+                <span class="share-btn" onclick="addVenderFavouritesDineIn(this,'{{id}}','remove');"><i class="icon-heart-1" ></i></span>
+                {{/js_compare}}
+            </div>
+
+            <div class="hotelDetail-page">
+                <div class="hotelDetail-div" style="border-color:{{@global.styleAndNavigation.borderColor}}">
+                    {{#js_compare "this.rating != '0'"}}
+                    <strong onclick="FoodcourtreviewlistDineIn(this);"  class="hotel-rating {{@global.styleAndNavigation.secondaryButton[0]}} {{@global.styleAndNavigation.secondaryButton[1]}}" style="background-color:{{@global.styleAndNavigation.secondaryButton[2]}}; color:{{@global.styleAndNavigation.secondaryButton[3]}}">{{rating}}</strong>
+                    {{/js_compare}}
+                    <h3 class="hotel-heading {{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}"> {{name}} </h3>
+                    <h3 class="hotel-Add {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.activeColor}}; "><i class="icon icon-location" style="color:{{@global.styleAndNavigation.iconColor}}"></i> {{address}} </h3>
+
+                    <span class="callBtn" style="color:{{@global.styleAndNavigation.iconColor}};" > <i class="icon iconz-phone1" onclick="PhoneCallFoodcourtDineIn('{{store_mobile}}');"></i></span>
+                </div>
+
+
+                <div class="hotel-Chargtab {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">
+                    <div class="scroll-view">{{description}}</div>
+                    {{#js_compare "this.vendor_discount != '0'"}}{{#js_compare "this.vendor_discount != ''"}}
+                    <button class="hotel-sent-btn">{{vendor_discount}} % {{@global.pageLanguageSetting.off}}</button>
+                    <p class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.activeColor}}">{{@global.pageLanguageSetting.auto_applies_during_checkout}} </p>
+                    {{/js_compare}} {{/js_compare}}
+                </div>
+
+
+                <div class="hotel-wide" style="border-color:{{@global.styleAndNavigation.borderColor}};">
+                    <ul class="hotel-detailTab">
+                        <li>
+                            <span class="callBtn2 {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="background-color:{{@global.styleAndNavigation.offerButton.offerBgColor}}; color:{{@global.styleAndNavigation.offerButton.offerTextColor}}"onclick="Appyscript.popupPage('dinein-call-waiter')">{{@global.pageLanguageSetting.dining_call_waiter}}</span>
+                        </li>
+                        <li>
+                            <span class="callBtn2 {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="background-color:{{@global.styleAndNavigation.offerButton.offerBgColor}}; color:{{@global.styleAndNavigation.offerButton.offerTextColor}};" onclick="Appyscript.popupPage('dinein-call-bill')">{{@global.pageLanguageSetting.dining_call_for_bill_msg}} </span>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+</div>
+

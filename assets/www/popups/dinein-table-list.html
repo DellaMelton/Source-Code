@@ -1,0 +1,37 @@
+<div class="popup menu-popup tablet-fullscreen">
+    <div class="view">
+        <div class="navbar"><div class="navbar-inner " style="background-color:{{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}}; ">
+            <div class="left sliding">
+                <a href="" class="close link icon-left-open-2 close-popup" style="color:{{@global.style.headerBarIconColor}};" >
+                </a>
+            </div>
+            <div class="center sliding">
+                <div class="topHeader {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}"> {{@global.pageLanguageSetting.dining_select_table}}</div>
+            </div>
+            <div class="right"></div>
+        </div></div>
+
+        <div class="pages" style="color:{{@global.styleAndNavigation.content[2]}}; background:{{@global.styleAndNavigation.pageBgColor}}">
+            <div data-page="dinein-TableList" class="page navbar-through no-toolbar">
+                <div class="page-content">
+                    <style>
+                	.callWaiter ul li {background:{{@global.styleAndNavigation.menu[0]}}; border-color:{{@global.styleAndNavigation.borderColor}}; color:{{@global.styleAndNavigation.menu[2]}} }
+					.callWaiter ul li span{ color:{{@global.styleAndNavigation.menu[1]}} }
+                </style>
+                    <section class="callWaiter tablelist {{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}">
+                        {{#tablelist}}
+                        <ul>
+                            {{#waiterLising}}
+                            <li onclick="Appyscript.diniingtablenumber(this , '{{waiterId}}' , '{{waiterName}}' , '{{waiterPhone}}','{{vendorId}}','{{tableNo}}')" value="{{tableNo}}" data-animate="true"  data-back="back"  class="close-tutorial" >{{@global.pageLanguageSetting.dining_table_no}} {{tableNo}} <span class="checkbox"><input type="radio" name="radio"  /></span></li>
+                            {{/waiterLising}}
+                        </ul>
+                        {{/tablelist}}
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

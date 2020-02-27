@@ -1,0 +1,76 @@
+﻿<div class="navbar">
+    <div class="navbar-inner " style="background-color: {{@global.style.headerBarBackgroundColor}}; color: {{@global.style.headerBarTextColor}};">
+        <div class="left sliding">
+
+            {{getNavigation @global.style.layout "menu"}}
+
+
+        </div>
+        <div class="center sliding {{@global.style.headerBarSize}} {{@global.style.headerBarFont}}">{{title}}</div>
+        <div class="right"></div>
+    </div>
+</div>
+<div data-page="forum-Page" class="page navbar-through no-toolbar">
+    <div class="backgroundAnimation">{{> innerBackground}}</div>
+    <div class="page-content {{#js_compare "this.data.length == '0' "}} {{else}} pull-to-refresh-content  {{/js_compare}}" id="forumPageScrollContent" onscroll="Appyscript.scrollForumPage(this);">
+        <style>
+            .type-button {
+                padding:0px 4px 0px;
+                display: inline-block;
+            }
+        </style>
+        <section class="homeScreenSection">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <div class="homeScreenSection_search">
+                <div class="homeScreenSection_search--searchbox">
+                    <input class="{{@global.styleAndNavigation.form[0]}} {{@global.styleAndNavigation.form[1]}}" style="color:{{@global.styleAndNavigation.form[2]}}; border-color:{{@global.styleAndNavigation.form[3]}}; background-color:{{@global.styleAndNavigation.form[5]}}" type="search" placeholder="{{@global.pageLanguageSetting.FORUM_SEARCH_HERE}}" id="searchTextBox" />
+                    <span style="color:{{@global.styleAndNavigation.button[3]}};background-color:{{@global.styleAndNavigation.button[2]}}" class="icon-search-3 {{@global.styleAndNavigation.button[1]}} {{@global.styleAndNavigation.button[0]}}" onclick="searchQuestion()"></span>
+                </div>
+            </div>
+            <div class="homeScreenUserBlock">
+                {{#js_compare "this.isLogin ==true || this.allowUserToAddQues == true"}}
+                <div class="userBlockQuestion" style="background-color:{{@global.styleAndNavigation.contentBgColor}}">
+                    {{#if isLogin}}
+                    <div class="userAsked">
+                        <figure>
+                            <img src="{{profileImage}}" />
+                            <figcaption class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">{{userName}}</figcaption>
+                        </figure>
+                    </div>
+                    {{else}}
+                    <div class="userAsked">
+                        <figure>
+                            <img src="{{profileImage}}" />
+                            <figcaption class="{{@global.styleAndNavigation.content[0]}} {{@global.styleAndNavigation.content[1]}}" style="color:{{@global.styleAndNavigation.content[2]}}">{{@global.pageLanguageSetting.FORUM_ANONNYMOUS_USER}}</figcaption>
+                        </figure>
+                    </div>
+                    {{/if}}
+                    {{#if allowUserToAddQues}}
+                    <h2 class="{{@global.styleAndNavigation.heading[0]}} {{@global.styleAndNavigation.heading[1]}}" style="color:{{@global.styleAndNavigation.heading[2]}}" onclick="goToPostQuestion()">{{@global.pageLanguageSetting.FORUM_WHAT_QUESTION}}</h2>
+                    {{/if}}
+                </div>
+                {{/js_compare}}
+                <div id="forumListDataId">
+                    <!--List-->
+                    {{> forumListData}}
+                    {{#js_compare "this.data.length == '0' "}}
+                    <div class="forumErrorMessage" style="display: inline-block;text-align: center;width: 100%;position: absolute;top: 65%;left: 0;transform: translateY(-50%);">
+                        <div class="msg-code">{{> errorpage errorIcon="appyicon-no-data"}} </div>
+                    </div>
+                    {{/js_compare}}
+                </div>
+
+            </div>
+        </section>
+        
+    </div>
+    {{#if allowUserToAddQues}}
+    <div class="addButton" onclick="goToPostQuestion()">
+        <i style="color:{{@global.styleAndNavigation.button[2]}};" class="icon-plus-circle-1 {{@global.styleAndNavigation.button[1]}} {{@global.styleAndNavigation.button[0]}}"></i>
+    </div>
+    {{/if}}
+</div>
+
